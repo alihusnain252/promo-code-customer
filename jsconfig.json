@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2017",
+      "jsx": "react",
+      "allowSyntheticDefaultImports": true,
+      "baseUrl": ".",
+      "paths": {
+        "@screens": [
+          "src/screens/index.js"
+        ],
+        "@components": [
+          "src/components/index.js"
+        ],
+        "@assets": [
+          "src/assets/index.js"
+        ],
+        "@axios": [
+          "src/axios/index.js"
+        ],
+        "@utils": [
+          "src/utils/index.js"
+        ],
+        "@navigation/*": [
+          "src/navigation/*"
+        ],
+        "@redux/*": [
+          "src/redux/*"
+        ]
+      }
+    }
+  }
