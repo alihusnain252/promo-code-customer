@@ -4,6 +4,16 @@ import {styles} from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const LoginOtp = ({navigation}) => {
+
+
+
+  const loginHandler=()=>{
+    navigation.navigate("Dashboard")
+  }
+
+
+
+
   return (
     <View style={styles.otpContainer}>
       <View style={styles.otpHeader}>
