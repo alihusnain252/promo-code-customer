@@ -1,5 +1,5 @@
-import {MyTheme} from '@utils';
-import {StyleSheet, Dimensions} from 'react-native';
+import { MyTheme } from '@utils';
+import { StyleSheet, Dimensions } from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
@@ -46,4 +46,17 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: MyTheme.white,
   },
+  inputContainer: {
+    // backgroundColor:'red',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 170,
+  },
+  textInput: {
+    backgroundColor: 'white',
+    padding: 7,
+    margin: 7,
+    borderRadius: 5,
+    textAlign: 'center',
+},
 });
