@@ -2,12 +2,15 @@ import {View, Text, Pressable, Image} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 
+import { useNavigation } from '@react-navigation/native';
+
 export const TopHeader = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.topContainer}>
       <View style={styles.topBody}>
         <View style={styles.profile}>
-          <Pressable>
+          <Pressable onPress={()=>navigation.navigate("AccountScreen")}>
             <Image
               source={require('../../assets/icons/profile.png')}
               style={styles.profileImage}
@@ -23,7 +26,7 @@ export const TopHeader = () => {
           </Pressable>
         </View>
         <View style={styles.notification}>
-          <Pressable>
+          <Pressable onPress={()=>navigation.navigate("Notifications")}>
             <Image
               source={require('../../assets/icons/notification.png')}
               style={styles.notificationImage}

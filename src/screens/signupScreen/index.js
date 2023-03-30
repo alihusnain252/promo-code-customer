@@ -5,8 +5,6 @@ import {globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const SignupScreen = ({navigation}) => {
-
-  
   const [fullName, setFullName] = useState('');
   const [dob, setDob] = useState('');
   const [nationality, setNationality] = useState('');

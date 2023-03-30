@@ -48,19 +48,28 @@ export const styles = StyleSheet.create({
   vendors: {
     marginTop: 23,
     width: '100%',
-    height: 112,
-    alignItems: 'center',
+    height: 100,
+    // alignItems: 'center',
   },
   ads: {
     marginTop: 25,
     width: '100%',
     height: 140,
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   discount: {
-    marginTop: 19,
+    marginTop: 31,
     width: '100%',
     height: '50%',
-    alignItems: 'center',
+    // alignItems: 'center',
+  },
+  heading: {
+    fontFamily: MyTheme.poppins,
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 21,
+    color: MyTheme.black,
+    marginLeft: 16,
   },
 });

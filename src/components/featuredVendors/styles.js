@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   scrollView: {
     marginLeft: 15,
-    marginTop: 16,
+    // marginTop: 1,
   },
   cardContainer: {
     width: 90,

@@ -5,11 +5,11 @@ import image3 from '../../assets/images/image3.png';
 import image6 from '../../assets/images/image6.png';
 import image7 from '../../assets/images/image7.png';
 import heart from '../../assets/images/heart.png';
+import {useNavigation} from '@react-navigation/native';
 
 export const FeaturedAds = () => {
   return (
     <View style={styles.featuredAdsContainer}>
-      <Text style={styles.heading}>Featured Ads⚡️</Text>
       <ScrollView
         style={styles.scrollView}
         horizontal={true}
@@ -24,9 +24,10 @@ export const FeaturedAds = () => {
   );
 };
 const FeaturedAd = props => {
+  const navigation = useNavigation();
   return (
     <View style={styles.cardContainer}>
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate('PromoDetails')}>
         <View style={styles.cardImageContainer}>
           <View style={styles.imageView}>
             <Image source={props.image} style={styles.cardImage} />

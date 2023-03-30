@@ -6,7 +6,6 @@ import image from '../../assets/images/image8.png';
 export const Ads = () => {
   return (
     <View style={styles.adsContainer}>
-      <Text style={styles.heading}>Discounts for you⚡️</Text>
       <ScrollView style={styles.scroll}>
         <AdCard />
         <AdCard />

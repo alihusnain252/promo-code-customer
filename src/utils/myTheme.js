@@ -14,6 +14,8 @@ export const MyTheme = {
   grey300: '#F5F5F5',
   grey400: '#FDFDFD',
   grey500: '#00000066',
+  grey600: '#FBFBFB',
+  grey700: '#0000001f',
   FireOpal: '#E75858',
   yellow: '#FBD211',
   fontFamily: 'Rubik',
