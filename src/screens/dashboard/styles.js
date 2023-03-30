@@ -5,9 +5,7 @@ const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   dashboardContainer: {
     flex: 1,
-    // justifyContent:"center",
     alignItems: 'center',
-    // justifyContent:"center",
     backgroundColor: 'white',
   },
   searchContainer: {
@@ -49,19 +47,16 @@ export const styles = StyleSheet.create({
     marginTop: 23,
     width: '100%',
     height: 100,
-    // alignItems: 'center',
   },
   ads: {
     marginTop: 25,
     width: '100%',
     height: 140,
-    // alignItems: 'center',
   },
   discount: {
     marginTop: 31,
     width: '100%',
     height: '50%',
-    // alignItems: 'center',
   },
   heading: {
     fontFamily: MyTheme.poppins,
