@@ -15,7 +15,7 @@ export const Ads = () => {
   );
 };
 
-const AdCard = () => {
+export const AdCard = () => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.cardTopView}>

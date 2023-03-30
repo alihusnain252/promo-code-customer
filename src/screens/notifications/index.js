@@ -34,7 +34,7 @@ export const Notifications = ({navigation}) => {
         {notifications.map(not => {
           return (
             <NotificationCard
-              id={not.id}
+              key={not.id}
               heading={not.heading}
               description={not.description}
             />
