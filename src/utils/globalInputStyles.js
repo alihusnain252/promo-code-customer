@@ -18,11 +18,12 @@ export const globalInputsStyles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
+    flexDirection:"row",
+    alignItems:"center",
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     // fontSize: 12,
     color: MyTheme.labelBlack,
-    textTransform: 'capitalize',
     width: '100%',
     backgroundColor: MyTheme.grey,
     borderRadius: 8,

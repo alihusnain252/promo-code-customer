@@ -1,15 +1,36 @@
-import { View, Text, Pressable, TextInput } from 'react-native';
-import React from 'react';
+import { View, Text, Pressable, TextInput, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
 import { styles } from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useDispatch } from 'react-redux';
+import { updateToken } from '@redux/tokenSlice';
+import { LoginUserAPI } from '../../api/apiCall';
+import { MyTheme } from '@utils';
 
 export const LoginOtp = ({ navigation }) => {
 
 
+  const [loading, setLoading] = useState(false)
+  const dispatch =useDispatch()
+
+
+
+  const body = {
+    "email": "azeemulrehman6@gmail.com",
+    "password": "secret",
+  };
+
 
   const loginHandler = () => {
-    navigation.navigate("Dashboard")
-  }
+    setLoading(true)
+    LoginUserAPI(body).then((response) => {
+      console.log("api response :", response);
+      setLoading(false)
+      dispatch(
+        updateToken(response.data.data.token ? response.data.data.token : "")
+      );
+    });
+  };
 
   let textInputFields = [];
   const focusPrevious = (key, index) => {
@@ -74,6 +95,9 @@ export const LoginOtp = ({ navigation }) => {
         {renderInputs()}
       </View>
 
+      <View style={loading === false ? {display:"none"}:{marginTop:20}}>
+          <ActivityIndicator size={36} color={MyTheme.yellow} />
+        </View>
 
       <Pressable style={styles.conform} onPress={() => loginHandler()}>
         <Text style={styles.conformText}>Conform</Text>

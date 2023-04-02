@@ -1,10 +1,14 @@
 import {View, Text, Pressable, Image} from 'react-native';
 import React from 'react';
-import { styles } from './styles';
+import {styles} from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import ProfileImage from "../../assets/icons/profile.png"
+import ProfileImage from '../../assets/icons/profile.png';
+import {useDispatch} from 'react-redux';
+import {updateToken} from '@redux/tokenSlice';
 
 export const AccountScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.accountContainer}>
       <View style={styles.accountHeader}>
@@ -14,7 +18,7 @@ export const AccountScreen = ({navigation}) => {
       </View>
       <View style={styles.accountBody}>
         <View style={styles.profileImageView}>
-          <Image source={ProfileImage} style={styles.profileImage}/>
+          <Image source={ProfileImage} style={styles.profileImage} />
         </View>
         <Text style={styles.userName}>John Smith</Text>
         <Text style={styles.userMail}>@johnsmith</Text>
@@ -31,12 +35,16 @@ export const AccountScreen = ({navigation}) => {
           </Pressable>
         </View>
         <View style={styles.logoutView}>
-          <Pressable style={styles.logoutPress}>
-            <Image source={require("../../assets/icons/logout.png")} style={styles.logoutIcon}/>
+          <Pressable
+            style={styles.logoutPress}
+            onPress={() => dispatch(updateToken(''))}>
+            <Image
+              source={require('../../assets/icons/logout.png')}
+              style={styles.logoutIcon}
+            />
             <Text style={styles.logoutText}>Logout</Text>
           </Pressable>
         </View>
-
       </View>
     </View>
   );

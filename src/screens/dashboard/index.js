@@ -20,7 +20,9 @@ export const Dashboard = ({navigation}) => {
           placeholder="Search (Vendor, Offers)"
           placeholderTextColor={MyTheme.EerieBlack}
         />
-        <Pressable style={styles.searchPress}>
+        <Pressable
+          style={styles.searchPress}
+          onPress={() => navigation.navigate('SearchVendor')}>
           <Image
             source={require('../../assets/icons/search.png')}
             style={styles.searchImage}

@@ -18,7 +18,7 @@ export const Favorite = ({navigation}) => {
         <FeaturedAds />
       </View>
       <View style={styles.favoriteDiscount}>
-        <Text style={styles.favoriteDiscountText}>FavoriteDiscount</Text>
+        <Text style={styles.favoriteDiscountText}>Favorite Discount</Text>
         <Ads />
       </View>
     </View>

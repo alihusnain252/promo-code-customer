@@ -80,24 +80,23 @@ export const styles = StyleSheet.create({
   },
   categoriesView: {
     marginTop: 29,
-    width:width,
-    flexDirection:"row",
-    flexWrap:"wrap",
-    height:"100%",
-    
+    width: width,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    height: '100%',
   },
   category: {
     width: 80,
     marginHorizontal: 10,
-    marginBottom:20,
+    marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   categoryIconView: {
     width: 45,
     height: 45,
-    justifyContent:"center",
-    alignItems:"center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: MyTheme.grey400,
     borderRadius: 40,
     shadowColor: '#000',
@@ -110,17 +109,17 @@ export const styles = StyleSheet.create({
 
     elevation: 5,
   },
-  categoryText:{
+  categoryText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
     fontSize: 10,
     lineHeight: 14,
     color: MyTheme.black,
-    marginTop:6,
+    marginTop: 6,
   },
-  categoryIcon:{
-    width:22,
-    height:22,
+  categoryIcon: {
+    width: 22,
+    height: 22,
   },
 });

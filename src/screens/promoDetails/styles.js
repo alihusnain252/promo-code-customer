@@ -77,8 +77,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 105,
     // backgroundColor:'red',
-    marginVertical:40,
-    padding:10,
+    marginVertical: 40,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
     // borderBottomWidth: 1,
@@ -107,5 +107,4 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     marginLeft: 5,
   },
-
 });

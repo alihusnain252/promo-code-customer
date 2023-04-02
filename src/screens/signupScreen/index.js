@@ -1,20 +1,76 @@
-import {View, Text, Pressable, ScrollView, TextInput} from 'react-native';
+import {View, Text, Pressable, ScrollView, TextInput, Alert} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
 import {globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { SignupUserAPI } from '../../api/apiCall';
 
 export const SignupScreen = ({navigation}) => {
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
   const [fullName, setFullName] = useState('');
   const [dob, setDob] = useState('');
   const [nationality, setNationality] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState("")
   const [occupation, setOccupation] = useState('');
   const [instituteName, setInstituteName] = useState('');
   const [countryAddress, setCountryAddress] = useState('');
   const [addressLine1, setAddressLine1] = useState('');
   const [addressLine2, setAddressLine2] = useState('');
   const [regionCapital, setRegionCapital] = useState('');
+
+
+
+  const [loading, setLoading] = useState(false)
+
+
+  const body = {
+    "fullName":fullName,
+    "dateOfBirth":dob,
+    "nationality":nationality,
+    "occupation":occupation,
+    "instituteName":instituteName,
+    "countryAddress":countryAddress,
+    "email": email,
+    "password": password,
+    "addressLine1": addressLine1,
+    "addressLine2": addressLine2,
+    "regionCapital": regionCapital,
+  };
+
+
+  const signupHandler = () => {
+    setLoading(true)
+    SignupUserAPI(body).then((response) => {
+      console.log("api response :", response);
+      Alert.alert(response.data.message)
+      setLoading(false)
+      navigation.goBack()
+    });
+  };
+
+
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const dt=new Date(date)
+    const x =dt.toISOString().split('T')
+    const x1 = x[0].split('-')
+    console.log(x1[2]+"/"+x1[1]+"/"+x1[0]);
+    setDob(x1[2]+"/"+x1[1]+"/"+x1[0])
+    hideDatePicker();
+  };
+
 
   return (
     <View style={styles.signupContainer}>
@@ -36,12 +92,17 @@ export const SignupScreen = ({navigation}) => {
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Date of birth*</Text>
-          <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setDob}
-            value={dob}
-            placeholder="10/10/2007"
-          />
+          <View style={globalInputsStyles.input}>
+            <TextInput
+              style={styles.dateInput}
+              onChangeText={setDob}
+              value={dob}
+              placeholder="10/10/2007"
+            />
+            <Pressable style={styles.datePress} onPress={()=>{showDatePicker()}}>
+              <EvilIcons name="calendar" size={30} color="#000" />
+            </Pressable>
+          </View>
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Nationality*</Text>
@@ -59,6 +120,17 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setEmail}
             value={email}
             placeholder="youremail@gmail.com"
+          />
+        </View>
+        <View style={globalInputsStyles.globalInputs}>
+          <Text style={globalInputsStyles.globalLabel}>Password*</Text>
+          <TextInput
+
+            style={globalInputsStyles.input}
+            onChangeText={setPassword}
+            value={password}
+            placeholder="*********"
+            secureTextEntry={true}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -115,10 +187,16 @@ export const SignupScreen = ({navigation}) => {
             placeholder="Usa Capital here"
           />
         </View>
-        <Pressable style={styles.register} onPress={() => loginHandler()}>
+        <Pressable style={styles.register} onPress={() => signupHandler()}>
           <Text style={styles.registerText}>Register</Text>
         </Pressable>
       </ScrollView>
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
     </View>
   );
 };
