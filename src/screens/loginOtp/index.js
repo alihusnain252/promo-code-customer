@@ -36,7 +36,7 @@ export const LoginOtp = ({ navigation }) => {
       otpText = '';
     }
     if (otpText === '' || otpText.length < 4) {
-      showAlertMethod('Error', 'Enter 4 digit otp', setShowAlert, setAlertTitle, setAlertMessage);
+      // showAlertMethod('Error', 'Enter 4 digit otp', setShowAlert, setAlertTitle, setAlertMessage);
 
 
     }

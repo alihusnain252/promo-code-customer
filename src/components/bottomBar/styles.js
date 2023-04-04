@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 70,
     position: 'absolute',
     bottom: 12,
-    paddingHorizontal: 31.17,
+    paddingHorizontal: 31,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     height: 40.93,
     justifyContent: 'center',
     alignItems: 'center',
+
   },
   icon: {
     width: 21.67,
