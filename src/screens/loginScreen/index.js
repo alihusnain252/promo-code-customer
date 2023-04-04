@@ -1,14 +1,28 @@
-import {View, Text, TextInput, Pressable, Image} from 'react-native';
+import {View, Text, TextInput, Pressable, Image, ActivityIndicator} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {signInInputsStyles} from '@utils';
+import {MyTheme, signInInputsStyles} from '@utils';
+import { LoginUserAPI } from '../../api/apiCall';
 
 export const LogInScreen = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false)
+
+  const body = {
+    "email": phoneNumber,
+    "password": password,
+  };
+
 
   const loginHandler = () => {
-    navigation.navigate('LoginOtp');
+    setLoading(true)
+    LoginUserAPI(body).then((response) => {
+      console.log("api response :", response);
+      setLoading(false)
+      navigation.navigate('LoginOtp');
+    });
+
   };
   const recoverHandler = () => {};
 
@@ -26,8 +40,8 @@ export const LogInScreen = ({navigation}) => {
           />
           <TextInput
             style={signInInputsStyles.input}
-            onChangeText={setPassword}
-            value={password}
+            onChangeText={setPhoneNumber}
+            value={phoneNumber}
             placeholder="Phone Number / UserID"
             keyboardType="numeric"
           />
@@ -39,8 +53,8 @@ export const LogInScreen = ({navigation}) => {
           />
           <TextInput
             style={signInInputsStyles.input}
-            onChangeText={setPhoneNumber}
-            value={phoneNumber}
+            onChangeText={setPassword}
+            value={password}
             placeholder="Password"
             secureTextEntry={true}
           />
@@ -55,6 +69,9 @@ export const LogInScreen = ({navigation}) => {
         <Pressable style={styles.login} onPress={() => loginHandler()}>
           <Text style={styles.loginText}>Login</Text>
         </Pressable>
+        <View style={loading === false ? {display:"none"}:{marginTop:20}}>
+          <ActivityIndicator size={36} color={MyTheme.yellow} />
+        </View>
       </View>
       <View style={styles.registerNow}>
         <Text style={styles.notMemberText}> Not a member?</Text>

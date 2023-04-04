@@ -51,4 +51,14 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: MyTheme.white,
   },
+
+  dateInput:{
+    width:"80%",
+  },
+  datePress:{
+    width:"20%",
+    height:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+  },
 });

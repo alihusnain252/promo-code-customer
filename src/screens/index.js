@@ -6,3 +6,4 @@ export {Notifications} from './notifications';
 export {Favorite} from './favorite';
 export {AccountScreen} from './AccountScreen';
 export {PromoDetails} from './promoDetails';
+export {SearchVendor} from './searchVendor';
