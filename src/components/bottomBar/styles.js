@@ -52,6 +52,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     alignItems: 'center',
+    // justifyContent:"center",
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -79,14 +80,15 @@ export const styles = StyleSheet.create({
     marginLeft: 24,
   },
   categoriesView: {
-    marginTop: 29,
+    marginTop: 10,
     width: width,
+    justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%',
   },
   category: {
-    width: 80,
+    width: '16%',
     marginHorizontal: 10,
     marginBottom: 20,
     justifyContent: 'center',

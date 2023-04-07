@@ -1,4 +1,4 @@
-import {View, Text, Image, Pressable, Modal} from 'react-native';
+import {View, Text, Image, Pressable, Modal, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -122,11 +122,13 @@ export const BottomBar = () => {
                 style={styles.buttonClose}
                 onPress={() => setModalVisible(!modalVisible)}></Pressable>
               <Text style={styles.modalText}>Categories </Text>
-              <View style={styles.categoriesView}>
-                {categories.map(cat => {
-                  return <CategoryCard name={cat.name} icon={cat.icon} />;
-                })}
-              </View>
+              <ScrollView style={{width: '100%'}}>
+                <View style={styles.categoriesView}>
+                  {categories.map(cat => {
+                    return <CategoryCard name={cat.name} icon={cat.icon} />;
+                  })}
+                </View>
+              </ScrollView>
             </View>
           </View>
         </Modal>

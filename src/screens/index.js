@@ -7,3 +7,4 @@ export {Favorite} from './favorite';
 export {AccountScreen} from './AccountScreen';
 export {PromoDetails} from './promoDetails';
 export {SearchVendor} from './searchVendor';
+export {AccountDetails} from './accountDetails';

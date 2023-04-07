@@ -1,19 +1,21 @@
 import {View, Text, TextInput, Image, Pressable} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {
-  AdCard,
-  BottomBar,
-  FeaturedAds,
-  FeaturedVendors,
-  TopHeader,
-} from '@components';
+import {AdCard} from '@components';
 import {MyTheme} from '@utils';
-
-import image3 from '../../assets/images/image3.png';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-export const PromoDetails = ({navigation}) => {
+export const PromoDetails = ({route, navigation}) => {
+  const {promoDetails} = route.params;
+  console.log('promoDetails params : ', promoDetails);
+
+  const venderDetails = {
+    name: 'Vendor Name',
+    locatedIn: 'Accra Mall',
+    Address: 'Tetteh Quarshie Ave, Accra',
+    ServiceOptions: 'in store , Pick up, Delivery',
+  };
+
   return (
     <View style={styles.dashboardContainer}>
       <View style={[styles.notificationHeader, {}]}>
@@ -24,7 +26,10 @@ export const PromoDetails = ({navigation}) => {
       </View>
 
       <View style={[styles.imageView, {marginTop: 120}]}>
-        <Image source={image3} style={styles.cardImage} />
+        <Image
+          source={{uri: promoDetails.image ? promoDetails.image : ''}}
+          style={styles.cardImage}
+        />
       </View>
 
       <View
@@ -37,27 +42,35 @@ export const PromoDetails = ({navigation}) => {
           marginBottom: 20,
         }}>
         <Text style={[styles.heading, {fontSize: 24, textAlign: 'center'}]}>
-          Shoprite Accra Mall
+          {promoDetails.company_name}
         </Text>
         <Text style={[styles.heading, {textAlign: 'center'}]}>
-          Supermarket chain with brand plus a bakery & a deli. name & house
+          {promoDetails.description}
         </Text>
       </View>
 
       <View style={{width: '100%', flexDirection: 'row'}}>
+        <Text style={styles.heading}>Name : </Text>
+        <Text style={[styles.heading, {color: '#E65C89'}]}>
+          {venderDetails.name}
+        </Text>
+      </View>
+      <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.heading}>Located In: </Text>
-        <Text style={[styles.heading, {color: '#E65C89'}]}>Accra Mall</Text>
+        <Text style={[styles.heading, {color: '#E65C89'}]}>
+          {venderDetails.locatedIn}
+        </Text>
       </View>
       <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.heading}>Address: </Text>
         <Text style={[styles.heading, {color: '#E65C89'}]}>
-          Tetteh Quarshie Ave, Accra
+          {venderDetails.Address}
         </Text>
       </View>
       <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.heading}>Service options: </Text>
         <Text style={[styles.heading, {color: '#E65C89'}]}>
-          In store, Pick up, Delivery
+          {venderDetails.ServiceOptions}
         </Text>
       </View>
 

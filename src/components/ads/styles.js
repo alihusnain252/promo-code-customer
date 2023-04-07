@@ -127,4 +127,11 @@ export const styles = StyleSheet.create({
     lineHeight: 14,
     color: MyTheme.black,
   },
+  line: {
+    position: 'relative',
+    top: -10,
+    width: 25,
+    borderWidth: 0.5,
+    borderColor: 'black',
+  },
 });

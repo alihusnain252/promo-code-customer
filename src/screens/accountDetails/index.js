@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  Image,
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
@@ -12,43 +13,66 @@ import {globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {RegisterRequest, SignupUserAPI} from '../../api/apiCall';
+import {
+  RegisterRequest,
+  SignupUserAPI,
+  UpdateRequest,
+  updateImageRequest,
+} from '../../api/apiCall';
+import {ArrowHeader} from '@components';
+import ProfileImage from '../../assets/icons/profile.png';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-export const SignupScreen = ({navigation}) => {
+export const AccountDetails = ({route, navigation}) => {
+  const {profileDetails} = route.params;
+
+  const userToken = useSelector(token);
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [dob, setDob] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [occupation, setOccupation] = useState('');
-  const [instituteName, setInstituteName] = useState('');
-  const [countryAddress, setCountryAddress] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
-  const [regionCapital, setRegionCapital] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [conformPassword, setConformPassword] = useState('');
-
   const [loading, setLoading] = useState(false);
 
-  const body = {
-    fullName: firstName,
-    dateOfBirth: dob,
-    nationality: nationality,
-    occupation: occupation,
-    instituteName: instituteName,
-    countryAddress: countryAddress,
-    email: email,
-    password: password,
-    addressLine1: addressLine1,
-    addressLine2: addressLine2,
-    regionCapital: regionCapital,
-  };
-
-  const signupHandler = () => {
+  const [imageUri, setImageUri] = useState(
+    profileDetails ? profileDetails.profile_pic : ProfileImage,
+  );
+  const [firstName, setFirstName] = useState(
+    profileDetails ? profileDetails.first_name : '',
+  );
+  const [lastName, setLastName] = useState(
+    profileDetails ? profileDetails.last_name : '',
+  );
+  const [dob, setDob] = useState(
+    profileDetails ? profileDetails.date_of_birth : '',
+  );
+  const [nationality, setNationality] = useState(
+    profileDetails ? profileDetails.nationality : '',
+  );
+  const [email, setEmail] = useState(
+    profileDetails ? profileDetails.email : '',
+  );
+  const [occupation, setOccupation] = useState(
+    profileDetails ? profileDetails.occupation : '',
+  );
+  const [instituteName, setInstituteName] = useState(
+    profileDetails ? profileDetails.institution_name : '',
+  );
+  const [countryAddress, setCountryAddress] = useState(
+    profileDetails ? profileDetails.country : '',
+  );
+  const [addressLine1, setAddressLine1] = useState(
+    profileDetails ? profileDetails.address : '',
+  );
+  const [addressLine2, setAddressLine2] = useState(
+    profileDetails ? profileDetails.address_two : '',
+  );
+  const [regionCapital, setRegionCapital] = useState(
+    profileDetails ? profileDetails.region_capital : '',
+  );
+  const [phoneNumber, setPhoneNumber] = useState(
+    profileDetails ? profileDetails.phone_number : '',
+  );
+  const updateProfileHandler = () => {
     setLoading(true);
     let data = new FormData();
     data.append('first_name', firstName);
@@ -58,22 +82,76 @@ export const SignupScreen = ({navigation}) => {
     data.append('occupation', occupation);
     data.append('institution_name', instituteName);
     data.append('address', addressLine1);
-    data.append('password', password);
-    data.append('password_confirmation', conformPassword);
     data.append('address_two', addressLine2);
     data.append('region_capital', regionCapital);
     data.append('email', email);
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
-    RegisterRequest(data, 'api/customer/register').then(response => {
+    UpdateRequest(userToken.token, data, 'api/customer/update-profile').then(
+      response => {
+        console.log('update profile api response :', response);
+        // Alert.alert(response.data.message)
+        if (response.data.success === true) {
+          Alert.alert(response.data.message);
+          setLoading(false);
+          // navigation.navigate('LoginOtp', {phoneNumber: phoneNumber});
+        } else {
+          Alert.alert(response.data.message);
+        }
+      },
+    );
+  };
+  const updateProfileImage = () => {
+    let data = new FormData();
+    data.append('image', {
+      uri: imageUri,
+      type: 'image/jpeg',
+      name: 'adPhoto.png',
+    });
+
+    setLoading(true);
+
+    updateImageRequest(
+      userToken.token,
+      data,
+      'api/customer/update-profile-image',
+    ).then(response => {
       console.log('api response :', response);
-      // Alert.alert(response.data.message)
       if (response.data.success === true) {
-        Alert.alert(response.data.message);
+        // Alert.alert(response.data.message)
         setLoading(false);
-        navigation.navigate('LoginOtp', {phoneNumber: phoneNumber});
       } else {
         Alert.alert(response.data.message);
+        setLoading(false);
+      }
+    });
+  };
+  const onPressUpdate = () => {
+    updateProfileHandler();
+    updateProfileImage();
+  };
+
+  const pickImage = () => {
+    let options = {
+      title: 'Select Image',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = response.assets[0];
+        console.log('selected Image :', source.uri);
+        setImageUri(source.uri);
+        // setAdImageName(source.fileName);
       }
     });
   };
@@ -97,12 +175,13 @@ export const SignupScreen = ({navigation}) => {
 
   return (
     <View style={styles.signupContainer}>
-      <View style={styles.signupHeader}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <AntDesign name="arrowleft" size={25} color="#000" />
-        </Pressable>
-        <Text style={styles.signUpHeaderText}>Sign Up</Text>
-      </View>
+      <ArrowHeader heading="Account Details" />
+      <Pressable style={styles.profileImageView} onPress={() => pickImage()}>
+        <Image
+          source={imageUri ? {uri: imageUri} : ProfileImage}
+          style={styles.profileImage}
+        />
+      </Pressable>
       <ScrollView style={styles.scrollView}>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>First name*</Text>
@@ -156,6 +235,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setEmail}
             value={email}
             placeholder="youremail@gmail.com"
+            editable={false}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -165,9 +245,10 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setPhoneNumber}
             value={phoneNumber}
             placeholder="02112345678"
+            editable={false}
           />
         </View>
-        <View style={globalInputsStyles.globalInputs}>
+        {/* <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Password*</Text>
           <TextInput
             style={globalInputsStyles.input}
@@ -186,7 +267,7 @@ export const SignupScreen = ({navigation}) => {
             placeholder="*********"
             secureTextEntry={true}
           />
-        </View>
+        </View> */}
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>occupation*</Text>
           <TextInput
@@ -241,8 +322,8 @@ export const SignupScreen = ({navigation}) => {
             placeholder="Usa Capital here"
           />
         </View>
-        <Pressable style={styles.register} onPress={() => signupHandler()}>
-          <Text style={styles.registerText}>Register</Text>
+        <Pressable style={styles.register} onPress={() => onPressUpdate()}>
+          <Text style={styles.registerText}>Update</Text>
         </Pressable>
       </ScrollView>
       <DateTimePickerModal

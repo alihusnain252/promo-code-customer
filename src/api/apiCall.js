@@ -1,64 +1,134 @@
-const baseUrl = 'https://backend.lovenotecookies.com';
+import axios from 'axios';
 
-export const LoginUserAPI = async body => {
-  console.log('userData :', body);
-  let myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append(
-    'Cookie',
-    'lovenote-session=eyJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpwWkNJNk1pd2lhV0YwSWpveE5qZ3dORE0yTnpJMExDSmxlSEFpT2pFMk9EQTFNak14TWpSOS5nTkZMelZYS3VsVU1zaUpFb1E5S2c3b1NNc1JIUXV2dFBSU0NORjlHalc4In0=; lovenote-session.sig=eRae4Z4FD-Yn-Kjul5_lTZ4rzLA',
-  );
+const baseUrl = 'https://backend.buddysaver.net';
 
+export const LoginPostRequest = async (data, url) => {
+  console.log('signIn Data :', data);
+  console.log('signIn URl :', url);
+
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  };
+
+  const res = await axios({
+    method: 'post',
+    url: url,
+    baseURL: baseUrl,
+    data: data,
+    headers: headers,
+  });
+  return res;
+};
+export const PostRequest = async (data, url) => {
+  console.log('signIn Data :', data);
+  console.log('signIn URl :', url);
+
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  };
+
+  const res = await axios({
+    method: 'post',
+    url: url,
+    baseURL: baseUrl,
+    data: data,
+    headers: headers,
+  });
+  return res;
+};
+export const RegisterRequest = async (data, url) => {
+  console.log('signUInData :', data);
+  console.log('signIn URl :', url);
+
+  const res = await axios({
+    method: 'post',
+    url: url,
+    baseURL: baseUrl,
+    data: data,
+    headers: {'Content-Type': 'multipart/form-data'},
+  });
+  return res;
+};
+export const UpdateRequest = async (token, data, url) => {
+  console.log('signUInData :', data);
+  console.log('signIn URl :', url);
+
+  const AuthStr = 'Bearer '.concat(token);
+  const res = await axios({
+    method: 'post',
+    url: url,
+    baseURL: baseUrl,
+    data: data,
+    headers: {Authorization: AuthStr,'Content-Type': 'multipart/form-data'},
+  });
+  return res;
+};
+export const GetRequest = async (token, url) => {
+  const AuthStr = 'Bearer '.concat(token);
+  const res = await axios({
+    method: 'get',
+    url: url,
+    baseURL: baseUrl,
+    headers: {Authorization: AuthStr},
+  });
+  return res;
+};
+export const CreateAdRequest = async (token, data, url) => {
+  console.log('signUInData :', data);
+  console.log('token :', token);
+  console.log('signIn URl :', url);
+  const AuthStr = 'Bearer '.concat(token);
+
+  const res = await axios({
+    method: 'post',
+    url: url,
+    baseURL: baseUrl,
+    data: data,
+    headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
+  });
+  return res;
+};
+export const PostRequestWithToken = async (userToken, data, url) => {
   try {
-    const response = await fetch(
-      'https://backend.lovenotecookies.com/api/auth/signin',
-      {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(body),
-        redirect: 'follow',
-      },
-    );
-    let data = await response.json();
+    console.log('postData :', data);
+    console.log('post URl :', url);
+    const AuthStr = 'Bearer '.concat(userToken);
+    // console.log(AuthStr);
 
-    if (response.status === 200) {
-      return {status: true, data: data};
-    } else {
-      return {status: false, data: null, error: JSON.stringify(data)};
-    }
-  } catch (e) {
-    console.log('Error', e.message);
-    return {status: false, data: [], error: JSON.stringify(e.message)};
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: {
+        Authorization: AuthStr,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log('Post request Error :', error);
   }
 };
-export const SignupUserAPI = async body => {
-  console.log('userData :', body);
-  let myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append(
-    'Cookie',
-    'lovenote-session=eyJ0b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpwWkNJNk1pd2lhV0YwSWpveE5qZ3dORE0yTnpJMExDSmxlSEFpT2pFMk9EQTFNak14TWpSOS5nTkZMelZYS3VsVU1zaUpFb1E5S2c3b1NNc1JIUXV2dFBSU0NORjlHalc4In0=; lovenote-session.sig=eRae4Z4FD-Yn-Kjul5_lTZ4rzLA',
-  );
-
+export const updateImageRequest = async (userToken, data, url) => {
   try {
-    const response = await fetch(
-      'https://backend.lovenotecookies.com/api/auth/signup',
-      {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(body),
-        redirect: 'follow',
-      },
-    );
-    let data = await response.json();
+    console.log('postData :', data);
+    console.log('post URl :', url);
+    const AuthStr = 'Bearer '.concat(userToken);
+    console.log(AuthStr);
 
-    if (response.status === 200) {
-      return {status: true, data: data};
-    } else {
-      return {status: false, data: null, error: JSON.stringify(data)};
-    }
-  } catch (e) {
-    console.log('Error', e.message);
-    return {status: false, data: [], error: JSON.stringify(e.message)};
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: {
+        Authorization: AuthStr,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log('Post request Error :', error);
   }
 };

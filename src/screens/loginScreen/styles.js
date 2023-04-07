@@ -99,4 +99,23 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: MyTheme.yellow,
   },
+  errorView: {
+    marginTop: -20,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: 30,
+  },
+  errorText: {
+    fontFamily: MyTheme.fontFamily,
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 19,
+    color: 'red',
+    marginLeft: 5,
+  },
+  noDisplay: {
+    display: 'none',
+  },
 });

@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
   profileImage: {
     width: '100%',
     height: '100%',
+    borderRadius: 59,
   },
   userName: {
     fontFamily: MyTheme.fontFamily,
@@ -90,7 +91,7 @@ export const styles = StyleSheet.create({
   logoutView: {
     width: width - 46,
     alignItems: 'flex-end',
-    marginTop: 5,
+    marginTop: 15,
   },
   logoutPress: {
     flexDirection: 'row',

@@ -1,44 +1,74 @@
-import {View, Text, ScrollView, Image} from 'react-native';
-import React from 'react';
+import {View, Text, ScrollView, Image, ActivityIndicator} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import image from '../../assets/images/image8.png';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {GetRequest} from '../../api/apiCall';
+import {MyTheme} from '@utils';
 
-export const Ads = () => {
+export const Ads = ({ loading , allPromotions }) => {
+
+
   return (
     <View style={styles.adsContainer}>
+      <View
+        style={
+          loading === false
+            ? {display: 'none'}
+            : {position: 'absolute', top: 10, left: 150, zIndex: 1}
+        }>
+        <ActivityIndicator size={36} color={MyTheme.yellow} />
+      </View>
       <ScrollView style={styles.scroll}>
-        <AdCard />
-        <AdCard />
-        <AdCard />
+        {allPromotions?.map(promo => {
+          return <AdCard promo={promo} />;
+        })}
+        <View style={{width: '100%', height: 200}}></View>
       </ScrollView>
     </View>
   );
 };
 
-export const AdCard = () => {
+export const AdCard = ({promo}) => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.cardTopView}>
-        <Image source={image} style={styles.cardImage} />
+        <Image
+          source={promo ? {uri: promo.image} : image}
+          style={styles.cardImage}
+        />
         <View style={styles.adDetails}>
-          <Text style={styles.originalPrice}>150$</Text>
-          <Text style={styles.discountPrice}>
-            70$ <Text style={styles.off}>OFF</Text>
+          <Text style={styles.originalPrice}>
+            {promo ? promo.original_price : 150}$
           </Text>
-          <Text style={styles.adTitle}>Philips Iron - Promo </Text>
+          <View style={styles.line}></View>
+          <Text style={styles.discountPrice}>
+            {promo ? promo.discounted_price : 70}${' '}
+            <Text style={styles.off}>OFF</Text>
+          </Text>
+          <Text style={styles.adTitle}>
+            {promo ? promo.promotion_details : 'Philips Iron - Promo'}{' '}
+          </Text>
           <Text style={styles.expiry}>
-            Active - Promo Expiring in 15 hours{' '}
+            Active - Promo Expiring in {promo ? promo.promotion_duration : 15}{' '}
+            hours{' '}
           </Text>
         </View>
       </View>
       <View style={styles.bottomView}>
         <View style={styles.bottomLeft}>
-          <Text style={styles.companyName}>Promo Company Name here</Text>
-          <Text style={styles.categoryName}>Category Name</Text>
+          <Text style={styles.companyName}>
+            {promo ? promo.company_name : 'Promo Company Name here'}
+          </Text>
+          <Text style={styles.categoryName}>
+            {promo ? promo.category_name : 'Category Name'}
+          </Text>
         </View>
         <View style={styles.bottomRight}>
-          <Text style={styles.availableTill}>Available Till: 27,Mar </Text>
-          <Text style={styles.ratings}>⭐️ 5.0 </Text>
+          <Text style={styles.availableTill}>
+            Available Till: {promo ? promo.expiry_date : '27,Mar'}{' '}
+          </Text>
         </View>
       </View>
     </View>

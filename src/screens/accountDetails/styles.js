@@ -3,20 +3,20 @@ import {StyleSheet, Dimensions} from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
-  otpContainer: {
+  signupContainer: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: MyTheme.white,
   },
-  otpHeader: {
+  signupHeader: {
     width: '100%',
     flexDirection: 'row',
     position: 'absolute',
     width: width - 40,
-    height: 21,
+    height: 25,
     top: 70,
   },
-  otpHeaderText: {
+  signUpHeaderText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 500,
@@ -26,20 +26,24 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     marginLeft: 5,
   },
-  conform: {
+  scrollView: {
     position: 'absolute',
-    height: 56,
+    width: '100%',
+    height: '80%',
     left: 20,
-    bottom: 20,
+    top: 154,
+  },
+  register: {
+    height: 56,
     width: width - 40,
     height: 56,
-    marginTop: 60,
+    marginTop: 6,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 69,
     backgroundColor: MyTheme.yellow,
   },
-  conformText: {
+  registerText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -47,17 +51,28 @@ export const styles = StyleSheet.create({
     lineHeight: 19,
     color: MyTheme.white,
   },
-  inputContainer: {
-    // backgroundColor:'red',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 170,
+
+  dateInput:{
+    width:"80%",
   },
-  textInput: {
-    backgroundColor: 'white',
-    padding: 7,
-    margin: 7,
-    borderRadius: 5,
-    textAlign: 'center',
+  datePress:{
+    width:"20%",
+    height:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+  },
+  profileImageView: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    top: 65,
+    borderWidth: 2,
+    borderColor: MyTheme.green200,
+    borderRadius: 59,
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 59,
   },
 });

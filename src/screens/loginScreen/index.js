@@ -1,28 +1,50 @@
-import {View, Text, TextInput, Pressable, Image, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  Image,
+  ActivityIndicator,
+  Alert,
+} from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
 import {MyTheme, signInInputsStyles} from '@utils';
-import { LoginUserAPI } from '../../api/apiCall';
+import {LoginPostRequest} from '../../api/apiCall';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
+import {updateToken} from '@redux/tokenSlice';
 
 export const LogInScreen = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [errorText, setErrorText] = useState('');
+  const [noDisplay, setNoDisplay] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const body = {
-    "email": phoneNumber,
-    "password": password,
+  const dispatch = useDispatch();
+
+  const data = {
+    phone_number: phoneNumber,
+    password: password,
   };
 
-
   const loginHandler = () => {
-    setLoading(true)
-    LoginUserAPI(body).then((response) => {
-      console.log("api response :", response);
-      setLoading(false)
-      navigation.navigate('LoginOtp');
-    });
+    setLoading(true);
+    LoginPostRequest(data, 'api/customer/login').then(response => {
+      console.log('api response :', response.data);
 
+      if (response.data.success === false) {
+        setNoDisplay(true);
+        setErrorText(response.data.message);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        dispatch(
+          updateToken(response.data.data.token ? response.data.data.token : ''),
+        );
+      }
+    });
   };
   const recoverHandler = () => {};
 
@@ -45,6 +67,10 @@ export const LogInScreen = ({navigation}) => {
             placeholder="Phone Number / UserID"
             keyboardType="numeric"
           />
+        </View>
+        <View style={noDisplay === true ? styles.errorView : styles.noDisplay}>
+          <MaterialIcons name="error-outline" size={20} color="red" />
+          <Text style={styles.errorText}>{errorText}</Text>
         </View>
         <View style={signInInputsStyles.inputView}>
           <Image
@@ -69,7 +95,7 @@ export const LogInScreen = ({navigation}) => {
         <Pressable style={styles.login} onPress={() => loginHandler()}>
           <Text style={styles.loginText}>Login</Text>
         </Pressable>
-        <View style={loading === false ? {display:"none"}:{marginTop:20}}>
+        <View style={loading === false ? {display: 'none'} : {marginTop: 20}}>
           <ActivityIndicator size={36} color={MyTheme.yellow} />
         </View>
       </View>

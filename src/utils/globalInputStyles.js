@@ -6,6 +6,7 @@ export const globalInputsStyles = StyleSheet.create({
   globalInputs: {
     width: width - 40,
     height: 85,
+    paddingTop:5,
   },
   globalLabel: {
     fontFamily: MyTheme.fontFamily,
@@ -15,7 +16,7 @@ export const globalInputsStyles = StyleSheet.create({
     lineHeight: 20,
     color: MyTheme.labelBlack,
     textTransform: 'capitalize',
-    marginBottom: 5,
+    // marginBottom: 5,
   },
   input: {
     flexDirection:"row",

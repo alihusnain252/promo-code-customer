@@ -13,6 +13,7 @@ import {
   Notifications,
   Favorite,
   SearchVendor,
+  AccountDetails,
 } from '@screens';
 import {TopHeader} from '@components';
 import {useSelector} from 'react-redux';
@@ -55,6 +56,7 @@ export const RouterComponents = () => {
           <Stack.Screen name="Favorite" component={Favorite} />
           <Stack.Screen name="TopHeader" component={TopHeader} />
           <Stack.Screen name="SearchVendor" component={SearchVendor} />
+          <Stack.Screen name="AccountDetails" component={AccountDetails} />
         </Stack.Navigator>
       )}
     </NavigationContainer>

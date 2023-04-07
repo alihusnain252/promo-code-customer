@@ -1,22 +1,36 @@
-import {View, Text, ScrollView, Image, Pressable} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
-import image3 from '../../assets/images/image3.png';
-import image4 from '../../assets/images/image4.png';
-import image5 from '../../assets/images/image5.png';
+import {GetRequest} from '../../api/apiCall';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {MyTheme} from '@utils';
 
-export const FeaturedVendors = () => {
+export const FeaturedVendors = ({loading, featured_vendors}) => {
   return (
     <View style={styles.featuredVendorsContainer}>
+      <View
+        style={
+          loading === false
+            ? {display: 'none'}
+            : {position: 'absolute', top: 10, left: 150, zIndex: 1}
+        }>
+        <ActivityIndicator size={36} color={MyTheme.yellow} />
+      </View>
       <ScrollView
         style={styles.scrollView}
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        <Vendors image={image3} title="ShopRite" />
-        <Vendors image={image4} title="Barcelos" />
-        <Vendors image={image5} title="Palace Shopping" />
-        <Vendors image={image3} title="ShopRite" />
-        <Vendors image={image4} title="Barcelos" />
+        {featured_vendors?.map(vendor => {
+          return <Vendors image={vendor.profile_pic} title={vendor.name} />;
+        })}
       </ScrollView>
     </View>
   );
@@ -27,7 +41,7 @@ const Vendors = props => {
     <Pressable>
       <View style={styles.cardContainer}>
         <View style={styles.cardImageContainer}>
-          <Image source={props.image} style={styles.cardImage} />
+          <Image source={{uri: props.image}} style={styles.cardImage} />
         </View>
         <Text style={styles.imageTitle}>{props.title}</Text>
       </View>
