@@ -42,6 +42,59 @@ export const LoginOtp = ({route, navigation}) => {
     });
   };
 
+<<<<<<< HEAD
+=======
+  let textInputFields = [];
+  const focusPrevious = (key, index) => {
+    if (key === 'Backspace' && index !== 0) {
+      textInputFields[index - 1].focus();
+    }
+  };
+  const focusNext = (index, value) => {
+    if (index < textInputFields.length - 1 && value) {
+      textInputFields[index + 1].focus();
+    }
+    if (index === textInputFields.length - 1) {
+      textInputFields[index].blur();
+    }
+    otp[index] = value;
+    setOtp(otp);
+  };
+  const checkOtpApi = () => {
+
+    let otpText = '';
+    if (otp.length > 0) {
+      otpText = otp[0] + otp[1] + otp[2] + otp[3];
+    } else {
+      otpText = '';
+    }
+    if (otpText === '' || otpText.length < 4) {
+      // showAlertMethod('Error', 'Enter 4 digit otp', setShowAlert, setAlertTitle, setAlertMessage);
+
+
+    }
+  }
+
+
+  const renderInputs = () => {
+    const inputs = Array(4).fill(0);
+    const txtContainer = inputs.map(
+      (i, j) =>
+        <TextInput onChangeText={v => focusNext(j, v)}
+          onKeyPress={e => focusPrevious(e.nativeEvent.key, j)}
+          maxLength={1}
+          key={j}
+          keyboardType="numeric"
+          autoCapitalize='none'
+          ref={(input) => textInputFields[j] = input}
+          style={styles.textInput} />,
+    );
+    return txtContainer;
+
+  };
+
+
+>>>>>>> d157f55762f29c4938bee122b986e91bc21f266c
   return (
     <View style={styles.otpContainer}>
       <View style={styles.otpHeader}>
