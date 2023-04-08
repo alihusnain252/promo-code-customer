@@ -14,6 +14,11 @@ import {
   Favorite,
   SearchVendor,
   AccountDetails,
+  UpdatePassword,
+  RecoverPassword,
+  ResetPassword,
+  AllVendors,
+  VendorDetails,
 } from '@screens';
 import {TopHeader} from '@components';
 import {useSelector} from 'react-redux';
@@ -37,6 +42,8 @@ export const RouterComponents = () => {
           <Stack.Screen name="Login" component={LogInScreen} />
           <Stack.Screen name="LoginOtp" component={LoginOtp} />
           <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+          <Stack.Screen name="ResetPassword" component={ResetPassword} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator
@@ -57,6 +64,9 @@ export const RouterComponents = () => {
           <Stack.Screen name="TopHeader" component={TopHeader} />
           <Stack.Screen name="SearchVendor" component={SearchVendor} />
           <Stack.Screen name="AccountDetails" component={AccountDetails} />
+          <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
+          <Stack.Screen name="AllVendors" component={AllVendors} />
+          <Stack.Screen name="VendorDetails" component={VendorDetails} />
         </Stack.Navigator>
       )}
     </NavigationContainer>

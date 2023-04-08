@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {globalInputsStyles} from '@utils';
+import {customerUris, globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -65,13 +65,13 @@ export const SignupScreen = ({navigation}) => {
     data.append('email', email);
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
-    RegisterRequest(data, 'api/customer/register').then(response => {
+    RegisterRequest(data, customerUris.register).then(response => {
       console.log('api response :', response);
       // Alert.alert(response.data.message)
       if (response.data.success === true) {
         Alert.alert(response.data.message);
         setLoading(false);
-        navigation.navigate('LoginOtp', {phoneNumber: phoneNumber});
+        navigation.navigate('LoginOtp', {phoneNumber: phoneNumber,forgot:false});
       } else {
         Alert.alert(response.data.message);
       }

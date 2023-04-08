@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {globalInputsStyles} from '@utils';
+import {customerUris, globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -87,7 +87,7 @@ export const AccountDetails = ({route, navigation}) => {
     data.append('email', email);
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
-    UpdateRequest(userToken.token, data, 'api/customer/update-profile').then(
+    UpdateRequest(userToken.token, data, customerUris.profileUpdate).then(
       response => {
         console.log('update profile api response :', response);
         // Alert.alert(response.data.message)
@@ -101,10 +101,10 @@ export const AccountDetails = ({route, navigation}) => {
       },
     );
   };
-  const updateProfileImage = () => {
+  const updateProfileImage = sImageUri => {
     let data = new FormData();
     data.append('image', {
-      uri: imageUri,
+      uri: sImageUri,
       type: 'image/jpeg',
       name: 'adPhoto.png',
     });
@@ -114,7 +114,7 @@ export const AccountDetails = ({route, navigation}) => {
     updateImageRequest(
       userToken.token,
       data,
-      'api/customer/update-profile-image',
+      customerUris.updateProfileImage,
     ).then(response => {
       console.log('api response :', response);
       if (response.data.success === true) {
@@ -128,7 +128,6 @@ export const AccountDetails = ({route, navigation}) => {
   };
   const onPressUpdate = () => {
     updateProfileHandler();
-    updateProfileImage();
   };
 
   const pickImage = () => {
@@ -151,6 +150,8 @@ export const AccountDetails = ({route, navigation}) => {
         const source = response.assets[0];
         console.log('selected Image :', source.uri);
         setImageUri(source.uri);
+        const sImageUri = source.uri;
+        updateProfileImage(sImageUri);
         // setAdImageName(source.fileName);
       }
     });

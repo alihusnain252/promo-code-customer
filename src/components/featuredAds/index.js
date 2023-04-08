@@ -13,11 +13,13 @@ import image3 from '../../assets/images/image3.png';
 import image6 from '../../assets/images/image6.png';
 import image7 from '../../assets/images/image7.png';
 import heart from '../../assets/images/heart.png';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
-import {MyTheme} from '@utils';
+import {MyTheme, customerUris} from '@utils';
+import {PostRequestWithToken} from '../../api/apiCall';
 
 export const FeaturedAds = ({loading, promotions}) => {
   return (
@@ -35,39 +37,62 @@ export const FeaturedAds = ({loading, promotions}) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
         {promotions?.map(promo => {
-          return (
-            <FeaturedAd
-              image={promo.image}
-              title={promo.company_name}
-              promoDetails={promo}
-            />
-          );
+          return <FeaturedAd promotion={promo} />;
         })}
       </ScrollView>
     </View>
   );
 };
-const FeaturedAd = props => {
+const FeaturedAd = ({promotion}) => {
   const navigation = useNavigation();
+
+  const userToken = useSelector(token);
+
+  const addTOFavorite = promotion => {
+
+    const data = {
+      promotion_id: promotion.id,
+    };
+
+    PostRequestWithToken(
+      userToken.token,
+      data,
+      customerUris.addPromotionToFavorite,
+    ).then(res => {
+      if (res.status) {
+        console.log('is favorite ada :', res);
+      }
+      console.log('is favorite ada :', res);
+    });
+  };
+
   return (
     <View style={styles.cardContainer}>
       <Pressable
         onPress={() =>
           navigation.navigate('PromoDetails', {
-            promoDetails: props.promoDetails,
+            promoDetails: promotion,
           })
         }>
         <View style={styles.cardImageContainer}>
           <View style={styles.imageView}>
-            <Image source={{uri: props.image}} style={styles.cardImage} />
+            <Image source={{uri: promotion.image}} style={styles.cardImage} />
           </View>
           <View style={styles.cardDetails}>
-            <Text style={styles.imageTitle}>{props.title}</Text>
+            <Text style={styles.imageTitle}>{promotion.company_name}</Text>
             <Text style={styles.discount}>5% Cashback</Text>
           </View>
-          <View style={styles.heartContainer}>
-            <Image source={heart} style={styles.heartImg} />
-          </View>
+          <Pressable
+            style={styles.heartContainer}
+            onPress={() => addTOFavorite(promotion)}>
+            <AntDesign
+              name="heart"
+              size={15}
+              color={
+                promotion.is_favourite == true ? '#f70606' : MyTheme.grey100
+              }
+            />
+          </Pressable>
         </View>
       </Pressable>
     </View>

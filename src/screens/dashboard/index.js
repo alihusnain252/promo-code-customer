@@ -1,5 +1,5 @@
 import {View, Text, TextInput, Image, Pressable} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import {
   Ads,
@@ -8,24 +8,22 @@ import {
   FeaturedVendors,
   TopHeader,
 } from '@components';
-import {MyTheme} from '@utils';
-import { useSelector } from 'react-redux';
-import { token } from '@redux/tokenSlice';
-import { GetRequest } from '../../api/apiCall';
+import {MyTheme, customerUris} from '@utils';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {GetRequest} from '../../api/apiCall';
 
 export const Dashboard = ({navigation}) => {
-
   const [loading, setLoading] = useState(false);
   const [allPromotions, setAllPromotions] = useState([]);
   const [featured_vendors, setFeatured_vendors] = useState([]);
   const [promotions, setPromotions] = useState([]);
-  
+
   const userToken = useSelector(token);
 
   const getAds = () => {
     setLoading(true);
-    GetRequest(userToken.token, 'api/customer/promotions').then(res => {
-      // console.log('dashboard featured api response :', res.data.data.promotions.data);
+    GetRequest(userToken.token, customerUris.allPromotions).then(res => {
       if (res.data.success === true) {
         setAllPromotions(res.data.data.promotions.data);
         setLoading(false);
@@ -36,52 +34,36 @@ export const Dashboard = ({navigation}) => {
     });
   };
 
-
   const getFeaturedVendors = () => {
     setLoading(true);
-    GetRequest(userToken.token, 'api/customer/featured-vendors').then(res => {
-      console.log('featured api response', res.data);
+    GetRequest(userToken.token, customerUris.featuredVendors).then(res => {
       if (res.data.success === true) {
         setLoading(false);
         setFeatured_vendors(res.data.data.featured_vendors);
-        console.log(
-          'dashboard featured vendors api response',
-          res.data.data.featured_vendors,
-        );
       } else {
         setLoading(false);
       }
     });
   };
 
-
   const getFeaturedAds = () => {
     setLoading(true);
-    GetRequest(userToken.token, 'api/customer/featured-promotions').then(
-      res => {
-        console.log('dashboard featured api response', res.data.data.featured_promotions);
-        if (res.data.success === true) {
-          setPromotions(res.data.data.featured_promotions);
-          setLoading(false);
-        } else {
-          Alert.alert(res.data.message);
-          setLoading(false);
-        }
-      },
-    );
+    GetRequest(userToken.token, customerUris.featuredPromotions).then(res => {
+      if (res.data.success === true) {
+        setPromotions(res.data.data.featured_promotions);
+        setLoading(false);
+      } else {
+        Alert.alert(res.data.message);
+        setLoading(false);
+      }
+    });
   };
-  
-  
-  
-  
+
   useEffect(() => {
     getFeaturedAds();
     getFeaturedVendors();
     getAds();
   }, []);
-
-
-
 
   return (
     <View style={styles.dashboardContainer}>
@@ -102,8 +84,18 @@ export const Dashboard = ({navigation}) => {
         </Pressable>
       </View>
       <View style={styles.vendors}>
-        <Text style={styles.heading}>Featured vendors</Text>
-        <FeaturedVendors featured_vendors={featured_vendors} loading={loading} />
+        <View style={styles.vendorTextView}>
+          <Text style={styles.heading}>Featured vendors</Text>
+          <Pressable
+            style={styles.allVendorPress}
+            onPress={() => navigation.navigate('AllVendors')}>
+            <Text style={styles.vendorText}>All vendors</Text>
+          </Pressable>
+        </View>
+        <FeaturedVendors
+          featured_vendors={featured_vendors}
+          loading={loading}
+        />
       </View>
       <View style={styles.ads}>
         <Text style={styles.heading}>Featured Ads⚡️</Text>
@@ -111,7 +103,7 @@ export const Dashboard = ({navigation}) => {
       </View>
       <View style={styles.discount}>
         <Text style={styles.heading}>Discounts for you⚡️</Text>
-        <Ads allPromotions={allPromotions} loading={loading}  />
+        <Ads allPromotions={allPromotions} loading={loading} />
       </View>
       <BottomBar />
     </View>

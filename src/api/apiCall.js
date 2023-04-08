@@ -59,19 +59,28 @@ export const UpdateRequest = async (token, data, url) => {
     url: url,
     baseURL: baseUrl,
     data: data,
-    headers: {Authorization: AuthStr,'Content-Type': 'multipart/form-data'},
+    headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
   });
   return res;
 };
 export const GetRequest = async (token, url) => {
-  const AuthStr = 'Bearer '.concat(token);
-  const res = await axios({
-    method: 'get',
-    url: url,
-    baseURL: baseUrl,
-    headers: {Authorization: AuthStr},
-  });
-  return res;
+  try {
+    const AuthStr = 'Bearer '.concat(token);
+    const res = await axios({
+      method: 'get',
+      url: url,
+      baseURL: baseUrl,
+      headers: {Authorization: AuthStr},
+    });
+
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    return {status: false, data: null};
+  }
 };
 export const CreateAdRequest = async (token, data, url) => {
   console.log('signUInData :', data);
@@ -105,9 +114,14 @@ export const PostRequestWithToken = async (userToken, data, url) => {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
-    return res;
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
   } catch (error) {
-    console.log('Post request Error :', error);
+    console.log("error :", JSON.stringify(error));
+    return {status: false, data: null};
   }
 };
 export const updateImageRequest = async (userToken, data, url) => {

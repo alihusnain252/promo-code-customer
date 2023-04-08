@@ -52,7 +52,7 @@ export const PromoDetails = ({route, navigation}) => {
       <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.heading}>Name : </Text>
         <Text style={[styles.heading, {color: '#E65C89'}]}>
-          {venderDetails.name}
+          {promoDetails.vendor.name}
         </Text>
       </View>
       <View style={{width: '100%', flexDirection: 'row'}}>
@@ -64,7 +64,7 @@ export const PromoDetails = ({route, navigation}) => {
       <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.heading}>Address: </Text>
         <Text style={[styles.heading, {color: '#E65C89'}]}>
-          {venderDetails.Address}
+          {promoDetails.vendor.address}
         </Text>
       </View>
       <View style={{width: '100%', flexDirection: 'row'}}>

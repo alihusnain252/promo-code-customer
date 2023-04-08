@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {token, updateToken} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
 import {useFocusEffect} from '@react-navigation/native';
-import {MyTheme} from '@utils';
+import {MyTheme, customerUris} from '@utils';
 
 export const AccountScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export const AccountScreen = ({navigation}) => {
 
   const userProfile = () => {
     setLoading(true);
-    GetRequest(userToken.token, 'api/customer/user').then(res => {
+    GetRequest(userToken.token, customerUris.myProfile).then(res => {
       console.log('user Profile data', res.data.data.profile_pic);
       if (res.data.success === true) {
         setUserData(res.data.data);
@@ -69,6 +69,10 @@ export const AccountScreen = ({navigation}) => {
           </Pressable>
           <Pressable style={styles.accountButton}>
             <Text style={styles.accountButtonText}>About Saver Buddy</Text>
+          </Pressable>
+          <Pressable style={styles.accountButton} onPress={()=>
+              navigation.navigate('UpdatePassword')}>
+            <Text style={styles.accountButtonText}>Update Password</Text>
           </Pressable>
           {/* <Pressable style={styles.accountButton}>
             <Text style={styles.accountButtonText}>Notifications</Text>

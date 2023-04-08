@@ -3,9 +3,10 @@ import {StyleSheet, Dimensions} from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
-  adsContainer: {
+  vendorsContainer: {
     width: '100%',
     height: '100%',
+    backgroundColor:MyTheme.white
   },
   heading: {
     fontFamily: MyTheme.poppins,
@@ -43,59 +44,12 @@ export const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  adDetails: {
+  vendorDetails: {
     marginLeft: 19,
+    width:"50%",
   },
-  originalPrice: {
-    fontFamily: MyTheme.poppins,
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: 11,
-    lineHeight: 18,
-    color: MyTheme.black,
-  },
-  discountPrice: {
-    fontFamily: MyTheme.poppins,
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: 18,
-    lineHeight: 18,
-    color: MyTheme.green200,
-  },
-  adTitle: {
-    fontFamily: MyTheme.poppins,
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 12,
-    lineHeight: 18,
-    color: MyTheme.black,
-  },
-  expiry: {
-    width: 109,
-    fontFamily: MyTheme.poppins,
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: 9,
-    lineHeight: 18,
-    color: MyTheme.black,
-  },
-  off: {
-    fontFamily: MyTheme.fontFamily,
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: 9,
-    lineHeight: 18,
-    color: MyTheme.grey100,
-  },
-  bottomView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  bottomRight: {
-    alignItems: 'flex-end',
-  },
-  companyName: {
+  vendorName: {
+    marginTop:5,
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -103,15 +57,15 @@ export const styles = StyleSheet.create({
     lineHeight: 14,
     color: MyTheme.black,
   },
-  categoryName: {
+  address: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
-    fontSize: 9,
+    fontSize: 12,
     lineHeight: 14,
-    color: MyTheme.grey500,
+    color: MyTheme.black,
   },
-  availableTill: {
+  addressText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -119,20 +73,33 @@ export const styles = StyleSheet.create({
     lineHeight: 14,
     color: MyTheme.grey100,
   },
-  ratings: {
+  description: {
+    width:"80%",
+    height:"40%",
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
-    fontSize: 8,
+    fontSize: 12,
     lineHeight: 14,
     color: MyTheme.black,
   },
-  line: {
-    position: 'relative',
-    top: -10,
-    width: 25,
-    borderWidth: 0.5,
-    borderColor: 'black',
+  descriptionText: {
+    width:"80%",
+    height:"40%",
+    fontFamily: MyTheme.fontFamily,
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 10,
+    lineHeight: 14,
+    color: MyTheme.grey100,
+  },
+  categoryName: {
+    fontFamily: MyTheme.fontFamily,
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 9,
+    lineHeight: 14,
+    color: MyTheme.grey100,
   },
 
   heartContainer: {

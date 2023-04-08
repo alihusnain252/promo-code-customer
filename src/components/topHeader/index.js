@@ -18,7 +18,6 @@ export const TopHeader = () => {
   const userProfile = () => {
     setLoading(true);
     GetRequest(userToken.token, 'api/customer/user').then(res => {
-      console.log('user Profile data', res.data.data.profile_pic);
       if (res.data.success === true) {
         setImageUri(res.data.data.profile_pic);
         setLoading(false);

@@ -48,6 +48,31 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 100,
   },
+  vendorTextView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  allVendorPress: {
+    marginHorizontal: '2%',
+    padding: '1%',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: MyTheme.grey200,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: -2,
+      height: 1,
+    },
+    shadowOpacity: 0.52,
+    shadowRadius: 2.22,
+
+    elevation: -2,
+  },
+  vendorText: {
+    fontSize: 10,
+    color: MyTheme.grey100,
+  },
   ads: {
     marginTop: 25,
     width: '100%',

@@ -12,11 +12,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '@redux/tokenSlice';
 import {LoginUserAPI, PostRequest} from '../../api/apiCall';
-import {MyTheme} from '@utils';
+import {MyTheme, customerUris} from '@utils';
 import {OtpContainer} from '@components';
 
 export const LoginOtp = ({route, navigation}) => {
-  const {phoneNumber} = route.params;
+  const {phoneNumber , forgot} = route.params;
 
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState('');
@@ -29,7 +29,7 @@ export const LoginOtp = ({route, navigation}) => {
 
   const loginHandler = () => {
     setLoading(true);
-    PostRequest(data, 'api/customer/verify/otp').then(response => {
+    PostRequest(data, customerUris.verifyOtp).then(response => {
       console.log('api response :', response);
       if (response.data.success === false) {
         Alert.alert(response.data.message);
@@ -37,13 +37,11 @@ export const LoginOtp = ({route, navigation}) => {
       } else {
         Alert.alert(response.data.message);
         setLoading(false);
-        navigation.navigate('Login');
+        navigation.navigate(forgot?'ResetPassword':'Login',{phoneNumber:phoneNumber});
       }
     });
   };
 
-<<<<<<< HEAD
-=======
   let textInputFields = [];
   const focusPrevious = (key, index) => {
     if (key === 'Backspace' && index !== 0) {
@@ -61,7 +59,6 @@ export const LoginOtp = ({route, navigation}) => {
     setOtp(otp);
   };
   const checkOtpApi = () => {
-
     let otpText = '';
     if (otp.length > 0) {
       otpText = otp[0] + otp[1] + otp[2] + otp[3];
@@ -70,31 +67,26 @@ export const LoginOtp = ({route, navigation}) => {
     }
     if (otpText === '' || otpText.length < 4) {
       // showAlertMethod('Error', 'Enter 4 digit otp', setShowAlert, setAlertTitle, setAlertMessage);
-
-
     }
-  }
-
+  };
 
   const renderInputs = () => {
     const inputs = Array(4).fill(0);
-    const txtContainer = inputs.map(
-      (i, j) =>
-        <TextInput onChangeText={v => focusNext(j, v)}
-          onKeyPress={e => focusPrevious(e.nativeEvent.key, j)}
-          maxLength={1}
-          key={j}
-          keyboardType="numeric"
-          autoCapitalize='none'
-          ref={(input) => textInputFields[j] = input}
-          style={styles.textInput} />,
-    );
+    const txtContainer = inputs.map((i, j) => (
+      <TextInput
+        onChangeText={v => focusNext(j, v)}
+        onKeyPress={e => focusPrevious(e.nativeEvent.key, j)}
+        maxLength={1}
+        key={j}
+        keyboardType="numeric"
+        autoCapitalize="none"
+        ref={input => (textInputFields[j] = input)}
+        style={styles.textInput}
+      />
+    ));
     return txtContainer;
-
   };
 
-
->>>>>>> d157f55762f29c4938bee122b986e91bc21f266c
   return (
     <View style={styles.otpContainer}>
       <View style={styles.otpHeader}>

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {MyTheme, signInInputsStyles} from '@utils';
+import {MyTheme, customerUris, signInInputsStyles} from '@utils';
 import {LoginPostRequest} from '../../api/apiCall';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
@@ -31,7 +31,7 @@ export const LogInScreen = ({navigation}) => {
 
   const loginHandler = () => {
     setLoading(true);
-    LoginPostRequest(data, 'api/customer/login').then(response => {
+    LoginPostRequest(data, customerUris.login).then(response => {
       console.log('api response :', response.data);
 
       if (response.data.success === false) {
@@ -46,7 +46,9 @@ export const LogInScreen = ({navigation}) => {
       }
     });
   };
-  const recoverHandler = () => {};
+  const recoverHandler = () => {
+    navigation.navigate("RecoverPassword")
+  };
 
   return (
     <View style={styles.loginContainer}>

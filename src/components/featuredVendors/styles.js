@@ -49,4 +49,19 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
     color: MyTheme.black,
   },
+  heartContainer: {
+    position: 'absolute',
+    width: 22,
+    height: 22,
+    right: 20,
+    top: 0,
+    backgroundColor: MyTheme.grey300,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heartImg: {
+    width: 11.64,
+    height: 10.32,
+  },
 });

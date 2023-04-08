@@ -8,3 +8,8 @@ export {AccountScreen} from './AccountScreen';
 export {PromoDetails} from './promoDetails';
 export {SearchVendor} from './searchVendor';
 export {AccountDetails} from './accountDetails';
+export {UpdatePassword} from './updatePassword';
+export {RecoverPassword} from './recoverPassword';
+export {ResetPassword} from './resetPassword';
+export {AllVendors} from './allVendors';
+export {VendorDetails} from './vendorDetails';

@@ -12,8 +12,16 @@ import {GetRequest} from '../../api/apiCall';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
 import {MyTheme} from '@utils';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 
 export const FeaturedVendors = ({loading, featured_vendors}) => {
+
+
+  const navigation = useNavigation();
+
+
+
   return (
     <View style={styles.featuredVendorsContainer}>
       <View
@@ -29,22 +37,34 @@ export const FeaturedVendors = ({loading, featured_vendors}) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
         {featured_vendors?.map(vendor => {
-          return <Vendors image={vendor.profile_pic} title={vendor.name} />;
+          return <Vendors vendor={vendor} navigation={navigation}/>;
         })}
       </ScrollView>
     </View>
   );
 };
 
-const Vendors = props => {
+const Vendors = ({vendor , navigation}) => {
   return (
-    <Pressable>
+    <Pressable onPress={()=>navigation.navigate("VendorDetails",{vendorDetails:vendor})}>
       <View style={styles.cardContainer}>
         <View style={styles.cardImageContainer}>
-          <Image source={{uri: props.image}} style={styles.cardImage} />
+          <Image source={{uri: vendor.profile_pic}} style={styles.cardImage} />
         </View>
-        <Text style={styles.imageTitle}>{props.title}</Text>
+        <Text style={styles.imageTitle}>{vendor.name}</Text>
       </View>
+      <Pressable
+            style={styles.heartContainer}
+            // onPress={() => addTOFavorite(promotion)}
+            >
+            <AntDesign
+              name="heart"
+              size={15}
+              color={
+                 MyTheme.grey100
+              }
+            />
+          </Pressable>
     </Pressable>
   );
 };
