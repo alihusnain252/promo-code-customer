@@ -20,7 +20,6 @@ export const styles = StyleSheet.create({
     height: 40.93,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   icon: {
     width: 21.67,
@@ -44,7 +43,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#00000080',
   },
   modalView: {
-    // margin: 20,
+    backgroundColor: 'red',
     position: 'absolute',
     bottom: 0,
     width: '100%',
@@ -52,8 +51,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    alignItems: 'center',
-    // justifyContent:"center",
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -64,6 +61,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonClose: {
+    alignSelf: 'center',
     height: 3,
     width: 53,
     marginTop: 15,
@@ -79,6 +77,7 @@ export const styles = StyleSheet.create({
     color: MyTheme.black,
     marginTop: 17,
     marginLeft: 24,
+    marginBottom: '1%',
   },
   categoriesView: {
     marginTop: 10,

@@ -7,7 +7,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import {AdCard, ArrowHeader, Vendors} from '@components';
 import {MyTheme, customerUris} from '@utils';
@@ -16,7 +16,7 @@ import {token} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
 
 export const SearchVendor = ({route}) => {
-  const {searchByName} = route.params;
+  const {searchByName, catId} = route.params;
   const userToken = useSelector(token);
 
   const [name, setName] = useState(searchByName);
@@ -40,9 +40,29 @@ export const SearchVendor = ({route}) => {
       }
     });
   };
+  const searchByCatId = () => {
+    setLoading(true);
+    GetRequest(
+      userToken.token,
+      customerUris.filterVendorAndPromotionByCatId + `${catId}`,
+    ).then(res => {
+      if (res.data.success === true) {
+        setFilteredPromotions(res.data.data.featured_promotions);
+        setFilteredVendors(res.data.data.featured_vendors);
+        setLoading(false);
+      } else {
+        Alert.alert(res.data.message);
+        setLoading(false);
+      }
+    });
+  };
 
   const Item = ({data}) => <AdCard promo={data} />;
   const VendorItem = ({data}) => <Vendors vendor={data} />;
+
+  useEffect(() => {
+    catId != '' ? searchByCatId() : null;
+  }, []);
 
   return (
     <View style={styles.searchVendorContainer}>
@@ -75,6 +95,7 @@ export const SearchVendor = ({route}) => {
           renderItem={({item}) => <VendorItem data={item} />}
           keyExtractor={item => item.id}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
       <View
@@ -90,6 +111,7 @@ export const SearchVendor = ({route}) => {
           data={filteredPromotions}
           renderItem={({item}) => <Item data={item} />}
           keyExtractor={item => item.id}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </View>
