@@ -76,7 +76,7 @@ export const PromoDetails = ({route, navigation}) => {
 
       <View style={styles.discount}>
         <Text style={styles.heading}>Discounts for you⚡️</Text>
-        <AdCard />
+        <AdCard promo={promoDetails} />
       </View>
     </View>
   );

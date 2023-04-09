@@ -18,6 +18,7 @@ export const Dashboard = ({navigation}) => {
   const [allPromotions, setAllPromotions] = useState([]);
   const [featured_vendors, setFeatured_vendors] = useState([]);
   const [promotions, setPromotions] = useState([]);
+  const [searchByName, setSearchByName] = useState('');
 
   const userToken = useSelector(token);
 
@@ -70,13 +71,17 @@ export const Dashboard = ({navigation}) => {
       <TopHeader />
       <View style={styles.searchContainer}>
         <TextInput
+          onChangeText={e => setSearchByName(e)}
+          value={searchByName}
           style={styles.searchInput}
           placeholder="Search (Vendor, Offers)"
           placeholderTextColor={MyTheme.EerieBlack}
         />
         <Pressable
           style={styles.searchPress}
-          onPress={() => navigation.navigate('SearchVendor')}>
+          onPress={() =>
+            navigation.navigate('SearchVendor', {searchByName: searchByName})
+          }>
           <Image
             source={require('../../assets/icons/search.png')}
             style={styles.searchImage}

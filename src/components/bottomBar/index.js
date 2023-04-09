@@ -89,12 +89,10 @@ export const BottomBar = () => {
         <Text style={styles.iconText}>Home</Text>
       </Pressable>
 
-
       <Pressable style={styles.iconView} onPress={() => setModalVisible(true)}>
         <Entypo name="grid" size={21.67} color="#fff" />
         <Text style={styles.iconText}>Categories</Text>
       </Pressable>
-
 
       <Pressable
         style={styles.iconView}
@@ -106,7 +104,6 @@ export const BottomBar = () => {
         <Text style={styles.iconText}>Favorites</Text>
       </Pressable>
 
-
       <Pressable
         style={styles.iconView}
         onPress={() => navigation.navigate('AccountScreen')}>
@@ -114,17 +111,18 @@ export const BottomBar = () => {
         <Text style={styles.iconText}>Account</Text>
       </Pressable>
 
-      
       <View>
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-
             setModalVisible(!modalVisible);
           }}>
           <View style={styles.centeredView}>
+            <Pressable
+              style={{width: '100%', height: '100%'}}
+              onPress={() => setModalVisible(false)}></Pressable>
             <View style={styles.modalView}>
               <Pressable
                 style={styles.buttonClose}

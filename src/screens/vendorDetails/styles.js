@@ -17,12 +17,12 @@ export const styles = StyleSheet.create({
     // alignItems: 'center',
   },
   vendorDetailsView: {
-    width:width-40,
-    marginVertical:"15%",
+    width: width - 40,
+    marginVertical: '15%',
   },
   vendorNameVIew: {
-    flexDirection:"row",
-    alignItems:"center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   vendorCategory: {
     fontFamily: MyTheme.poppins,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     // lineHeight: 21,
     color: MyTheme.grey100,
-    marginTop:"1%"
+    marginTop: '1%',
   },
   vendorTextBold: {
     fontFamily: MyTheme.poppins,
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     // lineHeight: 21,
     color: MyTheme.black,
-    marginLeft:"1%",
+    marginLeft: '1%',
   },
 
   imageView: {
@@ -64,6 +64,6 @@ export const styles = StyleSheet.create({
   cardImage: {
     width: 100,
     height: 100,
-    borderRadius:8,
+    borderRadius: 8,
   },
 });

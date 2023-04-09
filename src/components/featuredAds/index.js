@@ -45,11 +45,11 @@ export const FeaturedAds = ({loading, promotions}) => {
 };
 const FeaturedAd = ({promotion}) => {
   const navigation = useNavigation();
+  const [isFavorite, setIsFavorite] = useState(promotion.is_favourite);
 
   const userToken = useSelector(token);
 
   const addTOFavorite = promotion => {
-
     const data = {
       promotion_id: promotion.id,
     };
@@ -59,10 +59,29 @@ const FeaturedAd = ({promotion}) => {
       data,
       customerUris.addPromotionToFavorite,
     ).then(res => {
-      if (res.status) {
+      if (res.data.success) {
         console.log('is favorite ada :', res);
+        setIsFavorite(true);
       }
       console.log('is favorite ada :', res);
+    });
+  };
+  const removeFromFavorite = promotion => {
+    const data = {
+      promotion_id: promotion.id,
+    };
+
+    PostRequestWithToken(
+      userToken.token,
+      data,
+      customerUris.removePromotionFromFavorite,
+    ).then(res => {
+      if (res.data.success) {
+        console.log('is favorite ada :', res);
+        setIsFavorite(false);
+      } else {
+        console.log('is favorite ada :', res);
+      }
     });
   };
 
@@ -84,13 +103,15 @@ const FeaturedAd = ({promotion}) => {
           </View>
           <Pressable
             style={styles.heartContainer}
-            onPress={() => addTOFavorite(promotion)}>
+            onPress={() =>
+              isFavorite
+                ? removeFromFavorite(promotion)
+                : addTOFavorite(promotion)
+            }>
             <AntDesign
               name="heart"
               size={15}
-              color={
-                promotion.is_favourite == true ? '#f70606' : MyTheme.grey100
-              }
+              color={isFavorite ? '#f70606' : MyTheme.grey100}
             />
           </Pressable>
         </View>

@@ -15,6 +15,7 @@ import {GetRequest} from '../../api/apiCall';
 import {MyTheme, customerUris} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ArrowHeader} from '@components';
+import {useNavigation} from '@react-navigation/native';
 
 export const AllVendors = ({navigation}) => {
   const userToken = useSelector(token);
@@ -51,7 +52,7 @@ export const AllVendors = ({navigation}) => {
       </View>
       <ScrollView style={styles.scroll}>
         {allVendors?.map(vendor => {
-          return <VendorCard vendor={vendor} navigation={navigation}/>;
+          return <VendorCard vendor={vendor} />;
         })}
         <View style={{width: '100%', height: 200}}></View>
       </ScrollView>
@@ -59,10 +60,14 @@ export const AllVendors = ({navigation}) => {
   );
 };
 
-const VendorCard = ({vendor , navigation}) => {
+export const VendorCard = ({vendor}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.cardContainer}>
-      <Pressable onPress={()=>navigation.navigate("VendorDetails",{vendorDetails:vendor})}>
+      <Pressable
+        onPress={() =>
+          navigation.navigate('VendorDetails', {vendorDetails: vendor})
+        }>
         <View style={styles.cardTopView}>
           <Image
             source={vendor ? {uri: vendor.profile_pic} : image}

@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   vendorsContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor:MyTheme.white
+    backgroundColor: MyTheme.white,
   },
   heading: {
     fontFamily: MyTheme.poppins,
@@ -46,10 +46,10 @@ export const styles = StyleSheet.create({
   },
   vendorDetails: {
     marginLeft: 19,
-    width:"50%",
+    width: '50%',
   },
   vendorName: {
-    marginTop:5,
+    marginTop: 5,
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -74,8 +74,8 @@ export const styles = StyleSheet.create({
     color: MyTheme.grey100,
   },
   description: {
-    width:"80%",
-    height:"40%",
+    width: '80%',
+    height: '40%',
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
@@ -84,8 +84,8 @@ export const styles = StyleSheet.create({
     color: MyTheme.black,
   },
   descriptionText: {
-    width:"80%",
-    height:"40%",
+    width: '80%',
+    height: '40%',
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,

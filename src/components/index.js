@@ -1,5 +1,6 @@
 export {TopHeader} from './topHeader';
 export {FeaturedVendors} from './featuredVendors';
+export {Vendors} from './featuredVendors';
 export {FeaturedAds} from './featuredAds';
 export {Ads} from './ads';
 export {AdCard} from './ads';

@@ -34,16 +34,21 @@ export const RecoverPassword = ({navigation}) => {
       setLoading(false);
       setErrorText('please Add Phone Number');
     } else {
-      PostRequestWithToken(userToken.token, data, customerUris.forgotPasswordRequest).then(res => {
+      PostRequestWithToken(
+        userToken.token,
+        data,
+        customerUris.forgotPasswordRequest,
+      ).then(res => {
         console.log('validate customer res :', res);
-        setLoading(false)
+        setLoading(false);
         if (res.status) {
-
           setNoDisplay(false);
           setLoading(false);
-          navigation.navigate('LoginOtp', {phoneNumber: res.data.data.phone_number,forgot:true});
+          navigation.navigate('LoginOtp', {
+            phoneNumber: res.data.data.phone_number,
+            forgot: true,
+          });
         } else {
-
           setNoDisplay(true);
           setLoading(false);
           setErrorText(res.data.message);
@@ -66,8 +71,7 @@ export const RecoverPassword = ({navigation}) => {
           keyboardType="numeric"
         />
         <View style={noDisplay === false ? styles.noDisplay : styles.notFound}>
-         
-        <MaterialIcons name="error-outline" size={25} color="red" />
+          <MaterialIcons name="error-outline" size={25} color="red" />
           <Text style={styles.notFoundText}>{errorText}</Text>
         </View>
         <Pressable style={styles.search} onPress={() => searchHandler()}>

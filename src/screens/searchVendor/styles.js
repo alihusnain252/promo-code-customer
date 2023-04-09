@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   searchVendorContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor:MyTheme.white,
+    backgroundColor: MyTheme.white,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   searchInput: {
     width: '80%',
     paddingLeft: 16,
-  }, 
+  },
   item: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -66,8 +66,37 @@ export const styles = StyleSheet.create({
 
     elevation: 2,
   },
-  ordersList:{
-    width:"100%",
-    marginTop:10,
-  }
+  vendorsList: {
+    width: width - 40,
+    marginTop: 10,
+    height: '15%',
+  },
+  promoList: {
+    width: width,
+    marginTop: 10,
+    height: '60%',
+  },
+  promoListNOVendor: {
+    width: width,
+    marginTop: '2%',
+    height: '75%',
+  },
+  vendorText: {
+    fontFamily: MyTheme.poppins,
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 21,
+    color: MyTheme.black,
+  },
+  promoText: {
+    fontFamily: MyTheme.poppins,
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 21,
+    marginLeft: '4%',
+    marginBottom: '1%',
+    color: MyTheme.black,
+  },
 });

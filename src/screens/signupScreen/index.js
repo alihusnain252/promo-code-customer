@@ -71,7 +71,10 @@ export const SignupScreen = ({navigation}) => {
       if (response.data.success === true) {
         Alert.alert(response.data.message);
         setLoading(false);
-        navigation.navigate('LoginOtp', {phoneNumber: phoneNumber,forgot:false});
+        navigation.navigate('LoginOtp', {
+          phoneNumber: phoneNumber,
+          forgot: false,
+        });
       } else {
         Alert.alert(response.data.message);
       }

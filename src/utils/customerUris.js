@@ -11,7 +11,7 @@ export const customerUris = {
   featuredPromotions: 'api/customer/featured-promotions',
   allPromotions: 'api/customer/promotions',
   filterVendorsAndPromotions:
-    'api/customer/filter-vendors-and-promotions?page=1&name=good',
+    'api/customer/filter-vendors-and-promotions?page=1&name=',
   PromotionById: 'api/customer/promotion-by-id/3',
   categories: 'api/customer/categories',
   filterVendorAndPromotionByCatId:

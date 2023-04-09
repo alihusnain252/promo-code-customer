@@ -12,4 +12,5 @@ export {UpdatePassword} from './updatePassword';
 export {RecoverPassword} from './recoverPassword';
 export {ResetPassword} from './resetPassword';
 export {AllVendors} from './allVendors';
+export {VendorCard} from './allVendors';
 export {VendorDetails} from './vendorDetails';

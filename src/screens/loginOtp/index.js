@@ -16,7 +16,7 @@ import {MyTheme, customerUris} from '@utils';
 import {OtpContainer} from '@components';
 
 export const LoginOtp = ({route, navigation}) => {
-  const {phoneNumber , forgot} = route.params;
+  const {phoneNumber, forgot} = route.params;
 
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState('');
@@ -37,7 +37,9 @@ export const LoginOtp = ({route, navigation}) => {
       } else {
         Alert.alert(response.data.message);
         setLoading(false);
-        navigation.navigate(forgot?'ResetPassword':'Login',{phoneNumber:phoneNumber});
+        navigation.navigate(forgot ? 'ResetPassword' : 'Login', {
+          phoneNumber: phoneNumber,
+        });
       }
     });
   };
