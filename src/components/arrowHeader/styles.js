@@ -4,7 +4,6 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   header: {
-    width: '100%',
     flexDirection: 'row',
     width: width - 40,
     height: 21,

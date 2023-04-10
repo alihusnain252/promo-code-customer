@@ -95,6 +95,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   categoryIconView: {
+    backgroundColor:MyTheme.primary,
     width: 45,
     height: 45,
     justifyContent: 'center',
@@ -108,7 +109,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
+    
     elevation: 5,
   },
   categoryText: {
@@ -121,7 +122,8 @@ export const styles = StyleSheet.create({
     marginTop: 6,
   },
   categoryIcon: {
-    width: 22,
-    height: 22,
+    width: "100%",
+    height: "100%",
+    borderRadius: 40,
   },
 });

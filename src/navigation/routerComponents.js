@@ -23,6 +23,7 @@ import {
 import {TopHeader} from '@components';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
+import { MyTheme } from '@utils';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +53,8 @@ export const RouterComponents = () => {
             statusBarColor: 'white',
             statusBarStyle: 'dark',
           }}>
-          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="Dashboard" component={Dashboard} 
+            options={{statusBarColor:MyTheme.primary,statusBarStyle:"dark"}}/>
           <Stack.Screen name="PromoDetails" component={PromoDetails} />
           <Stack.Screen
             name="AccountScreen"

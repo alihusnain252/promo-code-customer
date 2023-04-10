@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   topContainer: {
     alignItems: 'center',
     width: '100%',
-    backgroundColor: 'white',
+    backgroundColor: MyTheme.primary,
     shadowColor: MyTheme.black,
     shadowOffset: {
         width: 0,

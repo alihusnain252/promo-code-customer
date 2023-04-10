@@ -61,7 +61,7 @@ export const ResetPassword = ({route, navigation}) => {
   };
 
   return (
-    <View style={styles.signupContainer}>
+    <View style={styles.resetPasswordContainer}>
       <ArrowHeader heading="Update Password" />
       <ScrollView style={styles.scrollView}>
         <View style={globalInputsStyles.globalInputs}>
@@ -87,9 +87,9 @@ export const ResetPassword = ({route, navigation}) => {
           />
         </View>
         <Pressable
-          style={styles.register}
+          style={styles.reset}
           onPress={() => updatePasswordHandle()}>
-          <Text style={styles.registerText}>Reset</Text>
+          <Text style={styles.resetText}>Reset</Text>
         </Pressable>
       </ScrollView>
     </View>

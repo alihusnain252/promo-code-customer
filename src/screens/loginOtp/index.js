@@ -32,7 +32,7 @@ export const LoginOtp = ({route, navigation}) => {
     PostRequest(data, customerUris.verifyOtp).then(response => {
       console.log('api response :', response);
       if (response.data.success === false) {
-        Alert.alert(response.data.message);
+        Alert.alert(response.data);
         setLoading(false);
       } else {
         Alert.alert(response.data.message);

@@ -29,9 +29,10 @@ export const styles = StyleSheet.create({
     elevation: -2,
   },
   searchPress: {
-    width: 50,
+    width: "100%",
     height: 50,
-    justifyContent: 'center',
+    flexDirection:"row",
+    justifyContent: "space-between",
     alignItems: 'center',
   },
   searchImage: {
@@ -89,7 +90,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 21,
-    color: MyTheme.black,
+    color: MyTheme.accent,
     marginLeft: 16,
   },
 });

@@ -97,7 +97,7 @@ export const Vendors = ({vendor}) => {
         <AntDesign
           name="heart"
           size={15}
-          color={isFavorite ? '#f70606' : MyTheme.grey100}
+          color={isFavorite ? '#E65C89' : MyTheme.grey100}
         />
       </Pressable>
     </Pressable>

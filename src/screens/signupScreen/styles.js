@@ -22,16 +22,16 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 24,
     lineHeight: 20,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
     paddingTop: 5,
     marginLeft: 5,
   },
   scrollView: {
     position: 'absolute',
     width: '100%',
-    height: '80%',
+    height: '83%',
     left: 20,
-    top: 144,
+    top: 100,
   },
   register: {
     height: 56,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 69,
-    backgroundColor: MyTheme.yellow,
+    backgroundColor: MyTheme.primary,
   },
   registerText: {
     fontFamily: MyTheme.fontFamily,

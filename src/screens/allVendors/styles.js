@@ -18,18 +18,20 @@ export const styles = StyleSheet.create({
     marginLeft: 16,
   },
   cardContainer: {
-    width: '100%',
-    paddingHorizontal: 17,
-    marginTop: 22,
+    width: width-40,
+    alignSelf:"center",
+    borderRadius:8,
   },
   cardImage: {
     width: '50%',
     height: '100%',
+    borderRadius:8,
   },
   scroll: {
     width: width,
   },
   cardTopView: {
+    borderRadius:8,
     width: '100%',
     height: 100,
     flexDirection: 'row',
@@ -45,8 +47,11 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   vendorDetails: {
-    marginLeft: 19,
+    borderTopRightRadius:8,
+    borderBottomRightRadius:8,
+    paddingLeft: 19,
     width: '50%',
+    backgroundColor:MyTheme.primary
   },
   vendorName: {
     marginTop: 5,

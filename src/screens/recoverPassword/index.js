@@ -34,14 +34,14 @@ export const RecoverPassword = ({navigation}) => {
       setLoading(false);
       setErrorText('please Add Phone Number');
     } else {
-      PostRequestWithToken(
-        userToken.token,
+      PostRequest(
         data,
         customerUris.forgotPasswordRequest,
       ).then(res => {
         console.log('validate customer res :', res);
         setLoading(false);
-        if (res.status) {
+        if (res.data.success) {
+          Alert.alert("otp  :" + res.data.data.code )
           setNoDisplay(false);
           setLoading(false);
           navigation.navigate('LoginOtp', {
@@ -51,7 +51,7 @@ export const RecoverPassword = ({navigation}) => {
         } else {
           setNoDisplay(true);
           setLoading(false);
-          setErrorText(res.data.message);
+          setErrorText(res.data.message)
         }
       });
     }

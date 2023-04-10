@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 14,
     // lineHeight: 21,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
     marginLeft: '1%',
   },
 

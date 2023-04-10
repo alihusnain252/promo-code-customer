@@ -29,17 +29,17 @@ export const styles = StyleSheet.create({
     marginRight: 15,
   },
   cardImageContainer: {
-    width: 90,
-    height: 45,
+    width: '100%',
+    height: '50%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: MyTheme.grey200,
+    backgroundColor: MyTheme.primary,
     borderRadius: 8,
   },
   cardImage: {
-    width: 42,
-    height: 35,
+    width: '100%',
+    height: '100%',
+    borderRadius: 8,
   },
   imageTitle: {
     fontFamily: MyTheme.fontFamily,

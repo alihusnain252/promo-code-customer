@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: MyTheme.grey200,
     borderRadius: 8,
+    backgroundColor: MyTheme.primary,
   },
   cardImageContainer: {
     width: 90,
@@ -39,7 +40,7 @@ export const styles = StyleSheet.create({
   },
   imageView: {
     width: '100%',
-    height: 50,
+    height: '50%',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -47,8 +48,9 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cardImage: {
-    width: 50,
-    height: 35,
+    width: '100%',
+    height: '100%',
+    borderRadius: 8,
   },
   imageTitle: {
     fontFamily: MyTheme.fontFamily,

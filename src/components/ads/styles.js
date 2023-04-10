@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   heading: {
-    fontFamily: MyTheme.poppins,
+    fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 16,
@@ -20,15 +20,18 @@ export const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 17,
     marginTop: 22,
+    borderRadius:8,
   },
   cardImage: {
     width: '50%',
     height: '100%',
+    borderRadius:8,
   },
   scroll: {
     width: width,
   },
   cardTopView: {
+    borderRadius:8,
     width: '100%',
     height: 100,
     flexDirection: 'row',
@@ -40,11 +43,15 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
+    
     elevation: 3,
   },
   adDetails: {
-    marginLeft: 19,
+    borderTopRightRadius:8,
+    borderBottomRightRadius:8,
+    paddingLeft: 19,
+    width: '50%',
+    backgroundColor: MyTheme.primary,
   },
   originalPrice: {
     fontFamily: MyTheme.poppins,

@@ -31,7 +31,6 @@ export const Ads = ({loading, allPromotions}) => {
         {allPromotions?.map(promo => {
           return <AdCard promo={promo} />;
         })}
-        <View style={{width: '100%', height: 200}}></View>
       </ScrollView>
     </View>
   );
@@ -135,7 +134,7 @@ export const AdCard = ({promo}) => {
           <AntDesign
             name="heart"
             size={15}
-            color={isFavorite ? '#f70606' : MyTheme.grey100}
+            color={isFavorite ? '#E65C89' : MyTheme.grey100}
           />
         </Pressable>
       </Pressable>

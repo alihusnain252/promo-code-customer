@@ -9,7 +9,7 @@ export const LoginPostRequest = async (data, url) => {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
-
+try {
   const res = await axios({
     method: 'post',
     url: url,
@@ -17,7 +17,15 @@ export const LoginPostRequest = async (data, url) => {
     data: data,
     headers: headers,
   });
-  return res;
+  if (res.status === 200) {
+    return {status: true, data: res.data};
+  } else {
+    return {status: false, data: res.data};
+  }
+  
+} catch (error) {
+  
+}
 };
 export const PostRequest = async (data, url) => {
   console.log('signIn Data :', data);
@@ -26,7 +34,7 @@ export const PostRequest = async (data, url) => {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
-
+try {
   const res = await axios({
     method: 'post',
     url: url,
@@ -34,34 +42,63 @@ export const PostRequest = async (data, url) => {
     data: data,
     headers: headers,
   });
-  return res;
+  if (res.status === 200) {
+    return {status: true, data: res.data};
+  } else {
+    return {status: false, data: res.data};
+  }
+  
+} catch (error) {
+  
+  return {status: false, data: null,error:error};
+}
 };
+
 export const RegisterRequest = async (data, url) => {
   console.log('signUInData :', data);
   console.log('signIn URl :', url);
+  try {
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: {'Content-Type': 'multipart/form-data'},
+    });
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+    
+  } catch (error) {
+    
+    return {status: false, data: null,error:error};
+  }
 
-  const res = await axios({
-    method: 'post',
-    url: url,
-    baseURL: baseUrl,
-    data: data,
-    headers: {'Content-Type': 'multipart/form-data'},
-  });
-  return res;
 };
 export const UpdateRequest = async (token, data, url) => {
   console.log('signUInData :', data);
   console.log('signIn URl :', url);
 
   const AuthStr = 'Bearer '.concat(token);
-  const res = await axios({
-    method: 'post',
-    url: url,
-    baseURL: baseUrl,
-    data: data,
-    headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
-  });
-  return res;
+  try {
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
+    });
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    
+    return {status: false, data: null,error:error};
+  }
 };
 export const GetRequest = async (token, url) => {
   try {
@@ -79,7 +116,7 @@ export const GetRequest = async (token, url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    return {status: false, data: null};
+    return {status: false, data: null,error:error};
   }
 };
 export const CreateAdRequest = async (token, data, url) => {
@@ -87,15 +124,25 @@ export const CreateAdRequest = async (token, data, url) => {
   console.log('token :', token);
   console.log('signIn URl :', url);
   const AuthStr = 'Bearer '.concat(token);
+  try {
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
+    });
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    
+    return {status: false, data: null,error:error};
+  }
 
-  const res = await axios({
-    method: 'post',
-    url: url,
-    baseURL: baseUrl,
-    data: data,
-    headers: {Authorization: AuthStr, 'Content-Type': 'multipart/form-data'},
-  });
-  return res;
+  
 };
 export const PostRequestWithToken = async (userToken, data, url) => {
   try {
@@ -121,7 +168,7 @@ export const PostRequestWithToken = async (userToken, data, url) => {
     }
   } catch (error) {
     console.log("error :", JSON.stringify(error));
-    return {status: false, data: null};
+    return {status: false, data: null,error:error};
   }
 };
 export const updateImageRequest = async (userToken, data, url) => {
@@ -141,8 +188,13 @@ export const updateImageRequest = async (userToken, data, url) => {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return res;
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
   } catch (error) {
     console.log('Post request Error :', error);
+    return {status: false, data: null,error:error};
   }
 };

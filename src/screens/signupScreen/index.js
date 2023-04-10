@@ -13,6 +13,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {RegisterRequest, SignupUserAPI} from '../../api/apiCall';
+import { ArrowHeader } from '@components';
 
 export const SignupScreen = ({navigation}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -66,9 +67,8 @@ export const SignupScreen = ({navigation}) => {
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
     RegisterRequest(data, customerUris.register).then(response => {
-      console.log('api response :', response);
-      // Alert.alert(response.data.message)
       if (response.data.success === true) {
+        console.log('api response :', response.data.data.code);
         Alert.alert(response.data.message);
         setLoading(false);
         navigation.navigate('LoginOtp', {
@@ -100,12 +100,7 @@ export const SignupScreen = ({navigation}) => {
 
   return (
     <View style={styles.signupContainer}>
-      <View style={styles.signupHeader}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <AntDesign name="arrowleft" size={25} color="#000" />
-        </Pressable>
-        <Text style={styles.signUpHeaderText}>Sign Up</Text>
-      </View>
+      <ArrowHeader heading="Sign Up" />
       <ScrollView style={styles.scrollView}>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>First name*</Text>

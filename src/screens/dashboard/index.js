@@ -1,4 +1,11 @@
-import {View, Text, TextInput, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  Pressable,
+  ScrollView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
 import {
@@ -70,46 +77,49 @@ export const Dashboard = ({navigation}) => {
     <View style={styles.dashboardContainer}>
       <TopHeader />
       <View style={styles.searchContainer}>
-        <TextInput
-          onChangeText={e => setSearchByName(e)}
-          value={searchByName}
-          style={styles.searchInput}
-          placeholder="Search (Vendor, Offers)"
-          placeholderTextColor={MyTheme.EerieBlack}
-        />
         <Pressable
           style={styles.searchPress}
           onPress={() =>
             navigation.navigate('SearchVendor', {searchByName: searchByName})
           }>
+          <TextInput
+            onChangeText={e => setSearchByName(e)}
+            value={searchByName}
+            style={styles.searchInput}
+            placeholder="Search (Vendor, Offers)"
+            placeholderTextColor={MyTheme.EerieBlack}
+            editable={false}
+          />
           <Image
             source={require('../../assets/icons/search.png')}
             style={styles.searchImage}
           />
         </Pressable>
       </View>
-      <View style={styles.vendors}>
-        <View style={styles.vendorTextView}>
-          <Text style={styles.heading}>Featured vendors</Text>
-          <Pressable
-            style={styles.allVendorPress}
-            onPress={() => navigation.navigate('AllVendors')}>
-            <Text style={styles.vendorText}>All vendors</Text>
-          </Pressable>
+      <ScrollView style={{flex: 1, marginTop: '1%',}}>
+        <View style={styles.vendors}>
+          <View style={styles.vendorTextView}>
+            <Text style={styles.heading}>Featured vendors</Text>
+            <Pressable
+              style={styles.allVendorPress}
+              onPress={() => navigation.navigate('AllVendors')}>
+              <Text style={styles.vendorText}>All vendors</Text>
+            </Pressable>
+          </View>
+          <FeaturedVendors
+            featured_vendors={featured_vendors}
+            loading={loading}
+          />
         </View>
-        <FeaturedVendors
-          featured_vendors={featured_vendors}
-          loading={loading}
-        />
-      </View>
-      <View style={styles.ads}>
-        <Text style={styles.heading}>Featured Ads⚡️</Text>
-        <FeaturedAds promotions={promotions} loading={loading} />
-      </View>
-      <View style={styles.discount}>
-        <Text style={styles.heading}>Discounts for you⚡️</Text>
-        <Ads allPromotions={allPromotions} loading={loading} />
-      </View>
+        <View style={styles.ads}>
+          <Text style={styles.heading}>Featured Ads⚡️</Text>
+          <FeaturedAds promotions={promotions} loading={loading} />
+        </View>
+        <View style={styles.discount}>
+          <Text style={styles.heading}>Discounts for you⚡️</Text>
+          <Ads allPromotions={allPromotions} loading={loading} />
+        </View>
+      </ScrollView>
       <BottomBar />
     </View>
   );

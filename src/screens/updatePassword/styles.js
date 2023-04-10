@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: '80%',
     left: 20,
-    top: 144,
+    top: 80,
   },
   register: {
     height: 56,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 69,
-    backgroundColor: MyTheme.yellow,
+    backgroundColor: MyTheme.primary,
   },
   registerText: {
     fontFamily: MyTheme.fontFamily,

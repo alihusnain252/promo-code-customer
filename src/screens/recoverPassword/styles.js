@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 21,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
     marginTop: 16,
   },
   phoneText: {
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 69,
-    backgroundColor: MyTheme.yellow,
+    backgroundColor: MyTheme.primary,
   },
   searchText: {
     fontFamily: MyTheme.fontFamily,

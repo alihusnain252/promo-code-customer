@@ -5,7 +5,7 @@ const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   accountContainer: {
     flex: 1,
-    backgroundColor: MyTheme.yellow,
+    backgroundColor: MyTheme.primary,
   },
   accountHeader: {
     width: '100%',

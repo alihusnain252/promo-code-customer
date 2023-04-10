@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: width - 30,
-    marginTop: 28,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: MyTheme.grey200,

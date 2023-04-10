@@ -21,14 +21,16 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 24,
     lineHeight: 20,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
     paddingTop: 5,
     marginLeft: 5,
   },
   favoriteVendor: {
     position: 'absolute',
     left: 16,
-    top: 134,
+    top: 100,
+    width:"100%",
+    height:"15%",
   },
   favoriteVendorText: {
     fontFamily: MyTheme.fontFamily,
@@ -36,11 +38,11 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 21,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
   },
   favoriteDiscount: {
     position: 'absolute',
-    top: 314,
+    top: 244,
     bottom:0,
   },
   favoriteDiscountText: {
@@ -49,7 +51,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 21,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
     marginLeft: 16,
   },
 });

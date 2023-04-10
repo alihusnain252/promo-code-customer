@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     width: 126,
     left: 22,
-    top: 70,
+    top: 30,
   },
   headingText: {
     fontFamily: MyTheme.fontFamily,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 24,
     lineHeight: 20,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
   },
   welcomeText: {
     fontFamily: MyTheme.fontFamily,
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   loginInputs: {
     position: 'absolute',
     width: width - 40,
-    top: 149,
+    top: 129,
   },
   input: {
     width: '100%',
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   loginBtns: {
     position: 'absolute',
     width: width - 40,
-    top: 290,
+    top: 270,
   },
   recoverText: {
     fontFamily: MyTheme.fontFamily,
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 69,
-    backgroundColor: MyTheme.yellow,
+    backgroundColor: MyTheme.primary,
   },
   loginText: {
     fontFamily: MyTheme.fontFamily,
@@ -78,7 +78,7 @@ export const styles = StyleSheet.create({
   registerNow: {
     flexDirection: 'row',
     position: 'absolute',
-    top: 713,
+    bottom: 30,
   },
   notMemberText: {
     fontFamily: MyTheme.fontFamily,
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 19,
-    color: MyTheme.black,
+    color: MyTheme.textPrimary,
   },
   registerPress: {
     paddingHorizontal: 5,
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 19,
-    color: MyTheme.yellow,
+    color: MyTheme.primary,
   },
   errorView: {
     marginTop: -20,
