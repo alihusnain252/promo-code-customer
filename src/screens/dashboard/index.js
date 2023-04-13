@@ -96,8 +96,10 @@ export const Dashboard = ({navigation}) => {
           />
         </Pressable>
       </View>
-      
+
       <ScrollView style={{flex: 1, marginTop: '1%',}}>
+
+        
         <View style={styles.vendors}>
           <View style={styles.vendorTextView}>
             <Text style={styles.heading}>Featured vendors</Text>
@@ -112,6 +114,9 @@ export const Dashboard = ({navigation}) => {
             loading={loading}
           />
         </View>
+
+
+
         <View style={styles.ads}>
           <Text style={styles.heading}>Featured Ads⚡️</Text>
           <FeaturedAds promotions={promotions} loading={loading} />

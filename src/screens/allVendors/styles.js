@@ -1,5 +1,5 @@
-import {MyTheme} from '@utils';
-import {StyleSheet, Dimensions} from 'react-native';
+import { MyTheme } from '@utils';
+import { StyleSheet, Dimensions } from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
@@ -18,22 +18,23 @@ export const styles = StyleSheet.create({
     marginLeft: 16,
   },
   cardContainer: {
-    width: width-40,
-    alignSelf:"center",
-    borderRadius:8,
+    width: width - 40,
+    alignSelf: "center",
+    borderRadius: 8,
   },
   cardImage: {
     width: '50%',
     height: '100%',
-    borderRadius:8,
+    borderRadius: 8,
+    resizeMode:'contain'
   },
   scroll: {
     width: width,
   },
   cardTopView: {
-    borderRadius:8,
+    borderRadius: 8,
     width: '100%',
-    height: 100,
+    height: 140,
     flexDirection: 'row',
     backgroundColor: MyTheme.grey400,
     shadowColor: '#000',
@@ -47,11 +48,12 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   vendorDetails: {
-    borderTopRightRadius:8,
-    borderBottomRightRadius:8,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
     paddingLeft: 19,
-    width: '50%',
-    backgroundColor:MyTheme.primary
+    flex:1,
+    justifyContent:'space-evenly',
+    backgroundColor: MyTheme.primary
   },
   vendorName: {
     marginTop: 5,
@@ -109,10 +111,10 @@ export const styles = StyleSheet.create({
 
   heartContainer: {
     position: 'absolute',
-    width: 22,
-    height: 22,
-    right: 30,
-    top: 0,
+    width: 26,
+    height: 26,
+    right: 10,
+    top: 10,
     backgroundColor: MyTheme.grey300,
     borderRadius: 50,
     justifyContent: 'center',

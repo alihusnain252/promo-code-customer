@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.background,
   },
 
-  
+
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   vendors: {
     marginTop: 23,
     width: '100%',
-    height: 100,
+    height: 130,
   },
   vendorTextView: {
     flexDirection: 'row',

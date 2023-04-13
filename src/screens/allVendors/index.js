@@ -74,24 +74,31 @@ export const VendorCard = ({vendor}) => {
             style={styles.cardImage}
           />
           <View style={styles.vendorDetails}>
+
             <Text style={styles.vendorName}>
               {vendor ? vendor.name : 'vendor name'}
             </Text>
+
             <Text style={styles.categoryName}>
               {vendor ? vendor.category_name : 'category name'}
             </Text>
+
             <Text style={styles.address}>
               Address :
               <Text style={styles.addressText}>
                 {vendor ? vendor.address : 'address'}
               </Text>
             </Text>
+
+
             <Text style={styles.description}>
               Description :
               <Text style={styles.descriptionText}>
                 {vendor ? vendor.short_description : 'short description'}
               </Text>
             </Text>
+
+            
           </View>
         </View>
         <Pressable

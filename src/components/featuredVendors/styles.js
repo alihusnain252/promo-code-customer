@@ -20,45 +20,53 @@ export const styles = StyleSheet.create({
     marginLeft: 15,
     // marginTop: 1,
   },
-  cardContainer: {
-    width: 90,
-    flexDirection: 'column',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  mainContainer:{
+    width:110,
+    height:'100%',
     marginRight: 15,
+    alignItems: 'center',
+    backgroundColor:MyTheme.primary,
+    borderRadius: 8,
+  },
+  cardContainer: {
+    // width: 100,
+   
   },
   cardImageContainer: {
     width: '100%',
-    height: '50%',
+    height: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: MyTheme.primary,
-    borderRadius: 8,
+    // backgroundColor: MyTheme.primary,
+    
+
   },
   cardImage: {
     width: '100%',
     height: '100%',
     borderRadius: 8,
+    resizeMode:'contain'
   },
   imageTitle: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
-    fontSize: 12,
-    lineHeight: 20,
+    fontSize: 13,
+    textAlign:'center',
+    // lineHeight: 20,
     color: MyTheme.black,
   },
   heartContainer: {
     position: 'absolute',
     width: 22,
     height: 22,
-    right: 20,
+    right: 0,
     top: 0,
     backgroundColor: MyTheme.grey300,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop:'2%'
   },
   heartImg: {
     width: 11.64,

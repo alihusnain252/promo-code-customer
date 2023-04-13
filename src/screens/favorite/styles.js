@@ -26,9 +26,10 @@ export const styles = StyleSheet.create({
     marginLeft: 5,
   },
   favoriteVendor: {
-    position: 'absolute',
+    // position: 'absolute',
     left: 16,
-    top: 100,
+    marginTop:'3%',
+    // top: 100,
     width:"100%",
     height:"15%",
   },
@@ -41,8 +42,9 @@ export const styles = StyleSheet.create({
     color: MyTheme.textPrimary,
   },
   favoriteDiscount: {
-    position: 'absolute',
-    top: 244,
+    // position: 'absolute',
+    // top: 254,
+    marginTop:'3%',
     bottom:0,
   },
   favoriteDiscountText: {

@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
   discount: {
     marginTop: 31,
     width: '100%',
-    height: '50%',
+    // backgroundColor:'red'
+    // height: '50%',
     // alignItems: 'center',
   },
   vendorDetailsView: {
@@ -34,6 +35,7 @@ export const styles = StyleSheet.create({
     marginTop: '1%',
   },
   vendorTextBold: {
+    flex:2,
     fontFamily: MyTheme.poppins,
     fontStyle: 'normal',
     fontWeight: 300,
@@ -42,6 +44,7 @@ export const styles = StyleSheet.create({
     color: MyTheme.black,
   },
   vendorText: {
+    flex:3,
     fontFamily: MyTheme.poppins,
     fontStyle: 'normal',
     fontWeight: 500,
@@ -53,12 +56,9 @@ export const styles = StyleSheet.create({
 
   imageView: {
     width: '100%',
-    height: 105,
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    // borderBottomWidth: 1,
-    borderColor: MyTheme.grey200,
     borderRadius: 8,
   },
   cardImage: {
@@ -66,4 +66,9 @@ export const styles = StyleSheet.create({
     height: 100,
     borderRadius: 8,
   },
+
+
+  discountHeading:{
+    marginVertical:'3%'
+  }
 });

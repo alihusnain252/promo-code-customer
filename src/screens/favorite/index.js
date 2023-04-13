@@ -37,6 +37,7 @@ export const Favorite = ({navigation}) => {
   return (
     <View style={styles.favoriteContainer}>
       <ArrowHeader heading="Favorite" />
+      
       <View style={styles.favoriteVendor}>
         <Text style={styles.favoriteVendorText}>Favorite Vendors</Text>
         <FeaturedVendors featured_vendors={favoriteVendors} loading={loading} />
