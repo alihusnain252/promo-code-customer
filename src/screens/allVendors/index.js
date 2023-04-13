@@ -23,6 +23,7 @@ export const AllVendors = ({navigation}) => {
   const [allVendors, setAllVendors] = useState([]);
 
   const getAllVendors = () => {
+    setLoading(true)
     GetRequest(userToken.token, customerUris.allVendors).then(res => {
       console.log('is favorite ada :', res);
       if (res.status) {
@@ -46,7 +47,7 @@ export const AllVendors = ({navigation}) => {
         style={
           loading === false
             ? {display: 'none'}
-            : {position: 'absolute', top: 10, left: 150, zIndex: 1}
+            : {marginVertical:10}
         }>
         <ActivityIndicator size={36} color={MyTheme.yellow} />
       </View>

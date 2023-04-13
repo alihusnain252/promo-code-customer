@@ -86,9 +86,7 @@ export const ResetPassword = ({route, navigation}) => {
             secureTextEntry={true}
           />
         </View>
-        <Pressable
-          style={styles.reset}
-          onPress={() => updatePasswordHandle()}>
+        <Pressable style={styles.reset} onPress={() => updatePasswordHandle()}>
           <Text style={styles.resetText}>Reset</Text>
         </Pressable>
       </ScrollView>

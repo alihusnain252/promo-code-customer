@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932686731986",
+    "project_id": "savur-buddy",
+    "storage_bucket": "savur-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932686731986:android:1d8d404d54166f310f2b0b",
+        "android_client_info": {
+          "package_name": "com.saverbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932686731986-evr9mcts6hhjhum45dvmhpagda27i1mh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3BWCIP4iEhQCV-tGM1os2jdzmXpCFsYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932686731986-evr9mcts6hhjhum45dvmhpagda27i1mh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

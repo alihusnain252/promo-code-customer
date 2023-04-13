@@ -98,4 +98,9 @@ export const styles = StyleSheet.create({
     marginBottom: '1%',
     color: MyTheme.black,
   },
+  dropDown: {
+    marginTop: '3%',
+    width: width - 30,
+    marginBottom: '1%',
+  },
 });

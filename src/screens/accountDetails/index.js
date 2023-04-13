@@ -118,7 +118,7 @@ export const AccountDetails = ({route, navigation}) => {
     ).then(response => {
       console.log('api response :', response);
       if (response.data.success === true) {
-        // Alert.alert(response.data.message)
+        Alert.alert(response.data.message);
         setLoading(false);
       } else {
         Alert.alert(response.data.message);
@@ -172,6 +172,20 @@ export const AccountDetails = ({route, navigation}) => {
     console.log(x1[2] + '/' + x1[1] + '/' + x1[0]);
     setDob(x1[2] + '/' + x1[1] + '/' + x1[0]);
     hideDatePicker();
+  };
+
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
+    }
   };
 
   return (
@@ -243,32 +257,13 @@ export const AccountDetails = ({route, navigation}) => {
           <Text style={globalInputsStyles.globalLabel}>Phone Number*</Text>
           <TextInput
             style={globalInputsStyles.input}
-            onChangeText={setPhoneNumber}
+            onChangeText={value => numberValidations(value)}
             value={phoneNumber}
             placeholder="02112345678"
             editable={false}
+            maxLength={10}
           />
         </View>
-        {/* <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>Password*</Text>
-          <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setPassword}
-            value={password}
-            placeholder="*********"
-            secureTextEntry={true}
-          />
-        </View>
-        <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>Conform Password*</Text>
-          <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setConformPassword}
-            value={conformPassword}
-            placeholder="*********"
-            secureTextEntry={true}
-          />
-        </View> */}
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>occupation*</Text>
           <TextInput

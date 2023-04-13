@@ -36,12 +36,8 @@ export const PromoDetails = ({route, navigation}) => {
           padding: 10,
           marginBottom: 20,
         }}>
-        <Text style={styles.heading}>
-          {promoDetails.company_name}
-        </Text>
-        <Text style={styles.description}>
-          {promoDetails.description}
-        </Text>
+        <Text style={styles.heading}>{promoDetails.company_name}</Text>
+        <Text style={styles.description}>{promoDetails.description}</Text>
       </View>
 
       <View style={{width: '100%', flexDirection: 'row'}}>
@@ -53,7 +49,7 @@ export const PromoDetails = ({route, navigation}) => {
       <View style={{width: '100%', flexDirection: 'row'}}>
         <Text style={styles.headingVendor}>Located In: </Text>
         <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {venderDetails.locatedIn}
+          {promoDetails.vendor.city}
         </Text>
       </View>
       <View style={{width: '100%', flexDirection: 'row'}}>
@@ -70,7 +66,9 @@ export const PromoDetails = ({route, navigation}) => {
       </View>
 
       <View style={styles.discount}>
-        <Text style={[styles.heading,{marginLeft:"4%"}]}>Discounts for you⚡️</Text>
+        <Text style={[styles.heading, {marginLeft: '4%'}]}>
+          Discounts for you⚡️
+        </Text>
         <AdCard promo={promoDetails} />
       </View>
     </View>

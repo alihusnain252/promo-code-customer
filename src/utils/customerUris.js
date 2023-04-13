@@ -24,4 +24,5 @@ export const customerUris = {
   allVendors: 'api/customer/vendors',
   updateProfileImage: 'api/customer/update-profile-image',
   updatePassword: 'api/customer/update-password',
+  searchByCity:"api/customer/filter-vendors-and-promotions-by-city?city="
 };

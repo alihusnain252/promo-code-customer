@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
   cardImage: {
     width: '50%',
     height: '100%',
-    borderRadius:8,
+    borderTopLeftRadius:8,
+    borderBottomLeftRadius:8,
   },
   scroll: {
     width: width,
