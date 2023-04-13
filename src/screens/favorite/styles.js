@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   favoriteContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   favoriteHeader: {
     flexDirection: 'row',

@@ -37,7 +37,7 @@ export const RouterComponents = () => {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-            statusBarColor: 'white',
+            statusBarColor: MyTheme.primary,
             statusBarStyle: 'dark',
           }}>
           <Stack.Screen name="Login" component={LogInScreen} />
@@ -50,7 +50,7 @@ export const RouterComponents = () => {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-            statusBarColor: 'white',
+            statusBarColor: MyTheme.primary,
             statusBarStyle: 'dark',
           }}>
           <Stack.Screen name="Dashboard" component={Dashboard} 

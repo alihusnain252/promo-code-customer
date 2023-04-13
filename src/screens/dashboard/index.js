@@ -96,6 +96,7 @@ export const Dashboard = ({navigation}) => {
           />
         </Pressable>
       </View>
+      
       <ScrollView style={{flex: 1, marginTop: '1%',}}>
         <View style={styles.vendors}>
           <View style={styles.vendorTextView}>
