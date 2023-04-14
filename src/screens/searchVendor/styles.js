@@ -6,9 +6,10 @@ export const styles = StyleSheet.create({
   searchVendorContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   searchContainer: {
+    marginTop: '2%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

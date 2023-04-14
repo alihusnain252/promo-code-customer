@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   signupContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   signupHeader: {
     width: '100%',
@@ -52,13 +52,14 @@ export const styles = StyleSheet.create({
     color: MyTheme.white,
   },
 
-  dateInput:{
-    width:"80%",
+  dateInput: {
+    width: '80%',
+    color: MyTheme.textPrimary,
   },
-  datePress:{
-    width:"20%",
-    height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
+  datePress: {
+    width: '20%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

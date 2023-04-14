@@ -8,11 +8,10 @@ export const styles = StyleSheet.create({
     height: '100%',
   },
   heading: {
-    fontFamily: MyTheme.poppins,
+    fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 16,
-    lineHeight: 21,
     color: MyTheme.black,
     marginLeft: 16,
   },
@@ -21,11 +20,10 @@ export const styles = StyleSheet.create({
     marginTop: 16,
   },
   cardContainer: {
-    width: 90,
+    width: 130,
     flexDirection: 'column',
-    height: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     marginRight: 15,
 
     borderWidth: 1,
@@ -34,14 +32,14 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.primary,
   },
   cardImageContainer: {
-    width: 90,
-    height: 100,
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
+    borderRadius: 8,
   },
   imageView: {
     width: '100%',
-    height: '50%',
-    justifyContent: 'center',
+    height: '60%',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: MyTheme.grey200,
@@ -49,7 +47,7 @@ export const styles = StyleSheet.create({
   },
   cardImage: {
     width: '100%',
-    height: '100%',
+    height: 65,
     borderRadius: 8,
   },
   imageTitle: {
@@ -61,9 +59,10 @@ export const styles = StyleSheet.create({
     color: MyTheme.black,
   },
   cardDetails: {
+    // backgroundColor:"red",
     height: '50%',
     width: '100%',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   discount: {
@@ -78,8 +77,8 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     width: 22,
     height: 22,
-    left: 60,
-    top: 0,
+    right: 10,
+    top: 10,
     backgroundColor: MyTheme.grey300,
     borderRadius: 50,
     justifyContent: 'center',

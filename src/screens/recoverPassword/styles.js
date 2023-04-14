@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   validateContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   body: {
     width: width - 38,

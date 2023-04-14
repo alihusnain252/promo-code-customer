@@ -69,7 +69,7 @@ export const SignupScreen = ({navigation}) => {
     RegisterRequest(data, customerUris.register).then(response => {
       if (response.data.success === true) {
         console.log('api response :', response.data.data.code);
-        Alert.alert(response.data.message);
+        Alert.alert(response.data.data.code);
         setLoading(false);
         navigation.navigate('LoginOtp', {
           phoneNumber: phoneNumber,
@@ -108,7 +108,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setFirstName}
             value={firstName}
-            placeholder="john"
+            placeholder="First Name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -117,17 +117,20 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setLastName}
             value={lastName}
-            placeholder="Smith"
+            placeholder="Last Name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Date of birth*</Text>
-          <View style={globalInputsStyles.input}>
+          <Pressable style={globalInputsStyles.input}  onPress={() => {
+                showDatePicker();
+              }}>
             <TextInput
               style={styles.dateInput}
               onChangeText={setDob}
               value={dob}
-              placeholder="10/10/2007"
+              placeholder="Date of Birth"
+              editable={false}
             />
             <Pressable
               style={styles.datePress}
@@ -136,7 +139,7 @@ export const SignupScreen = ({navigation}) => {
               }}>
               <EvilIcons name="calendar" size={30} color="#000" />
             </Pressable>
-          </View>
+          </Pressable>
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Nationality*</Text>
@@ -144,7 +147,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setNationality}
             value={nationality}
-            placeholder="USA"
+            placeholder="Nationality"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -171,7 +174,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setPassword}
             value={password}
-            placeholder="*********"
+            placeholder="Set Password"
             secureTextEntry={true}
           />
         </View>
@@ -181,7 +184,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setConformPassword}
             value={conformPassword}
-            placeholder="*********"
+            placeholder="Conform Password"
             secureTextEntry={true}
           />
         </View>
@@ -191,7 +194,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setOccupation}
             value={occupation}
-            placeholder="Manager of a company"
+            placeholder="Your Occupation Name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -200,7 +203,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setInstituteName}
             value={instituteName}
-            placeholder="Institution name here"
+            placeholder="Institution name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -209,7 +212,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setCountryAddress}
             value={countryAddress}
-            placeholder="USA"
+            placeholder="Country address"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -218,7 +221,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setAddressLine1}
             value={addressLine1}
-            placeholder="#123, Dummy Street, Usa"
+            placeholder="Address line #1"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -227,7 +230,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setAddressLine2}
             value={addressLine2}
-            placeholder="#123, Dummy Street, Usa"
+            placeholder="Address line #2"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -236,7 +239,7 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setRegionCapital}
             value={regionCapital}
-            placeholder="Usa Capital here"
+            placeholder=" Capital name "
           />
         </View>
         <Pressable style={styles.register} onPress={() => signupHandler()}>

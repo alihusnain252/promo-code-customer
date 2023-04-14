@@ -19,6 +19,7 @@ import {MyTheme, customerUris} from '@utils';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
+import {useFocusEffect} from '@react-navigation/native';
 
 export const Dashboard = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -67,11 +68,18 @@ export const Dashboard = ({navigation}) => {
     });
   };
 
-  useEffect(() => {
-    getFeaturedAds();
-    getFeaturedVendors();
-    getAds();
-  }, []);
+  // useEffect(() => {
+  //   getFeaturedAds();
+  //   getFeaturedVendors();
+  //   getAds();
+  // }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      getFeaturedAds();
+      getFeaturedVendors();
+      getAds();
+    }, []),
+  );
 
   return (
     <View style={styles.dashboardContainer}>
@@ -97,9 +105,7 @@ export const Dashboard = ({navigation}) => {
         </Pressable>
       </View>
 
-      <ScrollView style={{flex: 1, marginTop: '1%',}}>
-
-        
+      <ScrollView style={{flex: 1, marginTop: '1%'}}>
         <View style={styles.vendors}>
           <View style={styles.vendorTextView}>
             <Text style={styles.heading}>Featured vendors</Text>
@@ -115,12 +121,11 @@ export const Dashboard = ({navigation}) => {
           />
         </View>
 
-
-
-        <View style={styles.ads}>
+        <View style={promotions.length === 0 ? {display: 'none'} : styles.ads}>
           <Text style={styles.heading}>Featured Ads⚡️</Text>
           <FeaturedAds promotions={promotions} loading={loading} />
         </View>
+
         <View style={styles.discount}>
           <Text style={styles.heading}>Discounts for you⚡️</Text>
           <Ads allPromotions={allPromotions} loading={loading} />

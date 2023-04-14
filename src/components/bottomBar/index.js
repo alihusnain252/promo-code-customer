@@ -21,8 +21,9 @@ import image5 from '../../assets/icons/cat5.png';
 import image6 from '../../assets/icons/cat6.png';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
-import {customerUris} from '@utils';
+import {MyTheme, customerUris} from '@utils';
 import {GetRequest} from '../../api/apiCall';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const categories = [
   {
@@ -133,10 +134,7 @@ export const BottomBar = () => {
       <Pressable
         style={styles.iconView}
         onPress={() => navigation.navigate('Favorite')}>
-        <Image
-          source={require('../../assets/icons/favorites.png')}
-          style={styles.icon}
-        />
+        <AntDesign name="heart" size={20} color={MyTheme.white} />
         <Text style={styles.iconText}>Favorites</Text>
       </Pressable>
 
@@ -172,6 +170,7 @@ export const BottomBar = () => {
                 keyExtractor={item => item.id}
                 numColumns={4}
                 showsVerticalScrollIndicator={false}
+                style={styles.flatList}
               />
             </View>
           </View>

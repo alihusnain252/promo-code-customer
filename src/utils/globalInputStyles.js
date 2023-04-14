@@ -6,7 +6,7 @@ export const globalInputsStyles = StyleSheet.create({
   globalInputs: {
     width: width - 40,
     height: 85,
-    paddingTop:5,
+    paddingTop: 5,
   },
   globalLabel: {
     fontFamily: MyTheme.fontFamily,
@@ -19,14 +19,13 @@ export const globalInputsStyles = StyleSheet.create({
     // marginBottom: 5,
   },
   input: {
-    flexDirection:"row",
-    alignItems:"center",
+    flexDirection: 'row',
+    alignItems: 'center',
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
-    // fontSize: 12,
-    color: MyTheme.labelBlack,
     width: '100%',
     backgroundColor: MyTheme.grey,
+    color: MyTheme.textPrimary,
     borderRadius: 8,
     marginBottom: 20,
     paddingHorizontal: 15,

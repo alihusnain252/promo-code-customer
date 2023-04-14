@@ -18,41 +18,42 @@ export const styles = StyleSheet.create({
   },
   scrollView: {
     marginLeft: 15,
+    marginTop: '2%',
     // marginTop: 1,
   },
-  mainContainer:{
-    width:110,
-    height:'100%',
+  mainContainer: {
+    width: 110,
+    height: '100%',
     marginRight: 15,
     alignItems: 'center',
-    backgroundColor:MyTheme.primary,
     borderRadius: 8,
   },
   cardContainer: {
     // width: 100,
-   
   },
   cardImageContainer: {
     width: '100%',
     height: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: MyTheme.primary,
-    
 
+    backgroundColor: MyTheme.primary,
+
+    borderRadius: 8,
+    // backgroundColor: MyTheme.primary,
   },
   cardImage: {
     width: '100%',
     height: '100%',
     borderRadius: 8,
-    resizeMode:'contain'
+    resizeMode: 'contain',
   },
   imageTitle: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
     fontSize: 13,
-    textAlign:'center',
+    textAlign: 'center',
     // lineHeight: 20,
     color: MyTheme.black,
   },
@@ -66,7 +67,7 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop:'2%'
+    marginTop: '2%',
   },
   heartImg: {
     width: 11.64,

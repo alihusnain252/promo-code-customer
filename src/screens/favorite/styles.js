@@ -28,10 +28,10 @@ export const styles = StyleSheet.create({
   favoriteVendor: {
     // position: 'absolute',
     left: 16,
-    marginTop:'3%',
+    marginTop: '3%',
     // top: 100,
-    width:"100%",
-    height:"15%",
+    width: '100%',
+    height: '15%',
   },
   favoriteVendorText: {
     fontFamily: MyTheme.fontFamily,
@@ -44,8 +44,8 @@ export const styles = StyleSheet.create({
   favoriteDiscount: {
     // position: 'absolute',
     // top: 254,
-    marginTop:'3%',
-    bottom:0,
+    marginTop: '7%',
+    bottom: 0,
   },
   favoriteDiscountText: {
     fontFamily: MyTheme.fontFamily,

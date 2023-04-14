@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   heading: {
     position: 'absolute',

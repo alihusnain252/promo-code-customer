@@ -1,6 +1,6 @@
 import {View, Text, TextInput} from 'react-native';
 import React, {useState} from 'react';
-import { styles } from './styles';
+import {styles} from './styles';
 
 export const OtpContainer = ({setText}) => {
   const [otp, setOtp] = useState([1, 2, 3, 4]);
@@ -25,12 +25,12 @@ export const OtpContainer = ({setText}) => {
     } else {
       otpText = '';
     }
-    setText(otpText)
+    setText(otpText);
   };
   const checkOtpApi = () => {
     let otpText = '';
     if (otp.length > 0) {
-      otpText = otp[0] + otp[1] + otp[2] + otp[3]+ otp[4]+ otp[5];
+      otpText = otp[0] + otp[1] + otp[2] + otp[3] + otp[4] + otp[5];
     } else {
       otpText = '';
     }

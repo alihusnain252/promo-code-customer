@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   resetPasswordContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   scrollView: {
     position: 'absolute',

@@ -67,6 +67,7 @@ export const LogInScreen = ({navigation}) => {
             onChangeText={setPhoneNumber}
             value={phoneNumber}
             placeholder="Phone Number / UserID"
+            placeholderTextColor={MyTheme.grey100}
             keyboardType="numeric"
           />
         </View>
@@ -84,6 +85,7 @@ export const LogInScreen = ({navigation}) => {
             onChangeText={setPassword}
             value={password}
             placeholder="Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>

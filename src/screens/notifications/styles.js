@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   notificationContainer: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   notificationHeader: {
     width: '100%',

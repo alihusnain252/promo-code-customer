@@ -10,11 +10,11 @@ export const styles = StyleSheet.create({
     marginTop: 170,
   },
   textInput: {
-    backgroundColor: MyTheme.accent,
+    backgroundColor: MyTheme.primary,
     padding: 7,
     margin: 7,
     borderRadius: 5,
     textAlign: 'center',
-    color:MyTheme.white,
+    color: MyTheme.accent,
   },
 });

@@ -1,12 +1,12 @@
-import { MyTheme } from '@utils';
-import { StyleSheet, Dimensions } from 'react-native';
+import {MyTheme} from '@utils';
+import {StyleSheet, Dimensions} from 'react-native';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   vendorsContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: MyTheme.white,
+    backgroundColor: MyTheme.background,
   },
   heading: {
     fontFamily: MyTheme.poppins,
@@ -19,14 +19,15 @@ export const styles = StyleSheet.create({
   },
   cardContainer: {
     width: width - 40,
-    alignSelf: "center",
+    alignSelf: 'center',
     borderRadius: 8,
+    marginVertical: '2%',
   },
   cardImage: {
     width: '50%',
     height: '100%',
     borderRadius: 8,
-    resizeMode:'contain'
+    resizeMode: 'contain',
   },
   scroll: {
     width: width,
@@ -51,9 +52,9 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
     paddingLeft: 19,
-    flex:1,
-    justifyContent:'space-evenly',
-    backgroundColor: MyTheme.primary
+    flex: 1,
+    justifyContent: 'space-evenly',
+    backgroundColor: MyTheme.primary,
   },
   vendorName: {
     marginTop: 5,

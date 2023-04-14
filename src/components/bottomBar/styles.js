@@ -10,9 +10,8 @@ export const styles = StyleSheet.create({
     borderRadius: 70,
     position: 'absolute',
     bottom: 12,
-    paddingHorizontal: 31,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   iconView: {
@@ -20,6 +19,7 @@ export const styles = StyleSheet.create({
     height: 40.93,
     justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: '2%',
   },
   icon: {
     width: 21.67,
@@ -38,15 +38,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: 22,
     width: '100%',
-    backgroundColor: '#00000080',
   },
   modalView: {
-    backgroundColor: 'red',
     position: 'absolute',
     bottom: 0,
     width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: height / 2.15,
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
@@ -67,6 +66,9 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: MyTheme.grey200,
   },
+  flatList: {
+    width: width - 40,
+  },
   modalText: {
     width: '100%',
     fontFamily: MyTheme.fontFamily,
@@ -81,27 +83,27 @@ export const styles = StyleSheet.create({
   },
   categoriesView: {
     marginTop: 10,
-    width: width,
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    height: '100%',
   },
   category: {
-    width: '16%',
-    marginHorizontal: 10,
-    marginBottom: 20,
+    width: '20%',
+    height: 100,
+    resizeMode: 'contain',
+    marginHorizontal: '2%',
+    marginBottom: '2%',
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: MyTheme.primary,
   },
   categoryIconView: {
-    backgroundColor:MyTheme.primary,
-    width: 45,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: MyTheme.grey400,
-    borderRadius: 40,
+    backgroundColor: MyTheme.primary,
+    width: 50,
+    height: '58%',
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    borderRadius: 70,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -109,7 +111,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    
+
     elevation: 5,
   },
   categoryText: {
@@ -122,8 +124,9 @@ export const styles = StyleSheet.create({
     marginTop: 6,
   },
   categoryIcon: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 40,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+    borderRadius: 70,
   },
 });

@@ -36,43 +36,33 @@ export const PromoDetails = ({route, navigation}) => {
           padding: 10,
           marginBottom: 20,
         }}>
-        <Text style={styles.heading}>
-          {promoDetails.company_name}
-        </Text>
-        <Text style={styles.description}>
-          {promoDetails.description}
-        </Text>
+        <Text style={styles.heading}>{promoDetails.company_name}</Text>
+        <Text style={styles.description}>{promoDetails.description}</Text>
       </View>
-
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Name : </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {promoDetails.vendor.name}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Located In: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {venderDetails.locatedIn}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Address: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {promoDetails.vendor.address}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Service options: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {venderDetails.ServiceOptions}
-        </Text>
-      </View>
+      <PromoDetailItem title={'Name '} value={promoDetails.vendor.name} />
+      <PromoDetailItem title={'Located In '} value={venderDetails.locatedIn} />
+      <PromoDetailItem title={'Address '} value={promoDetails.vendor.address} />
+      <PromoDetailItem
+        title={'Service options '}
+        value={venderDetails.ServiceOptions}
+      />
 
       <View style={styles.discount}>
-        <Text style={[styles.heading,{marginLeft:"4%"}]}>Discounts for you⚡️</Text>
+        <Text style={[styles.heading, {marginLeft: '4%'}]}>
+          Discounts for you⚡️
+        </Text>
         <AdCard promo={promoDetails} />
       </View>
+    </View>
+  );
+};
+const PromoDetailItem = ({title, value}) => {
+  return (
+    <View style={{width: '100%', flexDirection: 'row'}}>
+      <Text style={styles.headingVendor}>{title} : </Text>
+      <Text style={[styles.headingVendorValue, {color: '#E65C89'}]}>
+        {value}
+      </Text>
     </View>
   );
 };

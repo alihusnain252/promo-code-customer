@@ -53,10 +53,10 @@ export const AccountScreen = ({navigation}) => {
           />
         </View>
         <Text style={styles.userName}>
-          {userData.name ? userData.name : 'John Smith'}
+          {userData.name ? userData.name : '...'}
         </Text>
         <Text style={styles.userMail}>
-          {userData.email ? userData.email : '@johnsmith'}
+          {userData.email ? userData.email : 'email@....'}
         </Text>
         <Text style={styles.memberSince}>Member Since: 23 Mar 2023</Text>
         <View style={styles.accountBtns}>
@@ -70,8 +70,9 @@ export const AccountScreen = ({navigation}) => {
           <Pressable style={styles.accountButton}>
             <Text style={styles.accountButtonText}>About Saver Buddy</Text>
           </Pressable>
-          <Pressable style={styles.accountButton} onPress={()=>
-              navigation.navigate('UpdatePassword')}>
+          <Pressable
+            style={styles.accountButton}
+            onPress={() => navigation.navigate('UpdatePassword')}>
             <Text style={styles.accountButtonText}>Update Password</Text>
           </Pressable>
           {/* <Pressable style={styles.accountButton}>

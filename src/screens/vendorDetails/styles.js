@@ -5,17 +5,12 @@ const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   vendorDetailsContainer: {
     flex: 1,
-    // justifyContent:"center",
     alignItems: 'center',
-    // justifyContent:"center",
-    backgroundColor: 'white',
+    backgroundColor: MyTheme.background,
   },
   discount: {
     marginTop: 31,
     width: '100%',
-    // backgroundColor:'red'
-    // height: '50%',
-    // alignItems: 'center',
   },
   vendorDetailsView: {
     width: width - 40,
