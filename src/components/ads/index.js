@@ -29,6 +29,7 @@ export const Ads = ({loading, allPromotions}) => {
       </View>
       <ScrollView style={styles.scroll}>
         {allPromotions?.map(promo => {
+          // console.log('promo.image', promo.image);
           return <AdCard promo={promo} />;
         })}
       </ScrollView>
@@ -53,7 +54,7 @@ export const AdCard = ({promo}) => {
       data,
       customerUris.addPromotionToFavorite,
     ).then(res => {
-      console.log('is favorite ada :', res);
+      // console.log('is favorite ada :', res);
       if (res.data.success) {
         setIsFavorite(true);
       } else {
@@ -71,7 +72,7 @@ export const AdCard = ({promo}) => {
       data,
       customerUris.removePromotionFromFavorite,
     ).then(res => {
-      console.log('is remove from favorite :', res);
+      // console.log('is remove from favorite :', res);
       if (res.data.success) {
         setIsFavorite(false);
       } else {

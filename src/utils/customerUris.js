@@ -13,6 +13,7 @@ export const customerUris = {
   filterVendorsAndPromotions:
     'api/customer/filter-vendors-and-promotions?page=1&name=',
   PromotionById: 'api/customer/promotion-by-id/3',
+  PromotionByVendorId: 'api/customer/all-promotions-by-vendor-id/',
   categories: 'api/customer/categories',
   filterVendorAndPromotionByCatId:
     'api/customer/filter-vendors-and-promotions-by-category/',

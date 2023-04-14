@@ -34,6 +34,7 @@ export const Dashboard = ({navigation}) => {
     setLoading(true);
     GetRequest(userToken.token, customerUris.allPromotions).then(res => {
       if (res.data.success === true) {
+        // console.log('all ads : ', res.data.data.promotions.data);
         setAllPromotions(res.data.data.promotions.data);
         setLoading(false);
       } else {

@@ -24,7 +24,7 @@ export const AllVendors = ({navigation}) => {
 
   const getAllVendors = () => {
     GetRequest(userToken.token, customerUris.allVendors).then(res => {
-      console.log('is favorite ada :', res);
+      console.log('is favorite ada :', res.data.data.vendors);
       if (res.status) {
         setAllVendors(res.data.data.vendors);
         setLoading(false);
@@ -70,11 +70,10 @@ export const VendorCard = ({vendor}) => {
         }>
         <View style={styles.cardTopView}>
           <Image
-            source={vendor ? {uri: vendor.profile_pic} : image}
+            source={vendor.profile_pic ? {uri: vendor.profile_pic} : image}
             style={styles.cardImage}
           />
           <View style={styles.vendorDetails}>
-
             <Text style={styles.vendorName}>
               {vendor ? vendor.name : 'vendor name'}
             </Text>
@@ -90,15 +89,12 @@ export const VendorCard = ({vendor}) => {
               </Text>
             </Text>
 
-
             <Text style={styles.description}>
               Description :
               <Text style={styles.descriptionText}>
                 {vendor ? vendor.short_description : 'short description'}
               </Text>
             </Text>
-
-            
           </View>
         </View>
         <Pressable

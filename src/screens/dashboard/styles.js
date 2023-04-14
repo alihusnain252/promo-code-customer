@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.background,
   },
 
-
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -18,7 +17,7 @@ export const styles = StyleSheet.create({
     marginTop: 28,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: MyTheme.grey200,
+    borderColor: MyTheme.black,
 
     shadowColor: '#000',
     shadowOffset: {
@@ -31,10 +30,10 @@ export const styles = StyleSheet.create({
     elevation: -2,
   },
   searchPress: {
-    width: "100%",
+    width: '100%',
     height: 50,
-    flexDirection:"row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   searchImage: {
@@ -61,6 +60,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: MyTheme.grey200,
+    borderWidth: 1,
+    borderColor: MyTheme.accent,
 
     shadowColor: '#000',
     shadowOffset: {
@@ -74,7 +75,7 @@ export const styles = StyleSheet.create({
   },
   vendorText: {
     fontSize: 10,
-    color: MyTheme.grey100,
+    color: MyTheme.accent,
   },
   ads: {
     marginTop: 25,

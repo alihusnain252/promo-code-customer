@@ -2,12 +2,9 @@ import {View, Text, TextInput, Image, Pressable} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {AdCard, ArrowHeader} from '@components';
-import {MyTheme} from '@utils';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const PromoDetails = ({route, navigation}) => {
   const {promoDetails} = route.params;
-  console.log('promoDetails params : ', promoDetails);
 
   const venderDetails = {
     name: 'Vendor Name',
@@ -22,7 +19,11 @@ export const PromoDetails = ({route, navigation}) => {
 
       <View style={styles.imageView}>
         <Image
-          source={{uri: promoDetails.image ? promoDetails.image : ''}}
+          source={{
+            uri: promoDetails.vendor.profile_pic
+              ? promoDetails.vendor.profile_pic
+              : '',
+          }}
           style={styles.cardImage}
         />
       </View>
@@ -40,8 +41,11 @@ export const PromoDetails = ({route, navigation}) => {
         <Text style={styles.description}>{promoDetails.description}</Text>
       </View>
       <PromoDetailItem title={'Name '} value={promoDetails.vendor.name} />
-      <PromoDetailItem title={'Located In '} value={venderDetails.locatedIn} />
-      <PromoDetailItem title={'Address '} value={promoDetails.vendor.address} />
+      <PromoDetailItem title={'Located In '} value={promoDetails.vendor.city} />
+      <PromoDetailItem
+        title={'Address '}
+        value={promoDetails.vendor.address ? promoDetails.vendor.address : '-'}
+      />
       <PromoDetailItem
         title={'Service options '}
         value={venderDetails.ServiceOptions}

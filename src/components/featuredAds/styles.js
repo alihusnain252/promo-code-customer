@@ -60,9 +60,9 @@ export const styles = StyleSheet.create({
   },
   cardDetails: {
     // backgroundColor:"red",
-    height: '50%',
+    height: '40%',
     width: '100%',
-    // justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   discount: {

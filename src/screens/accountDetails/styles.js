@@ -52,14 +52,14 @@ export const styles = StyleSheet.create({
     color: MyTheme.white,
   },
 
-  dateInput:{
-    width:"80%",
+  dateInput: {
+    width: '80%',
   },
-  datePress:{
-    width:"20%",
-    height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
+  datePress: {
+    width: '20%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileImageView: {
     position: 'absolute',

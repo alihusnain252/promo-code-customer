@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 16,
     lineHeight: 19,
-    color: MyTheme.white,
+    color: MyTheme.textPrimary,
   },
   registerNow: {
     flexDirection: 'row',

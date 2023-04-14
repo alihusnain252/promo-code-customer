@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
   },
   line: {
     position: 'relative',
-    top: -17,
+    top: -16,
     width: 25,
     borderWidth: 0.5,
     borderColor: 'black',

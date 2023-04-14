@@ -60,7 +60,7 @@ const FeaturedAd = ({promotion}) => {
       customerUris.addPromotionToFavorite,
     ).then(res => {
       if (res.data.success) {
-        console.log('is favorite ada :', res);
+        // console.log('is favorite ada :', res);
         setIsFavorite(true);
       }
       console.log('is favorite ada :', res);
@@ -99,7 +99,7 @@ const FeaturedAd = ({promotion}) => {
           </View>
           <View style={styles.cardDetails}>
             <Text style={styles.imageTitle}>{promotion.company_name}</Text>
-            <Text style={styles.discount}>5% Cashback</Text>
+            {/* <Text style={styles.discount}>5% Cashback</Text> */}
           </View>
           <Pressable
             style={styles.heartContainer}

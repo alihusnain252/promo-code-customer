@@ -10,15 +10,9 @@ import {
 import React, {useState} from 'react';
 import {styles} from './styles';
 import {customerUris, globalInputsStyles} from '@utils';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import {
-  RegisterRequest,
-  SignupUserAPI,
-  UpdateRequest,
-  updateImageRequest,
-} from '../../api/apiCall';
+import {UpdateRequest, updateImageRequest} from '../../api/apiCall';
 import {ArrowHeader} from '@components';
 import ProfileImage from '../../assets/icons/profile.png';
 import {useSelector} from 'react-redux';
