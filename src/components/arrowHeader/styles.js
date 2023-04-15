@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   headerText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
-    fontWeight: 500,
+    fontWeight: 700,
     fontSize: 16,
     // lineHeight: 21,
     color: MyTheme.black,

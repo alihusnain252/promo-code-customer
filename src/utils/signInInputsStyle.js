@@ -7,14 +7,14 @@ export const signInInputsStyles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: MyTheme.grey,
+    backgroundColor: MyTheme.white,
     borderRadius: 8,
     marginBottom: 20,
     paddingLeft: 10,
   },
   input: {
     width: '90%',
-    backgroundColor: MyTheme.grey,
+    backgroundColor: MyTheme.white,
     borderRadius: 8,
     paddingHorizontal: 15,
     color:MyTheme.textPrimary

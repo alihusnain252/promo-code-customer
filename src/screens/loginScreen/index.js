@@ -31,23 +31,53 @@ export const LogInScreen = ({navigation}) => {
 
   const loginHandler = () => {
     setLoading(true);
-    LoginPostRequest(data, customerUris.login).then(response => {
-      console.log('api response :', response.data);
+    phoneNumber === ''
+      ? (setNoDisplay(true),
+        setErrorText('please Add Phone Number'),
+        setLoading(false))
+      : password === ''
+      ? (setNoDisplay(true),
+        setErrorText('please Add Password'),
+        setLoading(false))
+      : LoginPostRequest(data, customerUris.login).then(response => {
+          console.log('api response :', response);
 
-      if (response.data.success === false) {
-        setNoDisplay(true);
-        setErrorText(response.data.message);
-        setLoading(false);
-      } else {
-        setLoading(false);
-        dispatch(
-          updateToken(response.data.data.token ? response.data.data.token : ''),
-        );
-      }
-    });
+          if (response.data.success === false) {
+            setNoDisplay(true);
+            setLoading(false);
+            setErrorText(response.data.message);
+          } else {
+            if (response.data.data.length === 0) {
+              setErrorText(response.data.message);
+              setNoDisplay(true);
+              setLoading(false);
+            } else {
+              setLoading(false);
+              dispatch(
+                updateToken(
+                  response.data.data.token ? response.data.data.token : '',
+                ),
+              );
+            }
+          }
+        });
   };
   const recoverHandler = () => {
-    navigation.navigate("RecoverPassword")
+    navigation.navigate('RecoverPassword');
+  };
+
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
+    }
   };
 
   return (
@@ -64,15 +94,16 @@ export const LogInScreen = ({navigation}) => {
           />
           <TextInput
             style={signInInputsStyles.input}
-            onChangeText={setPhoneNumber}
+            onChangeText={value => numberValidations(value)}
             value={phoneNumber}
-            placeholder="Phone Number / UserID"
+            placeholder="Phone Number "
             placeholderTextColor={MyTheme.grey100}
             keyboardType="numeric"
+            maxLength={10}
           />
         </View>
         <View style={noDisplay === true ? styles.errorView : styles.noDisplay}>
-          <MaterialIcons name="error-outline" size={20} color="red" />
+          <MaterialIcons name="error-outline" size={20} color="#E65C89" />
           <Text style={styles.errorText}>{errorText}</Text>
         </View>
         <View style={signInInputsStyles.inputView}>

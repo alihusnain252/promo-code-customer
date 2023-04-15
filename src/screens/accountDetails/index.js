@@ -112,7 +112,7 @@ export const AccountDetails = ({route, navigation}) => {
     ).then(response => {
       console.log('api response :', response);
       if (response.data.success === true) {
-        // Alert.alert(response.data.message)
+        Alert.alert(response.data.message);
         setLoading(false);
       } else {
         Alert.alert(response.data.message);
@@ -168,6 +168,20 @@ export const AccountDetails = ({route, navigation}) => {
     hideDatePicker();
   };
 
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
+    }
+  };
+
   return (
     <View style={styles.signupContainer}>
       <ArrowHeader heading="Account Details" />
@@ -184,7 +198,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setFirstName}
             value={firstName}
-            placeholder="john"
+            placeholder="First Name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -193,7 +207,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setLastName}
             value={lastName}
-            placeholder="Smith"
+            placeholder="Last name"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -203,7 +217,7 @@ export const AccountDetails = ({route, navigation}) => {
               style={styles.dateInput}
               onChangeText={setDob}
               value={dob}
-              placeholder="10/10/2007"
+              placeholder="Date of birth"
             />
             <Pressable
               style={styles.datePress}
@@ -220,11 +234,11 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setNationality}
             value={nationality}
-            placeholder="USA"
+            placeholder="Nationality"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>email*</Text>
+          <Text style={globalInputsStyles.globalLabel}>Email*</Text>
           <TextInput
             style={globalInputsStyles.input}
             onChangeText={setEmail}
@@ -237,39 +251,20 @@ export const AccountDetails = ({route, navigation}) => {
           <Text style={globalInputsStyles.globalLabel}>Phone Number*</Text>
           <TextInput
             style={globalInputsStyles.input}
-            onChangeText={setPhoneNumber}
+            onChangeText={value => numberValidations(value)}
             value={phoneNumber}
-            placeholder="02112345678"
+            placeholder="Phone Number"
             editable={false}
-          />
-        </View>
-        {/* <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>Password*</Text>
-          <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setPassword}
-            value={password}
-            placeholder="*********"
-            secureTextEntry={true}
+            maxLength={10}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>Conform Password*</Text>
-          <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setConformPassword}
-            value={conformPassword}
-            placeholder="*********"
-            secureTextEntry={true}
-          />
-        </View> */}
-        <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>occupation*</Text>
+          <Text style={globalInputsStyles.globalLabel}>Occupation*</Text>
           <TextInput
             style={globalInputsStyles.input}
             onChangeText={setOccupation}
             value={occupation}
-            placeholder="Manager of a company"
+            placeholder="Occupation"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -278,7 +273,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setInstituteName}
             value={instituteName}
-            placeholder="Institution name here"
+            placeholder="Institution "
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -287,7 +282,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setCountryAddress}
             value={countryAddress}
-            placeholder="USA"
+            placeholder="Country"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -296,7 +291,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setAddressLine1}
             value={addressLine1}
-            placeholder="#123, Dummy Street, Usa"
+            placeholder="Address Line 1"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -305,7 +300,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setAddressLine2}
             value={addressLine2}
-            placeholder="#123, Dummy Street, Usa"
+            placeholder="Address Line 2"
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -314,7 +309,7 @@ export const AccountDetails = ({route, navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={setRegionCapital}
             value={regionCapital}
-            placeholder="Usa Capital here"
+            placeholder="Region Capital"
           />
         </View>
         <Pressable style={styles.register} onPress={() => onPressUpdate()}>

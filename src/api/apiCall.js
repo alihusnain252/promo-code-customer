@@ -119,6 +119,24 @@ export const GetRequest = async (token, url) => {
     return {status: false, data: null,error:error};
   }
 };
+export const GetCitiesRequest = async ( url) => {
+  try {
+  
+    const res = await axios({
+      method: 'get',
+      url: url,
+      headers: {},
+    });
+
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    return {status: false, data: null,error:error};
+  }
+};
 export const CreateAdRequest = async (token, data, url) => {
   console.log('signUInData :', data);
   console.log('token :', token);

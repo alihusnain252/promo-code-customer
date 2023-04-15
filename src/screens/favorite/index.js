@@ -40,10 +40,12 @@ export const Favorite = ({navigation}) => {
       
       <View style={styles.favoriteVendor}>
         <Text style={styles.favoriteVendorText}>Favorite Vendors</Text>
+        {favoriteVendors.length === 0? <Text style={styles.noFavoriteVendorText}>No favorite vendor available </Text> :null}
         <FeaturedVendors featured_vendors={favoriteVendors} loading={loading} />
       </View>
       <View style={favoritePromotions.length === 0?{display:"none"}: styles.favoriteDiscount}>
         <Text style={styles.favoriteDiscountText}>Favorite Discount</Text>
+        {favoritePromotions.length === 0? <Text style={styles.noFavoriteVendorText}>No favorite Promotions available </Text> :null}
         <Ads allPromotions={favoritePromotions} loading={loading} />
       </View>
     </View>

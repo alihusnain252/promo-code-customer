@@ -7,3 +7,4 @@ export {AdCard} from './ads';
 export {BottomBar} from './bottomBar';
 export {ArrowHeader} from './arrowHeader';
 export {OtpContainer} from './otp';
+export {DropdownComponent} from './dropDown';

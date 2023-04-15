@@ -13,7 +13,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {RegisterRequest, SignupUserAPI} from '../../api/apiCall';
-import { ArrowHeader } from '@components';
+import {ArrowHeader} from '@components';
 
 export const SignupScreen = ({navigation}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -35,19 +35,7 @@ export const SignupScreen = ({navigation}) => {
 
   const [loading, setLoading] = useState(false);
 
-  const body = {
-    fullName: firstName,
-    dateOfBirth: dob,
-    nationality: nationality,
-    occupation: occupation,
-    instituteName: instituteName,
-    countryAddress: countryAddress,
-    email: email,
-    password: password,
-    addressLine1: addressLine1,
-    addressLine2: addressLine2,
-    regionCapital: regionCapital,
-  };
+ 
 
   const signupHandler = () => {
     setLoading(true);
@@ -66,19 +54,50 @@ export const SignupScreen = ({navigation}) => {
     data.append('email', email);
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
-    RegisterRequest(data, customerUris.register).then(response => {
-      if (response.data.success === true) {
-        console.log('api response :', response.data.data.code);
-        Alert.alert(response.data.data.code);
-        setLoading(false);
-        navigation.navigate('LoginOtp', {
-          phoneNumber: phoneNumber,
-          forgot: false,
+
+   
+
+    firstName === ''
+      ? Alert.alert('Please add First Name')
+      : lastName === ''
+      ? Alert.alert('Please add Last Name')
+      : dob === ''
+      ? Alert.alert('Please add Date of Birth')
+      : nationality === ''
+      ? Alert.alert('Please add Nationality')
+      : email === ''
+      ? Alert.alert('Please add Email')
+      : phoneNumber === ''
+      ? Alert.alert('Please add Phone Number ')
+      : password === ''
+      ? Alert.alert('Please add Password ')
+      : conformPassword != password
+      ? Alert.alert('Password not match ')
+      : occupation === ''
+      ? Alert.alert('Please add Occupation')
+      : instituteName === ''
+      ? Alert.alert('Please add Institute Name')
+      : addressLine1 === ''
+      ? Alert.alert('Please add Address Line 1')
+      : addressLine2 === ''
+      ? Alert.alert('Please add Address Line 2')
+      : regionCapital === ''
+      ? Alert.alert('Please add Region Capital')
+      : countryAddress === ''
+      ? Alert.alert('Please add Country Name')
+      : RegisterRequest(data, customerUris.register).then(response => {
+          if (response.data.success === true) {
+            console.log('api response :', response.data.data.code);
+            Alert.alert("otp :" + response.data.data.code);
+            setLoading(false);
+            navigation.navigate('LoginOtp', {
+              phoneNumber: phoneNumber,
+              forgot: false,
+            });
+          } else {
+            Alert.alert(response.data.message);
+          }
         });
-      } else {
-        Alert.alert(response.data.message);
-      }
-    });
   };
 
   const showDatePicker = () => {
@@ -96,6 +115,20 @@ export const SignupScreen = ({navigation}) => {
     console.log(x1[2] + '/' + x1[1] + '/' + x1[0]);
     setDob(x1[2] + '/' + x1[1] + '/' + x1[0]);
     hideDatePicker();
+  };
+
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
+    }
   };
 
   return (
@@ -163,9 +196,10 @@ export const SignupScreen = ({navigation}) => {
           <Text style={globalInputsStyles.globalLabel}>Phone Number*</Text>
           <TextInput
             style={globalInputsStyles.input}
-            onChangeText={setPhoneNumber}
+            onChangeText={value => numberValidations(value)}
             value={phoneNumber}
             placeholder="02112345678"
+            maxLength={10}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>

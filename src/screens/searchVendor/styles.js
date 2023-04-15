@@ -72,6 +72,7 @@ export const styles = StyleSheet.create({
     height: '15%',
   },
   promoList: {
+    flex:1,
     width: width,
     marginTop: 10,
     height: '60%',
@@ -98,5 +99,10 @@ export const styles = StyleSheet.create({
     marginLeft: '4%',
     marginBottom: '1%',
     color: MyTheme.black,
+  },
+  dropDown: {
+    marginTop: '3%',
+    width: width - 30,
+    marginBottom: '1%',
   },
 });

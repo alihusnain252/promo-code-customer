@@ -41,6 +41,16 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     color: MyTheme.textPrimary,
   },
+  noFavoriteVendorText: {
+    fontFamily: MyTheme.fontFamily,
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 12,
+    lineHeight: 21,
+    color: MyTheme.textPrimary,
+    marginLeft:"10%",
+    marginTop:"10%"
+  },
   favoriteDiscount: {
     // position: 'absolute',
     // top: 254,

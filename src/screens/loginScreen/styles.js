@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 19,
-    color: 'red',
+    color: '#E65C89',
     marginLeft: 5,
   },
   noDisplay: {

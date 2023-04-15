@@ -23,6 +23,8 @@ export const customerUris = {
   removePromotionFromFavorite: 'api/customer/remove-promotion-to-favourite',
   favoriteList: 'api/customer/favourites-list',
   allVendors: 'api/customer/vendors',
+  allCities: 'https://backend.buddysaver.net/api/cities',
   updateProfileImage: 'api/customer/update-profile-image',
   updatePassword: 'api/customer/update-password',
+  searchByCity:"api/customer/filter-vendors-and-promotions-by-city?city="
 };

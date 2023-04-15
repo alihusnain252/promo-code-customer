@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
-import {AdCard, ArrowHeader, Vendors} from '@components';
+import {AdCard, ArrowHeader, Vendors, DropdownComponent} from '@components';
 import {MyTheme, customerUris} from '@utils';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
-import {GetRequest} from '../../api/apiCall';
+import {GetCitiesRequest, GetRequest} from '../../api/apiCall';
 
 export const SearchVendor = ({route}) => {
   const {searchByName, catId} = route.params;
@@ -23,6 +23,8 @@ export const SearchVendor = ({route}) => {
   const [filteredVendors, setFilteredVendors] = useState([]);
   const [filteredPromotions, setFilteredPromotions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [city, setCity] = useState('');
+  const [allCities, setAllCities] = useState([])
 
   const searchHandler = () => {
     setLoading(true);
@@ -56,12 +58,48 @@ export const SearchVendor = ({route}) => {
       }
     });
   };
+  const getAllCities = () => {
+    setLoading(true);
+    GetCitiesRequest(
+      customerUris.allCities ,
+    ).then(res => {
+      if (res.data.success === true) {
+        console.log("all cities",res.data.data);
+        setAllCities(res.data.data)
+        setLoading(false);
+      } else {
+        Alert.alert(res.data.message);
+        setLoading(false);
+      }
+    });
+  };
+  const searchByCityName = () => {
+    setLoading(true);
+    GetRequest(userToken.token, customerUris.searchByCity + `${city}`).then(
+      res => {
+        if (res.data.success === true) {
+          console.log(
+            'search by city response ',
+            res.data.data.featured_promotions,
+          );
+          setFilteredPromotions(res.data.data.featured_promotions);
+          setFilteredVendors(res.data.data.featured_vendors);
+          setLoading(false);
+        } else {
+          Alert.alert(res.data.message);
+          console.log('search by city response ', res);
+          setLoading(false);
+        }
+      },
+    );
+  };
 
   const Item = ({data}) => <AdCard promo={data} />;
   const VendorItem = ({data}) => <Vendors vendor={data} />;
 
   useEffect(() => {
     catId != '' ? searchByCatId() : null;
+    getAllCities();
   }, []);
 
   return (
@@ -81,6 +119,9 @@ export const SearchVendor = ({route}) => {
             style={styles.searchImage}
           />
         </Pressable>
+      </View>
+      <View>
+        <DropdownComponent setCity={setCity} search={searchByCityName} allCities={allCities}/>
       </View>
       <View style={loading === false ? {display: 'none'} : {marginTop: '5%'}}>
         <ActivityIndicator size={36} color={MyTheme.yellow} />

@@ -39,6 +39,32 @@ export const PromoDetails = ({route, navigation}) => {
         }}>
         <Text style={styles.heading}>{promoDetails.company_name}</Text>
         <Text style={styles.description}>{promoDetails.description}</Text>
+
+      </View>
+
+      <View style={{width: '100%', flexDirection: 'row'}}>
+        <Text style={styles.headingVendor}>Name : </Text>
+        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
+          {promoDetails.vendor.name}
+        </Text>
+      </View>
+      <View style={{width: '100%', flexDirection: 'row'}}>
+        <Text style={styles.headingVendor}>Located In: </Text>
+        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
+          {promoDetails.vendor.city}
+        </Text>
+      </View>
+      <View style={{width: '100%', flexDirection: 'row'}}>
+        <Text style={styles.headingVendor}>Address: </Text>
+        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
+          {promoDetails.vendor.address}
+        </Text>
+      </View>
+      <View style={{width: '100%', flexDirection: 'row'}}>
+        <Text style={styles.headingVendor}>Service options: </Text>
+        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
+          {venderDetails.ServiceOptions}
+        </Text>
       </View>
       <PromoDetailItem title={'Name '} value={promoDetails.vendor.name} />
       <PromoDetailItem title={'Located In '} value={promoDetails.vendor.city} />

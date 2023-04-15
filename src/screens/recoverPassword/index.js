@@ -34,14 +34,11 @@ export const RecoverPassword = ({navigation}) => {
       setLoading(false);
       setErrorText('please Add Phone Number');
     } else {
-      PostRequest(
-        data,
-        customerUris.forgotPasswordRequest,
-      ).then(res => {
+      PostRequest(data, customerUris.forgotPasswordRequest).then(res => {
         console.log('validate customer res :', res);
         setLoading(false);
         if (res.data.success) {
-          Alert.alert("otp  :" + res.data.data.code )
+          Alert.alert('otp  :' + res.data.data.code);
           setNoDisplay(false);
           setLoading(false);
           navigation.navigate('LoginOtp', {
@@ -51,9 +48,23 @@ export const RecoverPassword = ({navigation}) => {
         } else {
           setNoDisplay(true);
           setLoading(false);
-          setErrorText(res.data.message)
+          setErrorText(res.data.message);
         }
       });
+    }
+  };
+
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
     }
   };
 
@@ -67,8 +78,9 @@ export const RecoverPassword = ({navigation}) => {
           style={noDisplay === false ? globalInputsStyles.input : styles.input}
           placeholder="0212345678"
           value={phoneNumber}
-          onChangeText={e => setPhoneNumber(e)}
+          onChangeText={value => numberValidations(value)}
           keyboardType="numeric"
+          maxLength={10}
         />
         <View style={noDisplay === false ? styles.noDisplay : styles.notFound}>
           <MaterialIcons name="error-outline" size={25} color="red" />

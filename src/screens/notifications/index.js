@@ -2,7 +2,7 @@ import {View, Text, Pressable, ScrollView} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ArrowHeader } from '@components';
+import {ArrowHeader} from '@components';
 
 export const Notifications = ({navigation}) => {
   const notifications = [
@@ -43,7 +43,7 @@ export const Notifications = ({navigation}) => {
 
 const NotificationCard = props => {
   return (
-    <View style={styles.notificationCard} >
+    <View style={styles.notificationCard}>
       <Text style={styles.notificationHeadings}>{props.heading}</Text>
       <Text style={styles.notificationDescription}>{props.description}</Text>
     </View>

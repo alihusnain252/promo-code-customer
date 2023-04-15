@@ -28,8 +28,11 @@ export const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 8,
     resizeMode: 'contain',
+    borderTopLeftRadius:8,
+    borderBottomLeftRadius:8,
   },
   scroll: {
+    flex:1,
     width: width,
   },
   cardTopView: {
