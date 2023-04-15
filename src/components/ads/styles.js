@@ -4,8 +4,9 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   adsContainer: {
+    flex:1,
     width: '100%',
-    height: '100%',
+
   },
   heading: {
     fontFamily: MyTheme.fontFamily,

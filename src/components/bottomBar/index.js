@@ -190,11 +190,13 @@ const CategoryCard = ({data, setModalVisible}) => {
 
   return (
     <View style={styles.category}>
-      <Pressable onPress={() => cardPressHandler()}>
+      <Pressable onPress={() => cardPressHandler()} style={styles.categoryPress}>
         <View style={styles.categoryIconView}>
           <Image source={{uri: data.image}} style={styles.categoryIcon} />
         </View>
+        <View style={styles.categoryTextView}>
         <Text style={styles.categoryText}>{data.name}</Text>
+        </View>
       </Pressable>
     </View>
   );

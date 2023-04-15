@@ -67,7 +67,8 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.grey200,
   },
   flatList: {
-    width: width - 40,
+    width: width,
+    marginTop:"2%"
   },
   modalText: {
     width: '100%',
@@ -83,50 +84,55 @@ export const styles = StyleSheet.create({
   },
   categoriesView: {
     marginTop: 10,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
   },
   category: {
-    width: '20%',
+    width: '24%',
     height: 100,
     resizeMode: 'contain',
     marginHorizontal: '2%',
     marginBottom: '2%',
-    justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: MyTheme.primary,
   },
+  categoryPress: {
+    width: '100%',
+    height: "100%",
+  },
   categoryIconView: {
-    backgroundColor: MyTheme.primary,
-    width: 50,
-    height: '58%',
+    width: 60,
+    height: 60,
+    justifyContent:"center",
+    alignItems:"center",
     resizeMode: 'contain',
     alignSelf: 'center',
-    borderRadius: 70,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
 
-    elevation: 5,
+    // elevation: 5,
+  },
+  categoryTextView: {
+    justifyContent:"center",
+    alignItems:"center",
+    marginTop:"2%",
   },
   categoryText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
     fontWeight: 400,
     fontSize: 10,
-    lineHeight: 14,
     color: MyTheme.black,
-    marginTop: 6,
   },
   categoryIcon: {
+
+    backgroundColor: MyTheme.primary,
     width: '100%',
     height: '100%',
     resizeMode: 'contain',
-    borderRadius: 70,
+    borderRadius:70,
   },
 });

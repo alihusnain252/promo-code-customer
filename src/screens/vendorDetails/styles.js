@@ -11,10 +11,16 @@ export const styles = StyleSheet.create({
   discount: {
     marginTop: 31,
     width: '100%',
+    // backgroundColor:'red'
+    // height: '50%',
+    // alignItems: 'center',
   },
   vendorDetailsView: {
     width: width - 40,
-    marginVertical: '15%',
+    marginTop:"10%"
+  },
+  vendorDetailsScrollView: {
+    width: width 
   },
   vendorNameVIew: {
     flexDirection: 'row',
@@ -63,7 +69,22 @@ export const styles = StyleSheet.create({
   },
 
 
+  discountHeadingContainer:{
+    width:width-40,
+    color: MyTheme.textPrimary,
+    alignSelf:"center",
+    
+  },
   discountHeading:{
-    marginVertical:'3%'
-  }
+    fontFamily: MyTheme.poppins,
+    fontStyle: 'normal',
+    fontWeight: 700,
+    fontSize: 16,
+    // lineHeight: 21,
+    color: MyTheme.textPrimary,
+    
+  },
+
+
+  
 });

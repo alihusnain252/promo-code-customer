@@ -57,7 +57,6 @@ useEffect(() => {
         <Text style={styles.vendorCategory}>{vendorDetails.category_name}</Text>
       </View>
 
-      <ScrollView>
         <View style={styles.vendorDetailsView}>
           <VendorDetailItem title={'Name'} value={vendorDetails.name} />
           <VendorDetailItem
@@ -67,12 +66,15 @@ useEffect(() => {
           <VendorDetailItem title={'Email'} value={vendorDetails.email} />
           <VendorDetailItem title={'Address'} value={vendorDetails.address} />
         </View>
+      <ScrollView style={styles.vendorDetailsScrollView}>
 
         <View style={vendorPromotions.length === 0 ?{display:"none"}: styles.discount}>
+          <View style={styles.discountHeadingContainer}>
           <Text style={styles.discountHeading}>Discounts for you⚡️</Text>
+          </View>
           {
             vendorPromotions.map((vendorAds)=>{
-              return <VendorCard vendor={vendorAds} />
+              return <AdCard promo={vendorAds} />
             })
           }
         </View>
@@ -86,53 +88,6 @@ const VendorDetailItem = ({title, value}) => {
     <View style={styles.vendorNameVIew}>
       <Text style={styles.vendorTextBold}>{title}:</Text>
       <Text style={styles.vendorText}>{value}</Text>
-    </View>
-  );
-};
-const VendorCard = ({vendor}) => {
-  const navigation = useNavigation();
-  return (
-    <View style={styles.cardContainer}>
-      <Pressable
-        onPress={() =>
-          navigation.navigate('VendorDetails', {vendorDetails: vendor})
-        }>
-        <View style={styles.cardTopView}>
-          <Image
-            source={vendor.image ? {uri: vendor.image} : ""}
-            style={styles.cardImage}
-          />
-          <View style={styles.vendorDetails}>
-            <Text style={styles.vendorName}>
-              {vendor ? vendor.name : 'vendor name'}
-            </Text>
-
-            <Text style={styles.categoryName}>
-              {vendor ? vendor.category_name : 'category name'}
-            </Text>
-
-            <Text style={styles.address}>
-              Address :
-              <Text style={styles.addressText}>
-                {vendor ? vendor.address : 'address'}
-              </Text>
-            </Text>
-
-            <Text style={styles.description}>
-              Description :
-              <Text style={styles.descriptionText}>
-                {vendor ? vendor.short_description : 'short description'}
-              </Text>
-            </Text>
-          </View>
-        </View>
-        <Pressable
-          style={styles.heartContainer}
-          // onPress={() => addTOFavorite(promotion)}
-        >
-          <AntDesign name="heart" size={15} color={MyTheme.grey100} />
-        </Pressable>
-      </Pressable>
     </View>
   );
 };
