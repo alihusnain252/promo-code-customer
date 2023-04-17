@@ -1,8 +1,15 @@
-import {View, Text, TextInput, Image, Pressable, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {AdCard, ArrowHeader} from '@components';
-import { MyTheme } from '@utils';
+import {MyTheme} from '@utils';
 
 export const PromoDetails = ({route, navigation}) => {
   const {promoDetails} = route.params;

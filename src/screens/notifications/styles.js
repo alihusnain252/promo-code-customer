@@ -27,8 +27,9 @@ export const styles = StyleSheet.create({
     marginLeft: 5,
   },
   scrollView: {
-    width: width-36,
-    height: '80%',
+    width: width - 34,
+    marginTop: '2%',
+    flex: 1,
   },
   notificationCard: {
     height: 68,

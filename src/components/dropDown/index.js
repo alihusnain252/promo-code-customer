@@ -34,7 +34,10 @@ export const DropdownComponent = ({setCity, search, allCities}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
-  let citiesData = allCities.map((city)=>({label:`${city}`,value:`${city}`}))
+  let citiesData = allCities.map(city => ({
+    label: `${city}`,
+    value: `${city}`,
+  }));
 
   return (
     <View style={styles.container}>
@@ -44,12 +47,13 @@ export const DropdownComponent = ({setCity, search, allCities}) => {
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
-        data={citiesData?citiesData:data}
+        itemTextStyle={styles.label}
+        data={citiesData ? citiesData : data}
         search
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Select City' : '...'}
+        placeholder={!isFocus ? 'Search by City' : '...'}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}

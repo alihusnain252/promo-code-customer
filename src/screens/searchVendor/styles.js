@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     width: width - 30,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: MyTheme.grey200,
+    borderColor: MyTheme.black,
 
     shadowColor: '#000',
     shadowOffset: {
@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
   searchInput: {
     width: '80%',
     paddingLeft: 16,
+    color: MyTheme.black,
   },
   item: {
     alignItems: 'center',
@@ -72,7 +73,7 @@ export const styles = StyleSheet.create({
     height: '15%',
   },
   promoList: {
-    flex:1,
+    flex: 1,
     width: width,
     marginTop: 10,
     height: '60%',

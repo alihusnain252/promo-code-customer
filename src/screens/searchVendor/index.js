@@ -24,7 +24,7 @@ export const SearchVendor = ({route}) => {
   const [filteredPromotions, setFilteredPromotions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState('');
-  const [allCities, setAllCities] = useState([])
+  const [allCities, setAllCities] = useState([]);
 
   const searchHandler = () => {
     setLoading(true);
@@ -60,12 +60,10 @@ export const SearchVendor = ({route}) => {
   };
   const getAllCities = () => {
     setLoading(true);
-    GetCitiesRequest(
-      customerUris.allCities ,
-    ).then(res => {
+    GetCitiesRequest(customerUris.allCities).then(res => {
       if (res.data.success === true) {
-        console.log("all cities",res.data.data);
-        setAllCities(res.data.data)
+        console.log('all cities', res.data.data);
+        setAllCities(res.data.data);
         setLoading(false);
       } else {
         Alert.alert(res.data.message);
@@ -121,7 +119,11 @@ export const SearchVendor = ({route}) => {
         </Pressable>
       </View>
       <View>
-        <DropdownComponent setCity={setCity} search={searchByCityName} allCities={allCities}/>
+        <DropdownComponent
+          setCity={setCity}
+          search={searchByCityName}
+          allCities={allCities}
+        />
       </View>
       <View style={loading === false ? {display: 'none'} : {marginTop: '5%'}}>
         <ActivityIndicator size={36} color={MyTheme.yellow} />

@@ -8,18 +8,21 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.background,
     padding: 16,
     width: width,
+    color: MyTheme.black,
   },
   dropdown: {
     height: 40,
-    borderColor: MyTheme.grey200,
+    borderColor: MyTheme.black,
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    color: MyTheme.black,
   },
   icon: {
     marginRight: 5,
   },
   label: {
+    color: MyTheme.black,
     position: 'absolute',
     backgroundColor: 'white',
     left: 22,
@@ -30,9 +33,11 @@ export const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
+    color: MyTheme.grey100,
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: MyTheme.black,
   },
   iconStyle: {
     width: 20,
@@ -41,5 +46,6 @@ export const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    color: MyTheme.black,
   },
 });
