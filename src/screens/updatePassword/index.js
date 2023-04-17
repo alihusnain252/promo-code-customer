@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {customerUris, globalInputsStyles} from '@utils';
+import {MyTheme, customerUris, globalInputsStyles} from '@utils';
 import {ArrowHeader} from '@components';
 import {PostRequestWithToken} from '../../api/apiCall';
 import {useSelector} from 'react-redux';
@@ -75,6 +75,7 @@ export const UpdatePassword = ({navigation}) => {
             onChangeText={setCurrentPassword}
             value={currentPassword}
             placeholder="Current Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>
@@ -85,6 +86,7 @@ export const UpdatePassword = ({navigation}) => {
             onChangeText={setNewPassword}
             value={newPassword}
             placeholder="New Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>
@@ -97,6 +99,7 @@ export const UpdatePassword = ({navigation}) => {
             onChangeText={setConformNewPassword}
             value={conformNewPassword}
             placeholder="Conform New Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>

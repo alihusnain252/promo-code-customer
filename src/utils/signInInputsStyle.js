@@ -17,7 +17,7 @@ export const signInInputsStyles = StyleSheet.create({
     backgroundColor: MyTheme.white,
     borderRadius: 8,
     paddingHorizontal: 15,
-    color:MyTheme.textPrimary
+    color: MyTheme.textPrimary,
   },
   imgStyle1: {
     width: 16,

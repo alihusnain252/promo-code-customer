@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {customerUris, globalInputsStyles} from '@utils';
+import {MyTheme, customerUris, globalInputsStyles} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -35,8 +35,6 @@ export const SignupScreen = ({navigation}) => {
 
   const [loading, setLoading] = useState(false);
 
- 
-
   const signupHandler = () => {
     setLoading(true);
     let data = new FormData();
@@ -55,7 +53,8 @@ export const SignupScreen = ({navigation}) => {
     data.append('country', countryAddress);
     data.append('phone_number', phoneNumber);
 
-   
+    let s = phoneNumber.toString();
+    let num = phoneNumber.replace('.', '');
 
     firstName === ''
       ? Alert.alert('Please add First Name')
@@ -69,6 +68,10 @@ export const SignupScreen = ({navigation}) => {
       ? Alert.alert('Please add Email')
       : phoneNumber === ''
       ? Alert.alert('Please add Phone Number ')
+      : parseInt(s.charAt(0)) !== 0
+      ? Alert.alert('First digit of phone number must be 0')
+      : isNaN(num)
+      ? Alert.alert('please add Numbers')
       : password === ''
       ? Alert.alert('Please add Password ')
       : conformPassword != password
@@ -88,17 +91,20 @@ export const SignupScreen = ({navigation}) => {
       : RegisterRequest(data, customerUris.register).then(response => {
           if (response.data.success === true) {
             console.log('api response :', response.data.data.code);
-            Alert.alert("otp :" + response.data.data.code);
+            Alert.alert('otp :' + response.data.data.code);
             setLoading(false);
             navigation.navigate('LoginOtp', {
               phoneNumber: phoneNumber,
               forgot: false,
             });
           } else {
-            console.log('response',response)
-            if(response.data.error){
-              Alert.alert('Error',(Object.values(response.data.error).toString()));  
-            }else{
+            console.log('response', response);
+            if (response.data.error) {
+              Alert.alert(
+                'Error',
+                Object.values(response.data.error).toString(),
+              );
+            } else {
               Alert.alert(response.data.message);
             }
           }
@@ -147,6 +153,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setFirstName}
             value={firstName}
             placeholder="First Name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -156,18 +163,22 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setLastName}
             value={lastName}
             placeholder="Last Name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>Date of birth*</Text>
-          <Pressable style={globalInputsStyles.input}  onPress={() => {
-                showDatePicker();
-              }}>
+          <Pressable
+            style={globalInputsStyles.input}
+            onPress={() => {
+              showDatePicker();
+            }}>
             <TextInput
               style={styles.dateInput}
               onChangeText={setDob}
               value={dob}
               placeholder="Date of Birth"
+              placeholderTextColor={MyTheme.grey100}
               editable={false}
             />
             <Pressable
@@ -186,6 +197,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setNationality}
             value={nationality}
             placeholder="Nationality"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -195,6 +207,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setEmail}
             value={email}
             placeholder="youremail@gmail.com"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -203,7 +216,8 @@ export const SignupScreen = ({navigation}) => {
             style={globalInputsStyles.input}
             onChangeText={value => numberValidations(value)}
             value={phoneNumber}
-            placeholder="02112345678"
+            placeholder="Phone Number"
+            placeholderTextColor={MyTheme.grey100}
             maxLength={10}
           />
         </View>
@@ -214,6 +228,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setPassword}
             value={password}
             placeholder="Set Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>
@@ -224,6 +239,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setConformPassword}
             value={conformPassword}
             placeholder="Conform Password"
+            placeholderTextColor={MyTheme.grey100}
             secureTextEntry={true}
           />
         </View>
@@ -234,6 +250,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setOccupation}
             value={occupation}
             placeholder="Your Occupation Name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -243,6 +260,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setInstituteName}
             value={instituteName}
             placeholder="Institution name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -252,6 +270,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setCountryAddress}
             value={countryAddress}
             placeholder="Country address"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -261,6 +280,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setAddressLine1}
             value={addressLine1}
             placeholder="Address line #1"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -270,6 +290,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setAddressLine2}
             value={addressLine2}
             placeholder="Address line #2"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -279,6 +300,7 @@ export const SignupScreen = ({navigation}) => {
             onChangeText={setRegionCapital}
             value={regionCapital}
             placeholder=" Capital name "
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <Pressable style={styles.register} onPress={() => signupHandler()}>

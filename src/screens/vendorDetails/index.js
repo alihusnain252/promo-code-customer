@@ -1,4 +1,4 @@
-import {View, Text, TextInput, Image, Pressable} from 'react-native';
+import {View, Text, TextInput, Image, Pressable, ActivityIndicator} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import {styles} from './styles';
 import {AdCard, ArrowHeader} from '@components';
@@ -66,11 +66,15 @@ useEffect(() => {
           <VendorDetailItem title={'Email'} value={vendorDetails.email} />
           <VendorDetailItem title={'Address'} value={vendorDetails.address} />
         </View>
+        <View style={loading === false ? {display: 'none'} : {marginTop: 20}}>
+          <ActivityIndicator size={36} color={MyTheme.primary} />
+        </View>
       <ScrollView style={styles.vendorDetailsScrollView}>
 
         <View style={vendorPromotions.length === 0 ?{display:"none"}: styles.discount}>
           <View style={styles.discountHeadingContainer}>
           <Text style={styles.discountHeading}>Discounts for you⚡️</Text>
+         
           </View>
           {
             vendorPromotions.map((vendorAds)=>{

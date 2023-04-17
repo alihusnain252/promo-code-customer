@@ -30,6 +30,8 @@ export const LogInScreen = ({navigation}) => {
   };
 
   const loginHandler = () => {
+    let s = phoneNumber.toString();
+    let num = phoneNumber.replace('.', '');
     setLoading(true);
     phoneNumber === ''
       ? (setNoDisplay(true),
@@ -38,6 +40,14 @@ export const LogInScreen = ({navigation}) => {
       : password === ''
       ? (setNoDisplay(true),
         setErrorText('please Add Password'),
+        setLoading(false))
+      : parseInt(s.charAt(0)) !== 0
+      ? (setNoDisplay(true),
+        setErrorText('First digit of phone number must be 0'),
+        setLoading(false))
+      : isNaN(num)
+      ? (setNoDisplay(true),
+        setErrorText('please add Numbers'),
         setLoading(false))
       : LoginPostRequest(data, customerUris.login).then(response => {
           console.log('api response :', response);
@@ -66,19 +76,19 @@ export const LogInScreen = ({navigation}) => {
     navigation.navigate('RecoverPassword');
   };
 
-  const numberValidations = value => {
-    let s = value.toString();
-    if (parseInt(s.charAt(0)) !== 0) {
-      // Alert.alert('First number must be 0')
-    } else {
-      let num = value.replace('.', '');
-      if (isNaN(num)) {
-        // Alert.alert("please add Numbers")
-      } else {
-        setPhoneNumber(num);
-      }
-    }
-  };
+  // const numberValidations = value => {
+  //   let s = value.toString();
+  //   if (parseInt(s.charAt(0)) !== 0) {
+  //     // Alert.alert('First number must be 0')
+  //   } else {
+  //     let num = value.replace('.', '');
+  //     if (isNaN(num)) {
+  //       // Alert.alert("please add Numbers")
+  //     } else {
+  //       setPhoneNumber(num);
+  //     }
+  //   }
+  // };
 
   return (
     <View style={styles.loginContainer}>
@@ -94,7 +104,7 @@ export const LogInScreen = ({navigation}) => {
           />
           <TextInput
             style={signInInputsStyles.input}
-            onChangeText={value => numberValidations(value)}
+            onChangeText={value => setPhoneNumber(value)}
             value={phoneNumber}
             placeholder="Phone Number "
             placeholderTextColor={MyTheme.grey100}

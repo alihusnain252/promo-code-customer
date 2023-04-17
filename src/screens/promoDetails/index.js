@@ -1,7 +1,8 @@
-import {View, Text, TextInput, Image, Pressable} from 'react-native';
+import {View, Text, TextInput, Image, Pressable, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
 import {AdCard, ArrowHeader} from '@components';
+import { MyTheme } from '@utils';
 
 export const PromoDetails = ({route, navigation}) => {
   const {promoDetails} = route.params;
@@ -39,33 +40,8 @@ export const PromoDetails = ({route, navigation}) => {
         }}>
         <Text style={styles.heading}>{promoDetails.company_name}</Text>
         <Text style={styles.description}>{promoDetails.description}</Text>
-
       </View>
 
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Name : </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {promoDetails.vendor.name}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Located In: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {promoDetails.vendor.city}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Address: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {promoDetails.vendor.address}
-        </Text>
-      </View>
-      <View style={{width: '100%', flexDirection: 'row'}}>
-        <Text style={styles.headingVendor}>Service options: </Text>
-        <Text style={[styles.headingVendor, {color: '#E65C89'}]}>
-          {venderDetails.ServiceOptions}
-        </Text>
-      </View>
       <PromoDetailItem title={'Name '} value={promoDetails.vendor.name} />
       <PromoDetailItem title={'Located In '} value={promoDetails.vendor.city} />
       <PromoDetailItem

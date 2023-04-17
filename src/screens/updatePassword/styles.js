@@ -49,16 +49,16 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 16,
     lineHeight: 19,
-    color: MyTheme.white,
+    color: MyTheme.textPrimary,
   },
 
-  dateInput:{
-    width:"80%",
+  dateInput: {
+    width: '80%',
   },
-  datePress:{
-    width:"20%",
-    height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
+  datePress: {
+    width: '20%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

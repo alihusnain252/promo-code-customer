@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
-import {customerUris, globalInputsStyles} from '@utils';
+import {MyTheme, customerUris, globalInputsStyles} from '@utils';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {UpdateRequest, updateImageRequest} from '../../api/apiCall';
@@ -199,6 +199,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setFirstName}
             value={firstName}
             placeholder="First Name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -208,6 +209,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setLastName}
             value={lastName}
             placeholder="Last name"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -218,6 +220,7 @@ export const AccountDetails = ({route, navigation}) => {
               onChangeText={setDob}
               value={dob}
               placeholder="Date of birth"
+              placeholderTextColor={MyTheme.grey100}
             />
             <Pressable
               style={styles.datePress}
@@ -235,6 +238,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setNationality}
             value={nationality}
             placeholder="Nationality"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -244,6 +248,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setEmail}
             value={email}
             placeholder="youremail@gmail.com"
+            placeholderTextColor={MyTheme.grey100}
             editable={false}
           />
         </View>
@@ -254,6 +259,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={value => numberValidations(value)}
             value={phoneNumber}
             placeholder="Phone Number"
+            placeholderTextColor={MyTheme.grey100}
             editable={false}
             maxLength={10}
           />
@@ -265,6 +271,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setOccupation}
             value={occupation}
             placeholder="Occupation"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -274,6 +281,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setInstituteName}
             value={instituteName}
             placeholder="Institution "
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -283,6 +291,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setCountryAddress}
             value={countryAddress}
             placeholder="Country"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -292,6 +301,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setAddressLine1}
             value={addressLine1}
             placeholder="Address Line 1"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -301,6 +311,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setAddressLine2}
             value={addressLine2}
             placeholder="Address Line 2"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <View style={globalInputsStyles.globalInputs}>
@@ -310,6 +321,7 @@ export const AccountDetails = ({route, navigation}) => {
             onChangeText={setRegionCapital}
             value={regionCapital}
             placeholder="Region Capital"
+            placeholderTextColor={MyTheme.grey100}
           />
         </View>
         <Pressable style={styles.register} onPress={() => onPressUpdate()}>
