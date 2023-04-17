@@ -6,21 +6,17 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     width: '100%',
-    height: 21,
-    // paddingVertical: 38,
-    // padding:10,
     alignItems: 'center',
     backgroundColor: MyTheme.primary,
-    paddingHorizontal: 20,
-    height: 60
+    // paddingHorizontal: 20,
+    height: 60,
+    
   },
   headerText: {
     fontFamily: MyTheme.fontFamily,
     fontStyle: 'normal',
-    fontWeight: 700,
-    fontSize: 16,
-    // lineHeight: 21,
+    fontWeight: 500,
+    fontSize: 18,
     color: MyTheme.black,
-    marginLeft: 11,
   },
 });

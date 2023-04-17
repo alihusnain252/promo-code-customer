@@ -30,8 +30,8 @@ export const FeaturedVendors = ({loading, featured_vendors}) => {
         style={styles.scrollView}
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {featured_vendors?.map(vendor => {
-          return <Vendors vendor={vendor} />;
+        {featured_vendors?.map((vendor,index) => {
+          return <Vendors key={index} vendor={vendor} />;
         })}
       </ScrollView>
     </View>

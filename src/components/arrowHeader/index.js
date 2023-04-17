@@ -1,8 +1,8 @@
-import {View, Text, Pressable} from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import React from 'react';
-import {styles} from './styles';
+import { styles } from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { MyTheme } from '@utils';
 
 export const ArrowHeader = props => {
@@ -11,7 +11,9 @@ export const ArrowHeader = props => {
   return (
     <View style={styles.header}>
       <Pressable onPress={() => navigation.goBack()}>
-        <AntDesign name="arrowleft" size={20} color={MyTheme.accent} />
+        <View style={{flex:1,justifyContent:'center',alignItems:'center', padding:'3%',}}>
+          <AntDesign name="arrowleft" size={20} color={MyTheme.accent} />
+        </View>
       </Pressable>
       <Text style={styles.headerText}>{props.heading}</Text>
     </View>

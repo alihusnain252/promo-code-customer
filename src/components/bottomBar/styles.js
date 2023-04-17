@@ -11,15 +11,17 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 12,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal:'5%'
   },
   iconView: {
-    width: 61.67,
-    height: 40.93,
+    width: 62,
+    height: 42,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: '2%',
+    // marginHorizontal: '2%',
+    // backgroundColor:'red'
   },
   icon: {
     width: 21.67,

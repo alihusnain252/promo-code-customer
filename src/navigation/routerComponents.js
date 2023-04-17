@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 
 export const RouterComponents = () => {
   const userToken = useSelector(token);
-  console.log('userToken :', userToken);
+  // console.log('userToken :', userToken);
 
   return (
     <NavigationContainer>

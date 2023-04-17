@@ -36,8 +36,8 @@ export const FeaturedAds = ({loading, promotions}) => {
         style={styles.scrollView}
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {promotions?.map(promo => {
-          return <FeaturedAd promotion={promo} />;
+        {promotions?.map((promo,index )=> {
+          return <FeaturedAd key={index} promotion={promo} />;
         })}
       </ScrollView>
     </View>

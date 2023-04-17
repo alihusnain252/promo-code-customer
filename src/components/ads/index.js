@@ -6,38 +6,38 @@ import {
   ActivityIndicator,
   Pressable,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {styles} from './styles';
+import React, { useEffect, useState } from 'react';
+import { styles } from './styles';
 import image from '../../assets/images/image8.png';
-import {useSelector} from 'react-redux';
-import {token} from '@redux/tokenSlice';
-import {GetRequest, PostRequestWithToken} from '../../api/apiCall';
-import {MyTheme, customerUris} from '@utils';
+import { useSelector } from 'react-redux';
+import { token } from '@redux/tokenSlice';
+import { GetRequest, PostRequestWithToken } from '../../api/apiCall';
+import { MyTheme, customerUris } from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-export const Ads = ({loading, allPromotions}) => {
+export const Ads = ({ loading, allPromotions }) => {
   return (
     <View style={styles.adsContainer}>
       <View
         style={
           loading === false
-            ? {display: 'none'}
-            : {position: 'absolute', top: 10, left: 150, zIndex: 1}
+            ? { display: 'none' }
+            : { position: 'absolute', top: 10, left: 150, zIndex: 1 }
         }>
         <ActivityIndicator size={36} color={MyTheme.yellow} />
       </View>
       <ScrollView style={styles.scroll}>
-        {allPromotions?.map(promo => {
+        {allPromotions?.map((promo, index) => {
           // console.log('promo.image', promo.image);
-          return <AdCard promo={promo} />;
+          return <AdCard key={index} promo={promo} />;
         })}
       </ScrollView>
     </View>
   );
 };
 
-export const AdCard = ({promo}) => {
+export const AdCard = ({ promo }) => {
   const navigation = useNavigation();
 
   const [isFavorite, setIsFavorite] = useState(promo.is_favourite);
@@ -91,7 +91,7 @@ export const AdCard = ({promo}) => {
         }>
         <View style={styles.cardTopView}>
           <Image
-            source={promo ? {uri: promo.image} : image}
+            source={promo ? { uri: promo.image } : image}
             style={styles.cardImage}
           />
           <View style={styles.adDetails}>

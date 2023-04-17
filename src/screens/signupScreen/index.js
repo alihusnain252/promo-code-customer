@@ -95,7 +95,12 @@ export const SignupScreen = ({navigation}) => {
               forgot: false,
             });
           } else {
-            Alert.alert(response.data.message);
+            console.log('response',response)
+            if(response.data.error){
+              Alert.alert('Error',(Object.values(response.data.error).toString()));  
+            }else{
+              Alert.alert(response.data.message);
+            }
           }
         });
   };

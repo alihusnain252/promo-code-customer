@@ -52,8 +52,8 @@ export const AllVendors = ({navigation}) => {
         <ActivityIndicator size={36} color={MyTheme.yellow} />
       </View>
       <ScrollView style={styles.scroll}>
-        {allVendors?.map(vendor => {
-          return <VendorCard vendor={vendor} />;
+        {allVendors?.map((vendor,index) => {
+          return <VendorCard key={index} vendor={vendor} />;
         })}
       </ScrollView>
     </View>
