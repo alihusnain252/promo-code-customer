@@ -26,5 +26,7 @@ export const customerUris = {
   allCities: 'https://backend.buddysaver.net/api/cities',
   updateProfileImage: 'api/customer/update-profile-image',
   updatePassword: 'api/customer/update-password',
-  searchByCity:"api/customer/filter-vendors-and-promotions-by-city?city="
+  updateProfileNotifications:
+    'api/customer/update-profile-notification-setting',
+  searchByCity: 'api/customer/filter-vendors-and-promotions-by-city?city=',
 };

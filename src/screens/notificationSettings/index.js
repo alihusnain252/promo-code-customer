@@ -27,7 +27,7 @@ export const NotificationSettings = ({navigation}) => {
     data.append('order_updates', orderEnabled);
     data.append('promotion_updates', promoUpdateEnabled);
     if (userToken.token !== '') {
-      UpdateRequest(userToken.token, data, customerUris.profileUpdate).then(
+      UpdateRequest(userToken.token, data, customerUris.updateProfileNotifications).then(
         response => {
           console.log('update Notification successfully:', response);
         },
