@@ -75,9 +75,11 @@ export const AccountScreen = ({navigation}) => {
             onPress={() => navigation.navigate('UpdatePassword')}>
             <Text style={styles.accountButtonText}>Update Password</Text>
           </Pressable>
-          {/* <Pressable style={styles.accountButton}>
+          <Pressable
+            style={styles.accountButton}
+            onPress={() => navigation.navigate('NotificationSettings')}>
             <Text style={styles.accountButtonText}>Notifications</Text>
-          </Pressable> */}
+          </Pressable>
         </View>
         <View style={loading === false ? {display: 'none'} : {marginTop: 20}}>
           <ActivityIndicator size={36} color={MyTheme.yellow} />

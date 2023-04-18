@@ -14,3 +14,4 @@ export {ResetPassword} from './resetPassword';
 export {AllVendors} from './allVendors';
 export {VendorCard} from './allVendors';
 export {VendorDetails} from './vendorDetails';
+export {NotificationSettings} from './notificationSettings';

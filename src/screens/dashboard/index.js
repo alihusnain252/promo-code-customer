@@ -15,7 +15,12 @@ import {
   FeaturedVendors,
   TopHeader,
 } from '@components';
-import {MyTheme, customerUris} from '@utils';
+import {
+  MyTheme,
+  customerUris,
+  notificationListener,
+  requestUserPermission,
+} from '@utils';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
@@ -79,6 +84,9 @@ export const Dashboard = ({navigation}) => {
       getFeaturedAds();
       getFeaturedVendors();
       getAds();
+
+      requestUserPermission(userToken);
+      notificationListener();
     }, []),
   );
 

@@ -6,6 +6,7 @@ import {
   TextInput,
   Alert,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
@@ -185,6 +186,14 @@ export const AccountDetails = ({route, navigation}) => {
   return (
     <View style={styles.signupContainer}>
       <ArrowHeader heading="Account Details" />
+      <View
+        style={
+          loading === false
+            ? {display: 'none'}
+            : {position: 'absolute', top: '50%', left: '50%', zIndex: 1}
+        }>
+        <ActivityIndicator size={36} color={MyTheme.yellow} />
+      </View>
       <Pressable style={styles.profileImageView} onPress={() => pickImage()}>
         <Image
           source={imageUri ? {uri: imageUri} : ProfileImage}

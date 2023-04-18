@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
@@ -32,7 +33,6 @@ export const SignupScreen = ({navigation}) => {
   const [regionCapital, setRegionCapital] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [conformPassword, setConformPassword] = useState('');
-
   const [loading, setLoading] = useState(false);
 
   const signupHandler = () => {
@@ -57,37 +57,38 @@ export const SignupScreen = ({navigation}) => {
     let num = phoneNumber.replace('.', '');
 
     firstName === ''
-      ? Alert.alert('Please add First Name')
+      ? (Alert.alert('Please add First Name'), setLoading(false))
       : lastName === ''
-      ? Alert.alert('Please add Last Name')
+      ? (Alert.alert('Please add Last Name'), setLoading(false))
       : dob === ''
-      ? Alert.alert('Please add Date of Birth')
+      ? (Alert.alert('Please add Date of Birth'), setLoading(false))
       : nationality === ''
-      ? Alert.alert('Please add Nationality')
+      ? (Alert.alert('Please add Nationality'), setLoading(false))
       : email === ''
-      ? Alert.alert('Please add Email')
+      ? (Alert.alert('Please add Email'), setLoading(false))
       : phoneNumber === ''
-      ? Alert.alert('Please add Phone Number ')
+      ? (Alert.alert('Please add Phone Number '), setLoading(false))
       : parseInt(s.charAt(0)) !== 0
-      ? Alert.alert('First digit of phone number must be 0')
+      ? (Alert.alert('First digit of phone number must be 0'),
+        setLoading(false))
       : isNaN(num)
-      ? Alert.alert('please add Numbers')
+      ? (Alert.alert('please add Numbers'), setLoading(false))
       : password === ''
-      ? Alert.alert('Please add Password ')
+      ? (Alert.alert('Please add Password '), setLoading(false))
       : conformPassword != password
-      ? Alert.alert('Password not match ')
+      ? (Alert.alert('Password not match '), setLoading(false))
       : occupation === ''
-      ? Alert.alert('Please add Occupation')
+      ? (Alert.alert('Please add Occupation'), setLoading(false))
       : instituteName === ''
-      ? Alert.alert('Please add Institute Name')
+      ? (Alert.alert('Please add Institute Name'), setLoading(false))
       : addressLine1 === ''
-      ? Alert.alert('Please add Address Line 1')
+      ? (Alert.alert('Please add Address Line 1'), setLoading(false))
       : addressLine2 === ''
-      ? Alert.alert('Please add Address Line 2')
+      ? (Alert.alert('Please add Address Line 2'), setLoading(false))
       : regionCapital === ''
-      ? Alert.alert('Please add Region Capital')
+      ? (Alert.alert('Please add Region Capital'), setLoading(false))
       : countryAddress === ''
-      ? Alert.alert('Please add Country Name')
+      ? (Alert.alert('Please add Country Name'), setLoading(false))
       : RegisterRequest(data, customerUris.register).then(response => {
           if (response.data.success === true) {
             console.log('api response :', response.data.data.code);
@@ -145,6 +146,14 @@ export const SignupScreen = ({navigation}) => {
   return (
     <View style={styles.signupContainer}>
       <ArrowHeader heading="Sign Up" />
+      <View
+        style={
+          loading === false
+            ? {display: 'none'}
+            : {position: 'absolute', top: '50%', left: '50%', zIndex: 1}
+        }>
+        <ActivityIndicator size={36} color={MyTheme.yellow} />
+      </View>
       <ScrollView style={styles.scrollView}>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>First name*</Text>
