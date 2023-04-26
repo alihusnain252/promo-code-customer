@@ -5,9 +5,11 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
+import {SliderBox} from 'react-native-image-slider-box';
 import {
   Ads,
   BottomBar,
@@ -32,6 +34,21 @@ export const Dashboard = ({navigation}) => {
   const [featured_vendors, setFeatured_vendors] = useState([]);
   const [promotions, setPromotions] = useState([]);
   const [searchByName, setSearchByName] = useState('');
+  const [sliderImage, setSliderImage] = useState([])
+
+  // const images = [
+  //   'https://source.unsplash.com/1024x768/?nature',
+  //   'https://source.unsplash.com/1024x768/?water',
+  //   'https://source.unsplash.com/1024x768/?girl',
+  //   'https://source.unsplash.com/1024x768/?tree',
+  // ];
+  const sliderData = [
+    {imageUri :'https://source.unsplash.com/1024x768/?nature', promoId:1},
+    {imageUri :'https://source.unsplash.com/1024x768/?water', promoId:2},
+    {imageUri :'https://source.unsplash.com/1024x768/?girl', promoId:3},
+    {imageUri :'https://source.unsplash.com/1024x768/?tree', promoId:4},
+  ];
+
 
   const userToken = useSelector(token);
 
@@ -74,11 +91,6 @@ export const Dashboard = ({navigation}) => {
     });
   };
 
-  // useEffect(() => {
-  //   getFeaturedAds();
-  //   getFeaturedVendors();
-  //   getAds();
-  // }, []);
   useFocusEffect(
     React.useCallback(() => {
       getFeaturedAds();
@@ -87,8 +99,45 @@ export const Dashboard = ({navigation}) => {
 
       requestUserPermission(userToken);
       notificationListener();
+      setSliderImage(sliderData.map (data =>(data.imageUri)))
+      console.log(sliderImage);
     }, []),
   );
+  const pDetails ={
+    category_id:2,
+    category_name:"Electronics",
+    city:"Tamale",
+    company_name:"Yasir resturent",
+    description:"Customers best experiance",
+    discounted_price:"800",
+    expiry_date:"14-04-2023 06:18:21 PM",
+    id:1,
+    image:"https://backend.buddysaver.net/uploads/promotions/adPhoto.png",
+    is_favourite:true,
+    is_featured:true,
+    original_price:"1200",
+    promotion_details:"best food quality is available",
+    promotion_duration:"10",
+    status:"Active",
+    vendor:{
+    address:"abc",
+    category_id:1,
+    category_name:"Food & Beverages",
+    city:"Accra",
+    email:"palace@saverbuddy.net",
+    first_name:"Palace",
+    id:2,
+    is_favourite:false,
+    last_name:"Mall",
+    name:"Palace Mall",
+    phone_number:"03324485601",
+    profile_pic:"https://backend.buddysaver.net/uploads/user_profiles/1681593395_avatar-14673934594n62i.jpg",
+    short_description:"Supermarket chain with brand plus a bakery & a deli. name & house",
+    status:"verified",
+    subscription_status:"active",
+    user_type:"vendor"
+    }
+    }
 
   return (
     <View style={styles.dashboardContainer}>
@@ -114,9 +163,34 @@ export const Dashboard = ({navigation}) => {
         </Pressable>
       </View>
       <ScrollView style={{flex: 1, marginTop: '1%'}}>
+        <View style={styles.sliderContainer}>
+          <SliderBox
+            dotColor="#FFEE58"
+            inactiveDotColor="#90A4AE"
+            paginationBoxVerticalPadding={5}
+            autoplay
+            circleLoop
+            images={sliderImage}
+            onCurrentImagePressed={index =>
+              // Alert.alert('image index :' + (index+1)),
+              navigation.navigate("PromoDetails",{promoDetails:pDetails})
+            }
+            dotStyle={{
+              width: 10,
+              height: 10,
+              borderRadius: 8,
+              marginHorizontal: 0,
+              padding: 0,
+              margin: 0,
+              backgroundColor: 'rgba(128, 128, 128, 0.92)',
+            }}
+            ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
+            imageLoadingColor={MyTheme.yellow}
+          />
+        </View>
         <View style={styles.vendors}>
           <View style={styles.vendorTextView}>
-            <Text style={styles.heading}>Featured vendors</Text>
+            <Text style={styles.heading}>Vendors of the Week</Text>
             <Pressable
               style={styles.allVendorPress}
               onPress={() => navigation.navigate('AllVendors')}>

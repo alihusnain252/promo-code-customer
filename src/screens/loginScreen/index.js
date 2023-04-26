@@ -12,6 +12,7 @@ import {styles} from './styles';
 import {MyTheme, customerUris, signInInputsStyles} from '@utils';
 import {LoginPostRequest} from '../../api/apiCall';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '@redux/tokenSlice';
 
@@ -21,6 +22,7 @@ export const LogInScreen = ({navigation}) => {
   const [errorText, setErrorText] = useState('');
   const [noDisplay, setNoDisplay] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -76,19 +78,19 @@ export const LogInScreen = ({navigation}) => {
     navigation.navigate('RecoverPassword');
   };
 
-  // const numberValidations = value => {
-  //   let s = value.toString();
-  //   if (parseInt(s.charAt(0)) !== 0) {
-  //     // Alert.alert('First number must be 0')
-  //   } else {
-  //     let num = value.replace('.', '');
-  //     if (isNaN(num)) {
-  //       // Alert.alert("please add Numbers")
-  //     } else {
-  //       setPhoneNumber(num);
-  //     }
-  //   }
-  // };
+  const numberValidations = value => {
+    let s = value.toString();
+    if (parseInt(s.charAt(0)) !== 0) {
+      // Alert.alert('First number must be 0')
+    } else {
+      let num = value.replace('.', '');
+      if (isNaN(num)) {
+        // Alert.alert("please add Numbers")
+      } else {
+        setPhoneNumber(num);
+      }
+    }
+  };
 
   return (
     <View style={styles.loginContainer}>
@@ -108,7 +110,7 @@ export const LogInScreen = ({navigation}) => {
             value={phoneNumber}
             placeholder="Phone Number "
             placeholderTextColor={MyTheme.grey100}
-            keyboardType="numeric"
+            keyboardType="phone-pad"
             maxLength={10}
           />
         </View>
@@ -127,8 +129,21 @@ export const LogInScreen = ({navigation}) => {
             value={password}
             placeholder="Password"
             placeholderTextColor={MyTheme.grey100}
-            secureTextEntry={true}
+            secureTextEntry={showPassword ? false : true}
           />
+          {!showPassword ? (
+            <Pressable
+              style={{paddingHorizontal: '5%'}}
+              onPress={() => setShowPassword(true)}>
+              <Feather name="eye" size={20} color={MyTheme.yellow} />
+            </Pressable>
+          ) : (
+            <Pressable
+              style={{paddingHorizontal: '5%'}}
+              onPress={() => setShowPassword(false)}>
+              <Feather name="eye-off" size={20} color={MyTheme.yellow} />
+            </Pressable>
+          )}
         </View>
       </View>
       <View style={styles.loginBtns}>

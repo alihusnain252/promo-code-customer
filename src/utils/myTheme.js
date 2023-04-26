@@ -1,7 +1,7 @@
 export const MyTheme = {
   primary: '#FBD211',
   accent: '#000000',
-  
+
   textPrimary: '#000000',
   background: '#F5F5F5',
 
@@ -24,7 +24,7 @@ export const MyTheme = {
   grey700: '#0000001f',
   FireOpal: '#E75858',
   yellow: '#FBD211',
-  
+
   fontFamily: 'Roboto',
   poppins: 'Poppins',
 };

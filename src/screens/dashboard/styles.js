@@ -96,4 +96,8 @@ export const styles = StyleSheet.create({
     color: MyTheme.accent,
     marginLeft: 16,
   },
+  sliderContainer: {
+    height: height / 4,
+    backgroundColor: MyTheme.background,
+  },
 });

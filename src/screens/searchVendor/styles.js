@@ -101,6 +101,14 @@ export const styles = StyleSheet.create({
     marginBottom: '1%',
     color: MyTheme.black,
   },
+  dropDownContainer: {
+    backgroundColor: 'red',
+    width: width,
+    marginTop: '2%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
   dropDown: {
     marginTop: '3%',
     width: width - 30,

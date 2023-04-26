@@ -22,7 +22,7 @@ export const requestUserPermission = async userToken => {
     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
   if (enabled) {
-    console.log('Authorization status:', authStatus);
+    // console.log('Authorization status:', authStatus);
     getFCMToken(userToken);
   }
 };
@@ -30,7 +30,7 @@ export const requestUserPermission = async userToken => {
 const getFCMToken = async userToken => {
   let fcmToken = await AsyncStorage.getItem('fcmToken');
 
-  console.log('the old token', fcmToken);
+  // console.log('the old token', fcmToken);
   if (!fcmToken) {
     try {
       let fcmToken = await messaging().getToken();
@@ -46,10 +46,10 @@ const getFCMToken = async userToken => {
 };
 export const notificationListener = async () => {
   messaging().onNotificationOpenedApp(remoteMessage => {
-    console.log(
-      'Notification caused app to open from background state:',
-      remoteMessage.notification,
-    );
+    // console.log(
+    //   'Notification caused app to open from background state:',
+    //   remoteMessage.notification,
+    // );
   });
 
   messaging().onMessage(async remoteMessage => {

@@ -62,4 +62,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  input: {
+    backgroundColor: 'red',
+    width: width,
+  },
 });

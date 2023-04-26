@@ -105,7 +105,7 @@ export const LoginOtp = ({route, navigation}) => {
       </View>
 
       <Pressable style={styles.conform} onPress={() => loginHandler()}>
-        <Text style={styles.conformText}>Conform</Text>
+        <Text style={styles.conformText}>Confirm</Text>
       </Pressable>
     </View>
   );

@@ -8,21 +8,21 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
-import React, { useState } from 'react';
-import { styles } from './styles';
+import React, {useState} from 'react';
+import {styles} from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import image1 from '../../assets/icons/cat1.png';
 import image2 from '../../assets/icons/cat2.png';
 import image3 from '../../assets/icons/cat3.png';
 import image4 from '../../assets/icons/cat4.png';
 import image5 from '../../assets/icons/cat5.png';
 import image6 from '../../assets/icons/cat6.png';
-import { useSelector } from 'react-redux';
-import { token } from '@redux/tokenSlice';
-import { MyTheme, customerUris } from '@utils';
-import { GetRequest } from '../../api/apiCall';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {MyTheme, customerUris} from '@utils';
+import {GetRequest} from '../../api/apiCall';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const categories = [
@@ -111,18 +111,19 @@ export const BottomBar = () => {
     });
   };
 
-  const Item = ({ data, setModalVisible }) => (
+  const Item = ({data, setModalVisible}) => (
     <CategoryCard data={data} setModalVisible={setModalVisible} />
   );
   return (
     <View style={styles.bottomBarContainer}>
-      <Pressable style={styles.iconView}
+      <Pressable
+        style={styles.iconView}
         onPress={() => navigation.navigate('Dashboard')}>
         <Image
           source={require('../../assets/icons/home.png')}
-          style={[styles.icon,{tintColor:MyTheme.primary}]}
+          style={[styles.icon, {tintColor: MyTheme.primary}]}
         />
-        <Text style={[styles.iconText,{color:MyTheme.primary}]}>Home</Text>
+        <Text style={[styles.iconText, {color: MyTheme.primary}]}>Home</Text>
       </Pressable>
 
       <Pressable style={styles.iconView} onPress={() => categoriesHandler()}>
@@ -137,9 +138,7 @@ export const BottomBar = () => {
         <Text style={styles.iconText}>Favorites</Text>
       </Pressable>
 
-      <Pressable
-
-        onPress={() => navigation.navigate('AccountScreen')}>
+      <Pressable onPress={() => navigation.navigate('AccountScreen')}>
         <View style={styles.iconView}>
           <MaterialIcons name="person" size={21.67} color="#fff" />
           <Text style={styles.iconText}>Account</Text>
@@ -155,7 +154,7 @@ export const BottomBar = () => {
         }}>
         <View style={styles.centeredView}>
           <Pressable
-            style={{ width: '100%', height: '100%' }}
+            style={{width: '100%', height: '100%'}}
             onPress={() => setModalVisible(false)}></Pressable>
           <View style={styles.modalView}>
             <Pressable
@@ -164,7 +163,7 @@ export const BottomBar = () => {
             <Text style={styles.modalText}>Categories </Text>
             <FlatList
               data={modalCategories}
-              renderItem={({ item }) => (
+              renderItem={({item}) => (
                 <Item data={item} setModalVisible={setModalVisible} />
               )}
               keyExtractor={item => item.id}
@@ -175,24 +174,25 @@ export const BottomBar = () => {
           </View>
         </View>
       </Modal>
-
     </View>
   );
 };
 
-const CategoryCard = ({ data, setModalVisible }) => {
+const CategoryCard = ({data, setModalVisible}) => {
   const navigation = useNavigation();
 
   const cardPressHandler = () => {
     setModalVisible(false);
-    navigation.navigate('SearchVendor', { catId: data.id });
+    navigation.navigate('SearchVendor', {catId: data.id});
   };
 
   return (
     <View style={styles.category}>
-      <Pressable onPress={() => cardPressHandler()} style={styles.categoryPress}>
+      <Pressable
+        onPress={() => cardPressHandler()}
+        style={styles.categoryPress}>
         <View style={styles.categoryIconView}>
-          <Image source={{ uri: data.image }} style={styles.categoryIcon} />
+          <Image source={{uri: data.image}} style={styles.categoryIcon} />
         </View>
         <View style={styles.categoryTextView}>
           <Text style={styles.categoryText}>{data.name}</Text>

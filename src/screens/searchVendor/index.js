@@ -76,10 +76,6 @@ export const SearchVendor = ({route}) => {
     GetRequest(userToken.token, customerUris.searchByCity + `${city}`).then(
       res => {
         if (res.data.success === true) {
-          console.log(
-            'search by city response ',
-            res.data.data.featured_promotions,
-          );
           setFilteredPromotions(res.data.data.featured_promotions);
           setFilteredVendors(res.data.data.featured_vendors);
           setLoading(false);
@@ -118,11 +114,12 @@ export const SearchVendor = ({route}) => {
           />
         </Pressable>
       </View>
-      <View>
+      <View style={styles.dropDownContainer}>
         <DropdownComponent
           setCity={setCity}
           search={searchByCityName}
           allCities={allCities}
+          placeholder={'Search by City'}
         />
       </View>
       <View style={loading === false ? {display: 'none'} : {marginTop: '5%'}}>
@@ -130,7 +127,11 @@ export const SearchVendor = ({route}) => {
       </View>
       <View
         style={
-          filteredVendors.length === 0 ? {display: 'none'} : styles.vendorsList
+          filteredVendors.length === 0
+            ? {display: 'none'}
+            : catId
+            ? {display: 'none'}
+            : styles.vendorsList
         }>
         <Text style={styles.vendorText}>Vendors</Text>
         <FlatList

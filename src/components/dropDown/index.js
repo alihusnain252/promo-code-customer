@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {styles} from './styles';
+import {MyTheme} from '@utils';
 
 const data = [
   {label: 'Accra', value: 'Accra'},
@@ -30,7 +31,13 @@ const data = [
   {label: 'Damongo', value: 'Damongo'},
 ];
 
-export const DropdownComponent = ({setCity, search, allCities}) => {
+export const DropdownComponent = ({
+  setCity,
+  search,
+  allCities,
+  signup,
+  placeholder,
+}) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -40,9 +47,14 @@ export const DropdownComponent = ({setCity, search, allCities}) => {
   }));
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, signup ? {alignItems: 'flex-start'} : null]}>
       <Dropdown
-        style={[styles.dropdown, isFocus && {borderColor: 'blue'}]}
+        style={[
+          styles.dropdown,
+          isFocus && {borderColor: 'blue'},
+          signup ? {borderColor: MyTheme.background} : null,
+        ]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -53,12 +65,12 @@ export const DropdownComponent = ({setCity, search, allCities}) => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? 'Search by City' : '...'}
+        placeholder={!isFocus ? placeholder : '...'}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
         onBlur={() => {
-          search(), setIsFocus(false);
+          search ? search() : null, setIsFocus(false);
         }}
         onChange={item => {
           setValue(item.value);

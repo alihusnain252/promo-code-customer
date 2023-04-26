@@ -13,7 +13,7 @@ export const signInInputsStyles = StyleSheet.create({
     paddingLeft: 10,
   },
   input: {
-    width: '90%',
+    width: '80%',
     backgroundColor: MyTheme.white,
     borderRadius: 8,
     paddingHorizontal: 15,

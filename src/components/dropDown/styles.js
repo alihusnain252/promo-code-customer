@@ -6,17 +6,21 @@ const height = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: MyTheme.background,
-    padding: 16,
+    // padding: 16,
     width: width,
     color: MyTheme.black,
+    // justifyContent:"center",
+    alignItems: 'center',
   },
   dropdown: {
-    height: 40,
+    height: 50,
+    width: '90%',
     borderColor: MyTheme.black,
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
     color: MyTheme.black,
+    backgroundColor: MyTheme.white,
   },
   icon: {
     marginRight: 5,
