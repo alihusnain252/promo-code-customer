@@ -36,7 +36,8 @@ export const Dashboard = ({ navigation }) => {
   const [featured_vendors, setFeatured_vendors] = useState([]);
   const [promotions, setPromotions] = useState([]);
   const [searchByName, setSearchByName] = useState('');
-  const [sliderImage, setSliderImage] = useState([])
+  const [sliderData, setSliderData] = useState([]);
+  const [sliderImage, setSliderImage] = useState([]);
 
 
   const userToken = useSelector(token);
@@ -53,6 +54,7 @@ export const Dashboard = ({ navigation }) => {
       }
     });
   };
+    
 
   const getFeaturedVendors = () => {
     setLoading(true);
@@ -97,6 +99,7 @@ export const Dashboard = ({ navigation }) => {
       getFeaturedAds();
       getFeaturedVendors();
       getAds();
+      // getSliderData()
 
       getSlider()
 

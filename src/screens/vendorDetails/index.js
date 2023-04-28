@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
@@ -16,6 +17,7 @@ import {token} from '@redux/tokenSlice';
 import {MyTheme, customerUris} from '@utils';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {GetRequest} from '../../api/apiCall';
+import {SliderBox} from 'react-native-image-slider-box';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -26,6 +28,12 @@ export const VendorDetails = ({route, navigation}) => {
   const userToken = useSelector(token);
   const [loading, setLoading] = useState(false);
   const [vendorPromotions, setVendorPromotions] = useState([]);
+   const images = [
+    'https://source.unsplash.com/1024x768/?nature',
+    'https://source.unsplash.com/1024x768/?water',
+    'https://source.unsplash.com/1024x768/?girl',
+    'https://source.unsplash.com/1024x768/?tree',
+  ];
 
   const getVendorPromotions = () => {
     setLoading(true);
@@ -52,6 +60,31 @@ export const VendorDetails = ({route, navigation}) => {
   return (
     <View style={styles.vendorDetailsContainer}>
       <ArrowHeader heading="Vendor Details" />
+
+      <View style={styles.sliderContainer}>
+          <SliderBox
+            dotColor="#FFEE58"
+            inactiveDotColor="#90A4AE"
+            paginationBoxVerticalPadding={5}
+            autoplay
+            circleLoop
+            images={images}
+            onCurrentImagePressed={index => {
+              Alert.alert(index);
+            }}
+            dotStyle={{
+              width: 10,
+              height: 10,
+              borderRadius: 8,
+              marginHorizontal: 0,
+              padding: 0,
+              margin: 0,
+              backgroundColor: 'rgba(128, 128, 128, 0.92)',
+            }}
+            ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
+            imageLoadingColor={MyTheme.yellow}
+          />
+        </View>
 
       <View style={styles.imageView}>
         <Image

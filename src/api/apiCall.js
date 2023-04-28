@@ -53,7 +53,6 @@ try {
   return {status: false, data: null,error:error};
 }
 };
-
 export const RegisterRequest = async (data, url) => {
   console.log('signUInData :', data);
   console.log('signIn URl :', url);
