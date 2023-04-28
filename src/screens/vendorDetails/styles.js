@@ -84,6 +84,10 @@ export const styles = StyleSheet.create({
     color: MyTheme.textPrimary,
     
   },
+  sliderContainer: {
+    height: height / 4,
+    backgroundColor: MyTheme.background,
+  },
 
 
   
