@@ -1,3 +1,5 @@
+import {Dimensions} from 'react-native';
+
 export const MyTheme = {
   primary: '#FBD211',
   accent: '#000000',
@@ -28,3 +30,12 @@ export const MyTheme = {
   fontFamily: 'Roboto',
   poppins: 'Poppins',
 };
+
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+
+export const deviceWidth = windowWidth
+export const deviceHeight = windowHeight

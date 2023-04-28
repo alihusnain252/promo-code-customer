@@ -12,7 +12,7 @@ export const customerUris = {
   allPromotions: 'api/customer/promotions',
   filterVendorsAndPromotions:
     'api/customer/filter-vendors-and-promotions?page=1&name=',
-  PromotionById: 'api/customer/promotion-by-id/3',
+  promotionById: 'api/customer/promotion-by-id/',
   PromotionByVendorId: 'api/customer/all-promotions-by-vendor-id/',
   categories: 'api/customer/categories',
   filterVendorAndPromotionByCatId:
@@ -29,4 +29,5 @@ export const customerUris = {
   updateProfileNotifications:
     'api/customer/update-profile-notification-setting',
   searchByCity: 'api/customer/filter-vendors-and-promotions-by-city?city=',
+  sliderImages: 'api/sliders',
 };
