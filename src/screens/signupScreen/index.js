@@ -49,6 +49,272 @@ export const SignupScreen = ({navigation}) => {
 
   const [allCities, setAllCities] = useState([]);
   const [city, setCity] = useState('');
+  const allOccupations = [
+    'Electrician',
+    'Software Developer',
+    'Agriculture',
+    'Lawyer',
+    'Construction Worker',
+    'Auto Mechanic',
+    'Cashier',
+    'Sales',
+    'Waiter',
+    'chef',
+    'Journalism',
+    'Worker',
+    'Bookkeeper',
+  ];
+  const allCountries = [
+    'Afghanistan',
+    'Åland Islands',
+    'Albania',
+    'Algeria',
+    'American Samoa',
+    'Andorra',
+    'Angola',
+    'Anguilla',
+    'Antarctica',
+    'Antigua and Barbuda',
+    'Argentina',
+    'Armenia',
+    'Aruba',
+    'Australia',
+    'Austria',
+    'Azerbaijan',
+    'Bahamas (the)',
+    'Bahrain',
+    'Bangladesh',
+    'Barbados',
+    'Belarus',
+    'Belgium',
+    'Belize',
+    'Benin',
+    'Bermuda',
+    'Bhutan',
+    'Bolivia (Plurinational State of)',
+    'Bonaire, Sint Eustatius and Saba',
+    'Bosnia and Herzegovina',
+    'Botswana',
+    'Bouvet Island',
+    'Brazil',
+    'British Indian Ocean Territory (the)',
+    'Brunei Darussalam',
+    'Bulgaria',
+    'Burkina Faso',
+    'Burundi',
+    'Cabo Verde',
+    'Cambodia',
+    'Cameroon',
+    'Canada',
+    'Cayman Islands (the)',
+    'Central African Republic (the)',
+    'Chad',
+    'Chile',
+    'China',
+    'Christmas Island',
+    'Cocos (Keeling) Islands (the)',
+    'Colombia',
+    'Comoros (the)',
+    'Congo (the Democratic Republic of the)',
+    'Congo (the)',
+    'Cook Islands (the)',
+    'Costa Rica',
+    'Croatia',
+    'Cuba',
+    'Curaçao',
+    'Cyprus',
+    'Czechia',
+    "Côte d'Ivoire",
+    'Denmark',
+    'Djibouti',
+    'Dominica',
+    'Dominican Republic (the)',
+    'Ecuador',
+    'Egypt',
+    'El Salvador',
+    'Equatorial Guinea',
+    'Eritrea',
+    'Estonia',
+    'Eswatini',
+    'Ethiopia',
+    'Falkland Islands (the) [Malvinas]',
+    'Faroe Islands (the)',
+    'Fiji',
+    'Finland',
+    'France',
+    'French Guiana',
+    'French Polynesia',
+    'French Southern Territories (the)',
+    'Gabon',
+    'Gambia (the)',
+    'Georgia',
+    'Germany',
+    'Ghana',
+    'Gibraltar',
+    'Greece',
+    'Greenland',
+    'Grenada',
+    'Guadeloupe',
+    'Guam',
+    'Guatemala',
+    'Guernsey',
+    'Guinea',
+    'Guinea-Bissau',
+    'Guyana',
+    'Haiti',
+    'Heard Island and McDonald Islands',
+    'Holy See (the)',
+    'Honduras',
+    'Hong Kong',
+    'Hungary',
+    'Iceland',
+    'India',
+    'Indonesia',
+    'Iran (Islamic Republic of)',
+    'Iraq',
+    'Ireland',
+    'Isle of Man',
+    'Israel',
+    'Italy',
+    'Jamaica',
+    'Japan',
+    'Jersey',
+    'Jordan',
+    'Kazakhstan',
+    'Kenya',
+    'Kiribati',
+    "Korea (the Democratic People's Republic of)",
+    'Korea (the Republic of)',
+    'Kuwait',
+    'Kyrgyzstan',
+    "Lao People's Democratic Republic (the)",
+    'Latvia',
+    'Lebanon',
+    'Lesotho',
+    'Liberia',
+    'Libya',
+    'Liechtenstein',
+    'Lithuania',
+    'Luxembourg',
+    'Macao',
+    'Madagascar',
+    'Malawi',
+    'Malaysia',
+    'Maldives',
+    'Mali',
+    'Malta',
+    'Marshall Islands (the)',
+    'Martinique',
+    'Mauritania',
+    'Mauritius',
+    'Mayotte',
+    'Mexico',
+    'Micronesia (Federated States of)',
+    'Moldova (the Republic of)',
+    'Monaco',
+    'Mongolia',
+    'Montenegro',
+    'Montserrat',
+    'Morocco',
+    'Mozambique',
+    'Myanmar',
+    'Namibia',
+    'Nauru',
+    'Nepal',
+    'Netherlands (the)',
+    'New Caledonia',
+    'New Zealand',
+    'Nicaragua',
+    'Niger (the)',
+    'Nigeria',
+    'Niue',
+    'Norfolk Island',
+    'Northern Mariana Islands (the)',
+    'Norway',
+    'Oman',
+    'Pakistan',
+    'Palau',
+    'Palestine, State of',
+    'Panama',
+    'Papua New Guinea',
+    'Paraguay',
+    'Peru',
+    'Philippines (the)',
+    'Pitcairn',
+    'Poland',
+    'Portugal',
+    'Puerto Rico',
+    'Qatar',
+    'Republic of North Macedonia',
+    'Romania',
+    'Russian Federation (the)',
+    'Rwanda',
+    'Réunion',
+    'Saint Barthélemy',
+    'Saint Helena, Ascension and Tristan da Cunha',
+    'Saint Kitts and Nevis',
+    'Saint Lucia',
+    'Saint Martin (French part)',
+    'Saint Pierre and Miquelon',
+    'Saint Vincent and the Grenadines',
+    'Samoa',
+    'San Marino',
+    'Sao Tome and Principe',
+    'Saudi Arabia',
+    'Senegal',
+    'Serbia',
+    'Seychelles',
+    'Sierra Leone',
+    'Singapore',
+    'Sint Maarten (Dutch part)',
+    'Slovakia',
+    'Slovenia',
+    'Solomon Islands',
+    'Somalia',
+    'South Africa',
+    'South Georgia and the South Sandwich Islands',
+    'South Sudan',
+    'Spain',
+    'Sri Lanka',
+    'Sudan (the)',
+    'Suriname',
+    'Svalbard and Jan Mayen',
+    'Sweden',
+    'Switzerland',
+    'Syrian Arab Republic',
+    'Taiwan (Province of China)',
+    'Tajikistan',
+    'Tanzania, United Republic of',
+    'Thailand',
+    'Timor-Leste',
+    'Togo',
+    'Tokelau',
+    'Tonga',
+    'Trinidad and Tobago',
+    'Tunisia',
+    'Turkey',
+    'Turkmenistan',
+    'Turks and Caicos Islands (the)',
+    'Tuvalu',
+    'Uganda',
+    'Ukraine',
+    'United Arab Emirates (the)',
+    'United Kingdom of Great Britain and Northern Ireland (the)',
+    'United States Minor Outlying Islands (the)',
+    'United States of America (the)',
+    'Uruguay',
+    'Uzbekistan',
+    'Vanuatu',
+    'Venezuela (Bolivarian Republic of)',
+    'Viet Nam',
+    'Virgin Islands (British)',
+    'Virgin Islands (U.S.)',
+    'Wallis and Futuna',
+    'Western Sahara',
+    'Yemen',
+    'Zambia',
+    'Zimbabwe',
+  ];
 
   const signupHandler = () => {
     setLoading(true);
@@ -56,16 +322,16 @@ export const SignupScreen = ({navigation}) => {
     data.append('first_name', firstName);
     data.append('last_name', lastName);
     data.append('date_of_birth', dob);
-    data.append('nationality', city);
+    data.append('nationality', nationality);
     data.append('occupation', occupation);
     data.append('institution_name', instituteName);
     data.append('address', addressLine1);
+    data.append('address_two', addressLine2);
     data.append('password', password);
     data.append('password_confirmation', conformPassword);
-    data.append('address_two', addressLine2);
     data.append('region_capital', regionCapital);
     data.append('email', email);
-    data.append('country', city);
+    data.append('country', 'ghana');
     data.append('phone_number', phoneNumber);
 
     let s = phoneNumber.toString();
@@ -110,7 +376,12 @@ export const SignupScreen = ({navigation}) => {
         Alert.alert('phone number is not valid');
         setLoading(false);
       } else {
-        if (parseInt(s.charAt(0)) !== '+233') {
+        if (
+          parseInt(s.charAt(0)) != '+' &&
+          parseInt(s.charAt(1)) != '2' &&
+          parseInt(s.charAt(2)) != '3' &&
+          parseInt(s.charAt(3)) != '3'
+        ) {
           Alert.alert('First digits of phone number must be +233');
           setLoading(false);
         } else {
@@ -157,12 +428,14 @@ export const SignupScreen = ({navigation}) => {
       ? (Alert.alert('Please add Password '), setLoading(false))
       : conformPassword != password
       ? (Alert.alert('Password not match '), setLoading(false))
-      : // : occupation === ''
-      // ? (Alert.alert('Please add Occupation'), setLoading(false))
-      instituteName === ''
+      : occupation === ''
+      ? (Alert.alert('Please add Occupation'), setLoading(false))
+      : instituteName === ''
       ? (Alert.alert('Please add Institute Name'), setLoading(false))
       : addressLine1 === ''
       ? (Alert.alert('Please add Address Line 1'), setLoading(false))
+      : regionCapital === ''
+      ? (Alert.alert('Please add Region Capital'), setLoading(false))
       : addressLine2 === ''
       ? (Alert.alert('Please add Address Line 2'), setLoading(false))
       : isNaN(num)
@@ -171,11 +444,7 @@ export const SignupScreen = ({navigation}) => {
       ? valid10Digit()
       : phoneNumber.length > 10 <= 14
       ? valid14Digit()
-      : // : regionCapital === ''
-        // ? (Alert.alert('Please add Region Capital'), setLoading(false))
-        // : countryAddress === ''
-        // ? (Alert.alert('Please add Country Name'), setLoading(false))
-        null;
+      : null;
   };
 
   const showDatePicker = () => {
@@ -286,22 +555,26 @@ export const SignupScreen = ({navigation}) => {
           </Pressable>
         </View>
         <View style={globalInputsStyles.globalInputs}>
-          <Text style={globalInputsStyles.globalLabel}>Region*</Text>
+          <Text style={globalInputsStyles.globalLabel}>Nationality*</Text>
           <View style={styles.input}>
             <DropdownComponent
-              setCity={setCity}
+              setCity={setNationality}
+              allCities={allCountries}
+              signup={true}
+              placeholder={'Region'}
+            />
+          </View>
+        </View>
+        <View style={globalInputsStyles.globalInputs}>
+          <Text style={globalInputsStyles.globalLabel}>Region Capital*</Text>
+          <View style={styles.input}>
+            <DropdownComponent
+              setCity={setRegionCapital}
               allCities={allCities}
               signup={true}
               placeholder={'Region'}
             />
           </View>
-          {/* <TextInput
-            style={globalInputsStyles.input}
-            onChangeText={setNationality}
-            value={nationality}
-            placeholder="Nationality"
-            placeholderTextColor={MyTheme.grey100}
-          /> */}
         </View>
         <View style={globalInputsStyles.globalInputs}>
           <Text style={globalInputsStyles.globalLabel}>email*</Text>
@@ -381,8 +654,8 @@ export const SignupScreen = ({navigation}) => {
           <Text style={globalInputsStyles.globalLabel}>Occupation*</Text>
           <View style={styles.input}>
             <DropdownComponent
-              setCity={setCity}
-              allCities={allCities}
+              setCity={setOccupation}
+              allCities={allOccupations}
               signup={true}
               placeholder={'Occupation'}
             />

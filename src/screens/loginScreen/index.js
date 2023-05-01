@@ -32,9 +32,86 @@ export const LogInScreen = ({navigation}) => {
   };
 
   const loginHandler = () => {
+    setLoading(true);
     let s = phoneNumber.toString();
     let num = phoneNumber.replace('.', '');
-    setLoading(true);
+    const valid10Digit = () => {
+      if (phoneNumber.length != 10) {
+        // Alert.alert('phone number is not valid');
+        setNoDisplay(true);
+        setErrorText('phone number is not valid');
+        setLoading(false);
+      } else {
+        if (parseInt(s.charAt(0)) !== 0) {
+          // Alert.alert('First digit of phone number must be 0');
+          setNoDisplay(true);
+          setErrorText('First digit of phone number must be 0');
+          
+          setLoading(false);
+        } else {
+          LoginPostRequest(data, customerUris.login).then(response => {
+            console.log('api response :', response);
+  
+            if (response.data.success === false) {
+              setNoDisplay(true);
+              setLoading(false);
+              setErrorText(response.data.message);
+            } else {
+              if (response.data.data.length === 0) {
+                setErrorText(response.data.message);
+                setNoDisplay(true);
+                setLoading(false);
+              } else {
+                setLoading(false);
+                dispatch(
+                  updateToken(
+                    response.data.data.token ? response.data.data.token : '',
+                  ),
+                );
+              }
+            }
+          });
+        }
+      }
+    };
+    const valid14Digit = () => {
+      if (phoneNumber.length != 14) {
+        // Alert.alert('phone number is not valid');
+        setNoDisplay(true);
+        setErrorText('phone number is not valid');
+        setLoading(false);
+      } else {
+        if (parseInt(s.charAt(0)) != "+" && parseInt(s.charAt(1)) != "2" && parseInt(s.charAt(2)) != "3" && parseInt(s.charAt(3)) != "3" ) {
+          // Alert.alert('First digits of phone number must be +233');
+          setNoDisplay(true);
+          setErrorText('First digits of phone number must be +233');
+          setLoading(false);
+        } else {
+          LoginPostRequest(data, customerUris.login).then(response => {
+            console.log('api response :', response);
+  
+            if (response.data.success === false) {
+              setNoDisplay(true);
+              setLoading(false);
+              setErrorText(response.data.message);
+            } else {
+              if (response.data.data.length === 0) {
+                setErrorText(response.data.message);
+                setNoDisplay(true);
+                setLoading(false);
+              } else {
+                setLoading(false);
+                dispatch(
+                  updateToken(
+                    response.data.data.token ? response.data.data.token : '',
+                  ),
+                );
+              }
+            }
+          });
+        }
+      }
+    };
     phoneNumber === ''
       ? (setNoDisplay(true),
         setErrorText('please Add Phone Number'),
@@ -43,36 +120,15 @@ export const LogInScreen = ({navigation}) => {
       ? (setNoDisplay(true),
         setErrorText('please Add Password'),
         setLoading(false))
-      : parseInt(s.charAt(0)) !== 0
-      ? (setNoDisplay(true),
-        setErrorText('First digit of phone number must be 0'),
-        setLoading(false))
       : isNaN(num)
       ? (setNoDisplay(true),
         setErrorText('please add Numbers'),
         setLoading(false))
-      : LoginPostRequest(data, customerUris.login).then(response => {
-          console.log('api response :', response);
-
-          if (response.data.success === false) {
-            setNoDisplay(true);
-            setLoading(false);
-            setErrorText(response.data.message);
-          } else {
-            if (response.data.data.length === 0) {
-              setErrorText(response.data.message);
-              setNoDisplay(true);
-              setLoading(false);
-            } else {
-              setLoading(false);
-              dispatch(
-                updateToken(
-                  response.data.data.token ? response.data.data.token : '',
-                ),
-              );
-            }
-          }
-        });
+        : phoneNumber.length <= 10
+        ? valid10Digit()
+        : phoneNumber.length > 10 <= 14
+        ? valid14Digit()
+        : null;
   };
   const recoverHandler = () => {
     navigation.navigate('RecoverPassword');
@@ -111,7 +167,7 @@ export const LogInScreen = ({navigation}) => {
             placeholder="Phone Number "
             placeholderTextColor={MyTheme.grey100}
             keyboardType="phone-pad"
-            maxLength={10}
+            maxLength={14}
           />
         </View>
         <View style={noDisplay === true ? styles.errorView : styles.noDisplay}>

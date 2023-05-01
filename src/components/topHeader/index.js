@@ -6,6 +6,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { token } from '@redux/tokenSlice';
 import { GetRequest } from '../../api/apiCall';
+import { MyTheme } from '@utils';
 
 export const TopHeader = () => {
   const navigation = useNavigation();
@@ -40,7 +41,7 @@ export const TopHeader = () => {
     <View style={styles.topContainer}>
       <View style={styles.topBody}>
         <View style={styles.profile}>
-          <Pressable onPress={() => navigation.navigate('AccountScreen')}>
+          <Pressable onPress={() => navigation.navigate('AccountScreen')} style = {{backgroundColor:MyTheme.grey100,borderRadius:50}}>
             <Image
               source={imageUri === ""? require('../../assets/icons/profile.png'):{uri:imageUri}}
               style={styles.profileImage}

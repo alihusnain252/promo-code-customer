@@ -9,23 +9,20 @@ export const LoginPostRequest = async (data, url) => {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
-try {
-  const res = await axios({
-    method: 'post',
-    url: url,
-    baseURL: baseUrl,
-    data: data,
-    headers: headers,
-  });
-  if (res.status === 200) {
-    return {status: true, data: res.data};
-  } else {
-    return {status: false, data: res.data};
-  }
-  
-} catch (error) {
-  
-}
+  try {
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: headers,
+    });
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {}
 };
 export const PostRequest = async (data, url) => {
   console.log('signIn Data :', data);
@@ -34,24 +31,22 @@ export const PostRequest = async (data, url) => {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
-try {
-  const res = await axios({
-    method: 'post',
-    url: url,
-    baseURL: baseUrl,
-    data: data,
-    headers: headers,
-  });
-  if (res.status === 200) {
-    return {status: true, data: res.data};
-  } else {
-    return {status: false, data: res.data};
+  try {
+    const res = await axios({
+      method: 'post',
+      url: url,
+      baseURL: baseUrl,
+      data: data,
+      headers: headers,
+    });
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    return {status: false, data: null, error: error};
   }
-  
-} catch (error) {
-  
-  return {status: false, data: null,error:error};
-}
 };
 export const RegisterRequest = async (data, url) => {
   console.log('signUInData :', data);
@@ -69,12 +64,9 @@ export const RegisterRequest = async (data, url) => {
     } else {
       return {status: false, data: res.data};
     }
-    
   } catch (error) {
-    
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
-
 };
 export const UpdateRequest = async (token, data, url) => {
   console.log('signUInData :', data);
@@ -95,8 +87,7 @@ export const UpdateRequest = async (token, data, url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
 };
 export const GetRequest = async (token, url) => {
@@ -115,12 +106,11 @@ export const GetRequest = async (token, url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
 };
-export const GetCitiesRequest = async ( url) => {
+export const GetCitiesRequest = async url => {
   try {
-  
     const res = await axios({
       method: 'get',
       url: url,
@@ -133,7 +123,7 @@ export const GetCitiesRequest = async ( url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
 };
 export const CreateAdRequest = async (token, data, url) => {
@@ -155,11 +145,8 @@ export const CreateAdRequest = async (token, data, url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
-
-  
 };
 export const PostRequestWithToken = async (userToken, data, url) => {
   try {
@@ -184,8 +171,8 @@ export const PostRequestWithToken = async (userToken, data, url) => {
       return {status: false, data: res.data};
     }
   } catch (error) {
-    console.log("error :", JSON.stringify(error));
-    return {status: false, data: null,error:error};
+    console.log('error :', JSON.stringify(error));
+    return {status: false, data: null, error: error};
   }
 };
 export const updateImageRequest = async (userToken, data, url) => {
@@ -212,6 +199,6 @@ export const updateImageRequest = async (userToken, data, url) => {
     }
   } catch (error) {
     console.log('Post request Error :', error);
-    return {status: false, data: null,error:error};
+    return {status: false, data: null, error: error};
   }
 };

@@ -18,21 +18,23 @@ import {MyTheme, customerUris} from '@utils';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {GetRequest} from '../../api/apiCall';
 import {SliderBox} from 'react-native-image-slider-box';
+import pImage from "../../assets/icons/profile.png"
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const VendorDetails = ({route, navigation}) => {
   const {vendorDetails} = route.params;
-  console.log('vendor Id : ', vendorDetails.id);
+  console.log('vendor Id : ', vendorDetails);
 
   const userToken = useSelector(token);
   const [loading, setLoading] = useState(false);
   const [vendorPromotions, setVendorPromotions] = useState([]);
-   const images = [
-    'https://source.unsplash.com/1024x768/?nature',
-    'https://source.unsplash.com/1024x768/?water',
-    'https://source.unsplash.com/1024x768/?girl',
-    'https://source.unsplash.com/1024x768/?tree',
+  const images = [
+    vendorDetails.image ?vendorDetails.image: pImage,
+    vendorDetails.image_one ?vendorDetails.image_one: pImage,
+    vendorDetails.image_two ?vendorDetails.image_two:pImage,
+    vendorDetails.image_three ?vendorDetails.image_three:pImage,
+    vendorDetails.image_four ?vendorDetails.image_four:pImage,
   ];
 
   const getVendorPromotions = () => {
@@ -62,29 +64,29 @@ export const VendorDetails = ({route, navigation}) => {
       <ArrowHeader heading="Vendor Details" />
 
       <View style={styles.sliderContainer}>
-          <SliderBox
-            dotColor="#FFEE58"
-            inactiveDotColor="#90A4AE"
-            paginationBoxVerticalPadding={5}
-            autoplay
-            circleLoop
-            images={images}
-            onCurrentImagePressed={index => {
-              Alert.alert(index);
-            }}
-            dotStyle={{
-              width: 10,
-              height: 10,
-              borderRadius: 8,
-              marginHorizontal: 0,
-              padding: 0,
-              margin: 0,
-              backgroundColor: 'rgba(128, 128, 128, 0.92)',
-            }}
-            ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
-            imageLoadingColor={MyTheme.yellow}
-          />
-        </View>
+        <SliderBox
+          dotColor="#FFEE58"
+          inactiveDotColor="#90A4AE"
+          paginationBoxVerticalPadding={5}
+          autoplay
+          circleLoop
+          images={images}
+          onCurrentImagePressed={index =>
+            Alert.alert('pressed index  : ', `${index}`)
+          }
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 8,
+            marginHorizontal: 0,
+            padding: 0,
+            margin: 0,
+            backgroundColor: 'rgba(128, 128, 128, 0.92)',
+          }}
+          ImageComponentStyle={{borderRadius: 8, width: '97%', marginTop: 5}}
+          imageLoadingColor={MyTheme.yellow}
+        />
+      </View>
 
       <View style={styles.imageView}>
         <Image

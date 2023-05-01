@@ -17,10 +17,10 @@ export const styles = StyleSheet.create({
   },
   vendorDetailsView: {
     width: width - 40,
-    marginTop:"10%"
+    marginTop: '10%',
   },
   vendorDetailsScrollView: {
-    width: width 
+    width: width,
   },
   vendorNameVIew: {
     flexDirection: 'row',
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     marginTop: '1%',
   },
   vendorTextBold: {
-    flex:2,
+    flex: 2,
     fontFamily: MyTheme.poppins,
     fontStyle: 'normal',
     fontWeight: 300,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     color: MyTheme.black,
   },
   vendorText: {
-    flex:3,
+    flex: 3,
     fontFamily: MyTheme.poppins,
     fontStyle: 'normal',
     fontWeight: 500,
@@ -68,27 +68,21 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
 
-
-  discountHeadingContainer:{
-    width:width-40,
+  discountHeadingContainer: {
+    width: width - 40,
     color: MyTheme.textPrimary,
-    alignSelf:"center",
-    
+    alignSelf: 'center',
   },
-  discountHeading:{
+  discountHeading: {
     fontFamily: MyTheme.poppins,
     fontStyle: 'normal',
     fontWeight: 700,
     fontSize: 16,
     // lineHeight: 21,
     color: MyTheme.textPrimary,
-    
   },
   sliderContainer: {
     height: height / 4,
     backgroundColor: MyTheme.background,
   },
-
-
-  
 });

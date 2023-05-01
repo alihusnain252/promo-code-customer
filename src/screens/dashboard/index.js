@@ -7,9 +7,9 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { styles } from './styles';
-import { SliderBox } from 'react-native-image-slider-box';
+import React, {useEffect, useState} from 'react';
+import {styles} from './styles';
+import {SliderBox} from 'react-native-image-slider-box';
 import {
   Ads,
   BottomBar,
@@ -24,12 +24,12 @@ import {
   notificationListener,
   requestUserPermission,
 } from '@utils';
-import { useSelector } from 'react-redux';
-import { token } from '@redux/tokenSlice';
-import { GetRequest } from '../../api/apiCall';
-import { useFocusEffect } from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {GetRequest} from '../../api/apiCall';
+import {useFocusEffect} from '@react-navigation/native';
 
-export const Dashboard = ({ navigation }) => {
+export const Dashboard = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [allPromotions, setAllPromotions] = useState([]);
@@ -38,7 +38,6 @@ export const Dashboard = ({ navigation }) => {
   const [searchByName, setSearchByName] = useState('');
   const [sliderData, setSliderData] = useState([]);
   const [sliderImage, setSliderImage] = useState([]);
-
 
   const userToken = useSelector(token);
 
@@ -54,7 +53,6 @@ export const Dashboard = ({ navigation }) => {
       }
     });
   };
-    
 
   const getFeaturedVendors = () => {
     setLoading(true);
@@ -81,12 +79,11 @@ export const Dashboard = ({ navigation }) => {
     });
   };
 
-
   const getSlider = () => {
     setLoading(true);
     GetRequest(userToken.token, customerUris.sliderImages).then(res => {
       if (res.data?.status === true) {
-        setSliderImage(res.data?.data)
+        setSliderImage(res.data?.data);
         setLoading(false);
       } else {
         setLoading(false);
@@ -101,7 +98,7 @@ export const Dashboard = ({ navigation }) => {
       getAds();
       // getSliderData()
 
-      getSlider()
+      getSlider();
 
       requestUserPermission(userToken);
       notificationListener();
@@ -109,22 +106,23 @@ export const Dashboard = ({ navigation }) => {
     }, []),
   );
 
-  const sliderPress = (index) => {
-    const selectedImage = sliderImage[index]
+  const sliderPress = index => {
+    const selectedImage = sliderImage[index];
     setIsLoading(true);
-    GetRequest(userToken.token, customerUris.promotionById + selectedImage.promotion_id).then(res => {
+    GetRequest(
+      userToken.token,
+      customerUris.promotionById + selectedImage.promotion_id,
+    ).then(res => {
       if (res.data.success === true) {
-        const promotion = res.data?.data?.promotion
-        navigation.navigate("PromoDetails", { promoDetails: promotion })
+        const promotion = res.data?.data?.promotion;
+        navigation.navigate('PromoDetails', {promoDetails: promotion});
         setIsLoading(false);
       } else {
         Alert.alert(res.data.message);
         setIsLoading(false);
       }
     });
-
-
-  }
+  };
 
   return (
     <View style={styles.dashboardContainer}>
@@ -133,7 +131,7 @@ export const Dashboard = ({ navigation }) => {
         <Pressable
           style={styles.searchPress}
           onPress={() =>
-            navigation.navigate('SearchVendor', { searchByName: searchByName })
+            navigation.navigate('SearchVendor', {searchByName: searchByName})
           }>
           <TextInput
             onChangeText={e => setSearchByName(e)}
@@ -149,7 +147,7 @@ export const Dashboard = ({ navigation }) => {
           />
         </Pressable>
       </View>
-      <ScrollView style={{ flex: 1, marginTop: '1%' }}>
+      <ScrollView style={{flex: 1, marginTop: '1%'}}>
         <View style={styles.sliderContainer}>
           <SliderBox
             dotColor="#FFEE58"
@@ -169,7 +167,13 @@ export const Dashboard = ({ navigation }) => {
               margin: 0,
               backgroundColor: 'rgba(128, 128, 128, 0.92)',
             }}
-            ImageComponentStyle={{ borderRadius: 8, width: '97%', height: deviceWidth / 2, marginTop: 5, resizeMode: 'contain' }}
+            ImageComponentStyle={{
+              borderRadius: 8,
+              width: '97%',
+              height: deviceWidth / 2,
+              marginTop: 5,
+              resizeMode: 'contain',
+            }}
             imageLoadingColor={MyTheme.yellow}
           />
         </View>
@@ -188,7 +192,7 @@ export const Dashboard = ({ navigation }) => {
           />
         </View>
 
-        <View style={promotions.length === 0 ? { display: 'none' } : styles.ads}>
+        <View style={promotions.length === 0 ? {display: 'none'} : styles.ads}>
           <Text style={styles.heading}>Featured Ads⚡️</Text>
           <FeaturedAds promotions={promotions} loading={loading} />
         </View>

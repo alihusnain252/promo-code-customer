@@ -14,8 +14,6 @@ import {MyTheme} from '@utils';
 export const PromoDetails = ({route, navigation}) => {
   const {promoDetails} = route.params;
 
- 
-
   const venderDetails = {
     name: 'Vendor Name',
     locatedIn: 'Accra Mall',
