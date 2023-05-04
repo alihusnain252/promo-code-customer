@@ -28,7 +28,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
 import {GetRequest, GetRequestWithToken} from '../../api/apiCall';
 import {useFocusEffect} from '@react-navigation/native';
-import { userData, userDetails } from '@redux/favouriteDataSlice';
+import {userData, userDetails} from '@redux/favouriteDataSlice';
 
 export const Dashboard = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -41,74 +41,81 @@ export const Dashboard = ({navigation}) => {
   const [sliderImage, setSliderImage] = useState([]);
 
   const userToken = useSelector(token);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const favoriteData = useSelector(userData);
 
   const getAds = () => {
     setLoading(true);
-   userToken.token !== ""
-   ? GetRequest(customerUris.allPromotions).then(res => {
-    if (res.data.success === true) {
-      setAllPromotions(res.data.data.promotions.data);
-      setLoading(false);
-    } else {
-      Alert.alert(res.data.message);
-      setLoading(false);
-    }
-  })
-  :GetRequestWithToken(userToken.token,customerUris.allPromotions).then(res => {
-    if (res.data.success === true) {
-      setAllPromotions(res.data.data.promotions.data);
-      setLoading(false);
-    } else {
-      Alert.alert(res.data.message);
-      setLoading(false);
-    }
-  })
+    userToken.token !== ''
+      ? GetRequest(customerUris.allPromotions).then(res => {
+          if (res.data.success === true) {
+            setAllPromotions(res.data.data.promotions.data);
+            setLoading(false);
+          } else {
+            Alert.alert(res.data.message);
+            setLoading(false);
+          }
+        })
+      : GetRequestWithToken(userToken.token, customerUris.allPromotions).then(
+          res => {
+            if (res.data.success === true) {
+              setAllPromotions(res.data.data.promotions.data);
+              setLoading(false);
+            } else {
+              Alert.alert(res.data.message);
+              setLoading(false);
+            }
+          },
+        );
   };
 
   const getFeaturedVendors = () => {
     setLoading(true);
-   userToken.token !== ""
-   ? GetRequest(customerUris.featuredVendors).then(res => {
-    if (res.data.success === true) {
-      setLoading(false);
-      setFeatured_vendors(res.data.data.featured_vendors);
-    } else {
-      setLoading(false);
-    }
-  })
-  :GetRequestWithToken(userToken.token,customerUris.featuredVendors).then(res => {
-    if (res.data.success === true) {
-      setLoading(false);
-      setFeatured_vendors(res.data.data.featured_vendors);
-    } else {
-      setLoading(false);
-    }
-  })
+    userToken.token !== ''
+      ? GetRequest(customerUris.featuredVendors).then(res => {
+          if (res.data.success === true) {
+            setLoading(false);
+            setFeatured_vendors(res.data.data.featured_vendors);
+          } else {
+            setLoading(false);
+          }
+        })
+      : GetRequestWithToken(userToken.token, customerUris.featuredVendors).then(
+          res => {
+            if (res.data.success === true) {
+              setLoading(false);
+              setFeatured_vendors(res.data.data.featured_vendors);
+            } else {
+              setLoading(false);
+            }
+          },
+        );
   };
 
   const getFeaturedAds = () => {
     setLoading(true);
-    userToken.token !== ""
-    ?GetRequest(customerUris.featuredPromotions).then(res => {
-      if (res.data.success === true) {
-        setPromotions(res.data.data.featured_promotions);
-        setLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setLoading(false);
-      }
-    })
-    :GetRequestWithToken(userToken.token,customerUris.featuredPromotions).then(res => {
-      if (res.data.success === true) {
-        setPromotions(res.data.data.featured_promotions);
-        setLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setLoading(false);
-      }
-    })
+    userToken.token !== ''
+      ? GetRequest(customerUris.featuredPromotions).then(res => {
+          if (res.data.success === true) {
+            setPromotions(res.data.data.featured_promotions);
+            setLoading(false);
+          } else {
+            Alert.alert(res.data.message);
+            setLoading(false);
+          }
+        })
+      : GetRequestWithToken(
+          userToken.token,
+          customerUris.featuredPromotions,
+        ).then(res => {
+          if (res.data.success === true) {
+            setPromotions(res.data.data.featured_promotions);
+            setLoading(false);
+          } else {
+            Alert.alert(res.data.message);
+            setLoading(false);
+          }
+        });
   };
 
   const getSlider = () => {
@@ -129,9 +136,7 @@ export const Dashboard = ({navigation}) => {
         if (res.status) {
           console.log('is favorite vendors :', res.data.data);
           dispatch(
-            userDetails(
-              res.data.data ? res.data.data : '',
-            ),
+            userDetails(res.data.data ? res.data.data : ''),
             // navigation.navigate('Dashboard'),
           );
           setLoading(false);
@@ -148,7 +153,7 @@ export const Dashboard = ({navigation}) => {
       getFeaturedAds();
       getFeaturedVendors();
       getAds();
-      userToken.token !== ""? getFavorites():null;
+      userToken.token !== '' ? getFavorites() : null;
       getSlider();
 
       requestUserPermission(userToken);

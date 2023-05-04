@@ -8,3 +8,4 @@ export {BottomBar} from './bottomBar';
 export {ArrowHeader} from './arrowHeader';
 export {OtpContainer} from './otp';
 export {DropdownComponent} from './dropDown';
+export {FavoriteButton} from './favoriteButton';

@@ -22,14 +22,13 @@ export const Favorite = ({navigation}) => {
     GetRequestWithToken(userToken.token, customerUris.favoriteList).then(
       res => {
         if (res.status) {
-          console.log('is favorite vendors :', res.data.data);
+          // console.log('is favorite vendors :', res.data.data);
           setFavoritePromotions(res.data.data.favourite_promotions.data);
           setFavoriteVendors(res.data.data.favourite_vendors);
           dispatch(
             userDetails(
               res.data.data ? res.data.data : '',
             ),
-            // navigation.navigate('Dashboard'),
           );
           setLoading(false);
         } else {

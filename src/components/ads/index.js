@@ -6,25 +6,26 @@ import {
   ActivityIndicator,
   Pressable,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { styles } from './styles';
+import React, {useEffect, useState} from 'react';
+import {styles} from './styles';
 import image from '../../assets/images/image8.png';
-import { useSelector } from 'react-redux';
-import { token } from '@redux/tokenSlice';
-import { GetRequest, PostRequestWithToken } from '../../api/apiCall';
-import { MyTheme, customerUris } from '@utils';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {GetRequest, PostRequestWithToken} from '../../api/apiCall';
+import {MyTheme, customerUris} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
-import { userData } from '@redux/favouriteDataSlice';
+import {useNavigation} from '@react-navigation/native';
+import {userData} from '@redux/favouriteDataSlice';
+import {FavoriteButton} from '../favoriteButton';
 
-export const Ads = ({ loading, allPromotions }) => {
+export const Ads = ({loading, allPromotions}) => {
   return (
     <View style={styles.adsContainer}>
       <View
         style={
           loading === false
-            ? { display: 'none' }
-            : { position: 'absolute', top: 10, left: 150, zIndex: 1 }
+            ? {display: 'none'}
+            : {position: 'absolute', top: 10, left: 150, zIndex: 1}
         }>
         <ActivityIndicator size={36} color={MyTheme.yellow} />
       </View>
@@ -38,51 +39,8 @@ export const Ads = ({ loading, allPromotions }) => {
   );
 };
 
-export const AdCard = ({ promo }) => {
+export const AdCard = ({promo}) => {
   const navigation = useNavigation();
-
-  const [isFavorite, setIsFavorite] = useState(promo.is_favourite);
-
-  const userToken = useSelector(token);
-
-
-  const addTOFavorite = promo => {
-    const data = {
-      promotion_id: promo.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.addPromotionToFavorite,
-    ).then(res => {
-      // console.log('is favorite ada :', res);
-      if (res.data.success) {
-        setIsFavorite(true);
-      } else {
-        console.log(res.data.message);
-      }
-    });
-  };
-  const removeFromFavorite = promo => {
-    const data = {
-      promotion_id: promo.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.removePromotionFromFavorite,
-    ).then(res => {
-      // console.log('is remove from favorite :', res);
-      if (res.data.success) {
-        setIsFavorite(false);
-      } else {
-        console.log(res.data.message);
-      }
-    });
-  };
-
   return (
     <View style={styles.cardContainer}>
       <Pressable
@@ -93,7 +51,7 @@ export const AdCard = ({ promo }) => {
         }>
         <View style={styles.cardTopView}>
           <Image
-            source={promo ? { uri: promo.image } : image}
+            source={promo ? {uri: promo.image} : image}
             style={styles.cardImage}
           />
           <View style={styles.adDetails}>
@@ -129,116 +87,9 @@ export const AdCard = ({ promo }) => {
             </Text>
           </View>
         </View>
-        {/* <Pressable
-          style={styles.heartContainer}
-          onPress={() =>
-            userToken.token === ''
-              ? navigation.navigate('Login')
-              : isFavorite
-                ? removeFromFavorite(promo)
-                : addTOFavorite(promo)
-          }>
-          <AntDesign
-            name="heart"
-            size={15}
-            color={isFavorite ? '#E65C89' : MyTheme.grey100}
-          />
-        </Pressable> */}
 
-        <FavoriteButton
-          isFavorite={promo.is_favourite} data={promo}
-          onPress={() =>
-            userToken.token === ''
-              ? navigation.navigate('Login')
-              : isFavorite
-                ? removeFromFavorite(promo)
-                : addTOFavorite(promo)}
-        />
+        <FavoriteButton isFavorite={promo.is_favourite} data={promo} />
       </Pressable>
     </View>
   );
 };
-
-
-
-const FavoriteButton = ({ onPress, data, isFavorite }) => {
-
-  const [favorite, setFavorite] = useState(false);
-  const favList = useSelector(userData);
-  const navigation = useNavigation()
-  const userToken = useSelector(token);
-
-
-
-  useEffect(() => {
-    if (favList && favList?.data?.favourite_promotions?.data?.length) {
-      const fList = favList?.data?.favourite_promotions?.data
-      const fFav = fList.find(item => item.id === data.id)
-      if (fFav) {
-        setFavorite(true)
-      } else {
-        setFavorite(false)
-      }
-    } else {
-      setFavorite(isFavorite)
-    }
-  }, [favList, isFavorite, data])
-
-
-
-
-  const addTOFavorite = promo => {
-    const data = {
-      promotion_id: promo.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.addPromotionToFavorite,
-    ).then(res => {
-      // console.log('is favorite ada :', res);
-      if (res.data.success) {
-        setFavorite(true);
-      } else {
-        console.log(res.data.message);
-      }
-    });
-  };
-  const removeFromFavorite = promo => {
-    const data = {
-      promotion_id: promo.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.removePromotionFromFavorite,
-    ).then(res => {
-      // console.log('is remove from favorite :', res);
-      if (res.data.success) {
-        setFavorite(false);
-      } else {
-        console.log(res.data.message);
-      }
-    });
-  };
-
-  return (
-    <Pressable
-      onPress={() =>
-        userToken.token === ''
-          ? navigation.navigate('Login')
-          : favorite
-            ? removeFromFavorite(data)
-            : addTOFavorite(data)}
-      style={styles.heartContainer}
-    >
-      <AntDesign
-        name="heart"
-        size={15}
-        color={favorite ? '#E65C89' : MyTheme.grey100}
-      />
-    </Pressable>
-  )
-}

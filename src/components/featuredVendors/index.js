@@ -14,6 +14,7 @@ import {token} from '@redux/tokenSlice';
 import {MyTheme, customerUris} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
+import {FavoriteButton} from '../favoriteButton';
 
 export const FeaturedVendors = ({loading, featured_vendors}) => {
   return (
@@ -40,44 +41,9 @@ export const FeaturedVendors = ({loading, featured_vendors}) => {
 
 export const Vendors = ({vendor}) => {
   const navigation = useNavigation();
-  const [isFavorite, setIsFavorite] = useState(vendor.is_favourite);
+  // console.log("one vendor :", vendor);
 
   const userToken = useSelector(token);
-
-  const addTOFavorite = vendor => {
-    const data = {
-      vendor_id: vendor.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.addVendorToFavorite,
-    ).then(res => {
-      if (res.data.success) {
-        console.log('is favorite ada :', res);
-        setIsFavorite(true);
-      }
-      console.log('is favorite ada :', res);
-    });
-  };
-  const removeFromFavorite = vendor => {
-    const data = {
-      vendor_id: vendor.id,
-    };
-
-    PostRequestWithToken(
-      userToken.token,
-      data,
-      customerUris.removeVendorFromFavorite,
-    ).then(res => {
-      if (res.data.success) {
-        console.log('is favorite ada :', res);
-        setIsFavorite(false);
-      }
-      console.log('is favorite ada :', res);
-    });
-  };
   return (
     <Pressable
       onPress={() =>
@@ -98,7 +64,7 @@ export const Vendors = ({vendor}) => {
           <Text style={styles.imageTitle}>{vendor.name}</Text>
         </View>
 
-        <Pressable
+        {/* <Pressable
           style={styles.heartContainer}
           onPress={() =>
             userToken.token === ''
@@ -112,7 +78,8 @@ export const Vendors = ({vendor}) => {
             size={15}
             color={isFavorite ? '#E65C89' : MyTheme.grey100}
           />
-        </Pressable>
+        </Pressable> */}
+        <FavoriteButton isFavorite={vendor.is_favourite} data={vendor} vendor={true} />
       </View>
     </Pressable>
   );

@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 
 export const userDataSlice = createSlice({
-  name: "userData",
+  name: 'userData',
   initialState: {},
   reducers: {
     userDetails: (state, action) => {
       state.data = action.payload;
     },
     addToFavorite: (state, action) => {
-      state.data.push(action.payload)
+      state.data.push(action.payload);
     },
     removeFromFavorite: (state, action) => {
       state.data = action.payload;
@@ -16,7 +16,7 @@ export const userDataSlice = createSlice({
   },
 });
 
-export const { userDetails } = userDataSlice.actions;
-export const userData = (state) => state.userData;
+export const {userDetails} = userDataSlice.actions;
+export const userData = state => state.userData;
 
 export default userDataSlice.reducer;

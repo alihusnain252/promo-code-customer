@@ -17,6 +17,7 @@ import {GetRequest} from '../../api/apiCall';
 import {MyTheme, customerUris} from '@utils';
 import {PostRequestWithToken} from '../../api/apiCall';
 import {userData} from '@redux/favouriteDataSlice';
+import {FavoriteButton} from '../favoriteButton';
 
 export const FeaturedAds = ({loading, promotions}) => {
   const favoriteData = useSelector(userData);
@@ -36,7 +37,9 @@ export const FeaturedAds = ({loading, promotions}) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
         {promotions?.map((promo, index) => {
-           const ids = favoriteData.data.favourite_promotions.data.filter(item => item.id === promo.id?promo.id:null)
+          const ids = favoriteData.data.favourite_promotions.data.filter(item =>
+            item.id === promo.id ? promo.id : null,
+          );
           //  console.log("id :", ids);
           return <FeaturedAd key={index} promotion={promo} />;
         })}
@@ -45,13 +48,8 @@ export const FeaturedAds = ({loading, promotions}) => {
   );
 };
 const FeaturedAd = ({promotion}) => {
-  // console.log("promo id : " , promotion.id);
   const navigation = useNavigation();
-  const favoriteData = useSelector(userData);
-  // const ids = favoriteData.data.favourite_promotions.data.map(item => item.id === promotion.id?promotion.id:"")
-  // console.log("id :", ids);
 
-  
   const [isFavorite, setIsFavorite] = useState(true);
 
   const userToken = useSelector(token);
@@ -108,7 +106,7 @@ const FeaturedAd = ({promotion}) => {
             <Text style={styles.imageTitle}>{promotion.company_name}</Text>
             {/* <Text style={styles.discount}>5% Cashback</Text> */}
           </View>
-          <Pressable
+          {/* <Pressable
             style={styles.heartContainer}
             onPress={() =>
               userToken.token === ''
@@ -122,7 +120,11 @@ const FeaturedAd = ({promotion}) => {
               size={15}
               color={isFavorite ? '#E65C89' : MyTheme.grey100}
             />
-          </Pressable>
+          </Pressable> */}
+          <FavoriteButton
+            isFavorite={promotion.is_favourite}
+            data={promotion}
+          />
         </View>
       </Pressable>
     </View>
