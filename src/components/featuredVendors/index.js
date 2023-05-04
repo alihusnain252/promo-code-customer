@@ -30,7 +30,7 @@ export const FeaturedVendors = ({loading, featured_vendors}) => {
         style={styles.scrollView}
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {featured_vendors?.map((vendor,index) => {
+        {featured_vendors?.map((vendor, index) => {
           return <Vendors key={index} vendor={vendor} />;
         })}
       </ScrollView>
@@ -101,7 +101,11 @@ export const Vendors = ({vendor}) => {
         <Pressable
           style={styles.heartContainer}
           onPress={() =>
-            isFavorite ? removeFromFavorite(vendor) : addTOFavorite(vendor)
+            userToken.token === ''
+              ? navigation.navigate('Login')
+              : isFavorite
+              ? removeFromFavorite(vendor)
+              : addTOFavorite(vendor)
           }>
           <AntDesign
             name="heart"

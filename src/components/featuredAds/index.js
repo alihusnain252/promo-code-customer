@@ -9,10 +9,6 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
-import image3 from '../../assets/images/image3.png';
-import image6 from '../../assets/images/image6.png';
-import image7 from '../../assets/images/image7.png';
-import heart from '../../assets/images/heart.png';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -20,8 +16,11 @@ import {token} from '@redux/tokenSlice';
 import {GetRequest} from '../../api/apiCall';
 import {MyTheme, customerUris} from '@utils';
 import {PostRequestWithToken} from '../../api/apiCall';
+import {userData} from '@redux/favouriteDataSlice';
 
 export const FeaturedAds = ({loading, promotions}) => {
+  const favoriteData = useSelector(userData);
+
   return (
     <View style={styles.featuredAdsContainer}>
       <View
@@ -36,7 +35,9 @@ export const FeaturedAds = ({loading, promotions}) => {
         style={styles.scrollView}
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
-        {promotions?.map((promo,index )=> {
+        {promotions?.map((promo, index) => {
+           const ids = favoriteData.data.favourite_promotions.data.filter(item => item.id === promo.id?promo.id:null)
+           console.log("id :", ids);
           return <FeaturedAd key={index} promotion={promo} />;
         })}
       </ScrollView>
@@ -44,8 +45,14 @@ export const FeaturedAds = ({loading, promotions}) => {
   );
 };
 const FeaturedAd = ({promotion}) => {
+  console.log("promo id : " , promotion.id);
   const navigation = useNavigation();
-  const [isFavorite, setIsFavorite] = useState(promotion.is_favourite);
+  const favoriteData = useSelector(userData);
+  // const ids = favoriteData.data.favourite_promotions.data.map(item => item.id === promotion.id?promotion.id:"")
+  // console.log("id :", ids);
+
+  
+  const [isFavorite, setIsFavorite] = useState(true);
 
   const userToken = useSelector(token);
 
@@ -60,10 +67,10 @@ const FeaturedAd = ({promotion}) => {
       customerUris.addPromotionToFavorite,
     ).then(res => {
       if (res.data.success) {
-        // console.log('is favorite ada :', res);
+        console.log('is favorite ada :', res);
         setIsFavorite(true);
       }
-      console.log('is favorite ada :', res);
+      console.log('is favorite add :', res);
     });
   };
   const removeFromFavorite = promotion => {
@@ -77,10 +84,10 @@ const FeaturedAd = ({promotion}) => {
       customerUris.removePromotionFromFavorite,
     ).then(res => {
       if (res.data.success) {
-        console.log('is favorite ada :', res);
+        console.log('is favorite add :', res);
         setIsFavorite(false);
       } else {
-        console.log('is favorite ada :', res);
+        console.log('is favorite add :', res);
       }
     });
   };
@@ -104,7 +111,9 @@ const FeaturedAd = ({promotion}) => {
           <Pressable
             style={styles.heartContainer}
             onPress={() =>
-              isFavorite
+              userToken.token === ''
+                ? navigation.navigate('Login')
+                : isFavorite
                 ? removeFromFavorite(promotion)
                 : addTOFavorite(promotion)
             }>

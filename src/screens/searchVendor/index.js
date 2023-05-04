@@ -28,35 +28,33 @@ export const SearchVendor = ({route}) => {
 
   const searchHandler = () => {
     setLoading(true);
-    GetRequest(
-      userToken.token,
-      customerUris.filterVendorsAndPromotions + `${name}`,
-    ).then(res => {
-      if (res.data.success === true) {
-        setFilteredPromotions(res.data.data.featured_promotions);
-        setFilteredVendors(res.data.data.featured_vendors);
-        setLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setLoading(false);
-      }
-    });
+    GetRequest(customerUris.filterVendorsAndPromotions + `${name}`).then(
+      res => {
+        if (res.data.success === true) {
+          setFilteredPromotions(res.data.data.featured_promotions);
+          setFilteredVendors(res.data.data.featured_vendors);
+          setLoading(false);
+        } else {
+          Alert.alert(res.data.message);
+          setLoading(false);
+        }
+      },
+    );
   };
   const searchByCatId = () => {
     setLoading(true);
-    GetRequest(
-      userToken.token,
-      customerUris.filterVendorAndPromotionByCatId + `${catId}`,
-    ).then(res => {
-      if (res.data.success === true) {
-        setFilteredPromotions(res.data.data.featured_promotions);
-        setFilteredVendors(res.data.data.featured_vendors);
-        setLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setLoading(false);
-      }
-    });
+    GetRequest(customerUris.filterVendorAndPromotionByCatId + `${catId}`).then(
+      res => {
+        if (res.data.success === true) {
+          setFilteredPromotions(res.data.data.featured_promotions);
+          setFilteredVendors(res.data.data.featured_vendors);
+          setLoading(false);
+        } else {
+          Alert.alert(res.data.message);
+          setLoading(false);
+        }
+      },
+    );
   };
   const getAllCities = () => {
     setLoading(true);
@@ -73,19 +71,17 @@ export const SearchVendor = ({route}) => {
   };
   const searchByCityName = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.searchByCity + `${city}`).then(
-      res => {
-        if (res.data.success === true) {
-          setFilteredPromotions(res.data.data.featured_promotions);
-          setFilteredVendors(res.data.data.featured_vendors);
-          setLoading(false);
-        } else {
-          Alert.alert(res.data.message);
-          console.log('search by city response ', res);
-          setLoading(false);
-        }
-      },
-    );
+    GetRequest(customerUris.searchByCity + `${city}`).then(res => {
+      if (res.data.success === true) {
+        setFilteredPromotions(res.data.data.featured_promotions);
+        setFilteredVendors(res.data.data.featured_vendors);
+        setLoading(false);
+      } else {
+        Alert.alert(res.data.message);
+        console.log('search by city response ', res);
+        setLoading(false);
+      }
+    });
   };
 
   const Item = ({data}) => <AdCard promo={data} />;

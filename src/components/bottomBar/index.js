@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import {styles} from './styles';
@@ -25,69 +26,6 @@ import {MyTheme, customerUris} from '@utils';
 import {GetRequest} from '../../api/apiCall';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const categories = [
-  {
-    id: 1,
-    name: 'Food and Beverage ',
-    icon: image1,
-  },
-  {
-    id: 2,
-    name: 'Shopping and Retail',
-    icon: image2,
-  },
-  {
-    id: 3,
-    name: 'Beach Resorts & Swimming Pools',
-    icon: image3,
-  },
-  {
-    id: 4,
-    name: 'Hotels and Resorts',
-    icon: image4,
-  },
-  {
-    id: 5,
-    name: 'Tattoos, Body & Beauty Care',
-    icon: image5,
-  },
-  {
-    id: 6,
-    name: 'Education',
-    icon: image6,
-  },
-  {
-    id: 7,
-    name: 'Pet Shops & Veterinary Services',
-    icon: image2,
-  },
-  {
-    id: 8,
-    name: 'Super markets',
-    icon: image4,
-  },
-  {
-    id: 9,
-    name: 'Health & Wellness',
-    icon: image6,
-  },
-  {
-    id: 10,
-    name: 'Home Decoration & Furniture',
-    icon: image3,
-  },
-  {
-    id: 11,
-    name: 'Entreating & Sports Activities',
-    icon: image5,
-  },
-  {
-    id: 12,
-    name: 'Diverse Services',
-    icon: image1,
-  },
-];
-
 export const BottomBar = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalCategories, setModalCategories] = useState([]);
@@ -98,7 +36,7 @@ export const BottomBar = () => {
   const categoriesHandler = () => {
     setModalVisible(true);
     setLoading(true);
-    GetRequest(userToken.token, customerUris.categories).then(res => {
+    GetRequest(customerUris.categories).then(res => {
       if (res.data.success === true) {
         // setAllPromotions(res.data.data.promotions.data);
         console.log(res.data.data.categories);
@@ -114,6 +52,7 @@ export const BottomBar = () => {
   const Item = ({data, setModalVisible}) => (
     <CategoryCard data={data} setModalVisible={setModalVisible} />
   );
+
   return (
     <View style={styles.bottomBarContainer}>
       <Pressable
@@ -133,12 +72,21 @@ export const BottomBar = () => {
 
       <Pressable
         style={styles.iconView}
-        onPress={() => navigation.navigate('Favorite')}>
+        onPress={() =>
+          userToken.token === ''
+            ? navigation.navigate('Login')
+            : navigation.navigate('Favorite')
+        }>
         <AntDesign name="heart" size={20} color={MyTheme.white} />
         <Text style={styles.iconText}>Favorites</Text>
       </Pressable>
 
-      <Pressable onPress={() => navigation.navigate('AccountScreen')}>
+      <Pressable
+        onPress={() =>
+          userToken.token === ''
+            ? navigation.navigate('Login')
+            : navigation.navigate('AccountScreen')
+        }>
         <View style={styles.iconView}>
           <MaterialIcons name="person" size={21.67} color="#fff" />
           <Text style={styles.iconText}>Account</Text>
@@ -161,6 +109,19 @@ export const BottomBar = () => {
               style={styles.buttonClose}
               onPress={() => setModalVisible(!modalVisible)}></Pressable>
             <Text style={styles.modalText}>Categories </Text>
+            <View
+              style={
+                loading === false
+                  ? {display: 'none'}
+                  : {
+                      marginTop: '2%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: '25%',
+                    }
+              }>
+              <ActivityIndicator size={36} color={MyTheme.yellow} />
+            </View>
             <FlatList
               data={modalCategories}
               renderItem={({item}) => (

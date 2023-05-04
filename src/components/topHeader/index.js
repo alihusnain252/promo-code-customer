@@ -1,24 +1,23 @@
 import {View, Text, Pressable, Image} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {styles} from './styles';
 
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import { useSelector } from 'react-redux';
-import { token } from '@redux/tokenSlice';
-import { GetRequest } from '../../api/apiCall';
-import { MyTheme } from '@utils';
+import {useSelector} from 'react-redux';
+import {token} from '@redux/tokenSlice';
+import {GetRequest, GetRequestWithToken} from '../../api/apiCall';
+import {MyTheme} from '@utils';
 
 export const TopHeader = () => {
   const navigation = useNavigation();
-  const [loading, setLoading] = useState(false)
-  const [imageUri, setImageUri] = useState("")
-
+  const [loading, setLoading] = useState(false);
+  const [imageUri, setImageUri] = useState('');
 
   const userToken = useSelector(token);
 
   const userProfile = () => {
     setLoading(true);
-    GetRequest(userToken.token, 'api/customer/user').then(res => {
+    GetRequestWithToken(userToken.token, 'api/customer/user').then(res => {
       if (res.data.success === true) {
         setImageUri(res.data.data.profile_pic);
         setLoading(false);
@@ -34,16 +33,23 @@ export const TopHeader = () => {
     }, []),
   );
 
-
-
-
   return (
     <View style={styles.topContainer}>
       <View style={styles.topBody}>
         <View style={styles.profile}>
-          <Pressable onPress={() => navigation.navigate('AccountScreen')} style = {{backgroundColor:MyTheme.grey100,borderRadius:50}}>
+          <Pressable
+            onPress={() =>
+              navigation.navigate(
+                userToken.token != '' ? 'AccountScreen' : 'Login',
+              )
+            }
+            style={{backgroundColor: MyTheme.grey100, borderRadius: 50}}>
             <Image
-              source={imageUri === ""? require('../../assets/icons/profile.png'):{uri:imageUri}}
+              source={
+                imageUri === ''
+                  ? require('../../assets/icons/profile.png')
+                  : {uri: imageUri}
+              }
               style={styles.profileImage}
             />
           </Pressable>

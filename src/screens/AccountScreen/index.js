@@ -5,7 +5,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProfileImage from '../../assets/icons/profile.png';
 import {useDispatch, useSelector} from 'react-redux';
 import {token, updateToken} from '@redux/tokenSlice';
-import {GetRequest} from '../../api/apiCall';
+import {GetRequest, GetRequestWithToken} from '../../api/apiCall';
 import {useFocusEffect} from '@react-navigation/native';
 import {MyTheme, customerUris} from '@utils';
 
@@ -18,7 +18,7 @@ export const AccountScreen = ({navigation}) => {
 
   const userProfile = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.myProfile).then(res => {
+    GetRequestWithToken(userToken.token, customerUris.myProfile).then(res => {
       console.log('user Profile data', res.data.data.profile_pic);
       if (res.data.success === true) {
         setUserData(res.data.data);
@@ -28,6 +28,11 @@ export const AccountScreen = ({navigation}) => {
         setLoading(false);
       }
     });
+  };
+
+  const logoutHandle = () => {
+    dispatch(updateToken(''));
+    navigation.goBack();
   };
 
   useFocusEffect(
@@ -85,9 +90,7 @@ export const AccountScreen = ({navigation}) => {
           <ActivityIndicator size={36} color={MyTheme.yellow} />
         </View>
         <View style={styles.logoutView}>
-          <Pressable
-            style={styles.logoutPress}
-            onPress={() => dispatch(updateToken(''))}>
+          <Pressable style={styles.logoutPress} onPress={() => logoutHandle()}>
             <Image
               source={require('../../assets/icons/logout.png')}
               style={styles.logoutIcon}

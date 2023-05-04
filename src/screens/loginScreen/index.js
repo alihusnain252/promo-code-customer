@@ -15,6 +15,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '@redux/tokenSlice';
+import {ArrowHeader} from '@components';
 
 export const LogInScreen = ({navigation}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -46,12 +47,12 @@ export const LogInScreen = ({navigation}) => {
           // Alert.alert('First digit of phone number must be 0');
           setNoDisplay(true);
           setErrorText('First digit of phone number must be 0');
-          
+
           setLoading(false);
         } else {
           LoginPostRequest(data, customerUris.login).then(response => {
             console.log('api response :', response);
-  
+
             if (response.data.success === false) {
               setNoDisplay(true);
               setLoading(false);
@@ -67,6 +68,7 @@ export const LogInScreen = ({navigation}) => {
                   updateToken(
                     response.data.data.token ? response.data.data.token : '',
                   ),
+                  navigation.navigate('Dashboard'),
                 );
               }
             }
@@ -81,7 +83,12 @@ export const LogInScreen = ({navigation}) => {
         setErrorText('phone number is not valid');
         setLoading(false);
       } else {
-        if (parseInt(s.charAt(0)) != "+" && parseInt(s.charAt(1)) != "2" && parseInt(s.charAt(2)) != "3" && parseInt(s.charAt(3)) != "3" ) {
+        if (
+          parseInt(s.charAt(0)) != '+' &&
+          parseInt(s.charAt(1)) != '2' &&
+          parseInt(s.charAt(2)) != '3' &&
+          parseInt(s.charAt(3)) != '3'
+        ) {
           // Alert.alert('First digits of phone number must be +233');
           setNoDisplay(true);
           setErrorText('First digits of phone number must be +233');
@@ -89,7 +96,7 @@ export const LogInScreen = ({navigation}) => {
         } else {
           LoginPostRequest(data, customerUris.login).then(response => {
             console.log('api response :', response);
-  
+
             if (response.data.success === false) {
               setNoDisplay(true);
               setLoading(false);
@@ -106,6 +113,7 @@ export const LogInScreen = ({navigation}) => {
                     response.data.data.token ? response.data.data.token : '',
                   ),
                 );
+                navigation.navigate('Dashboard');
               }
             }
           });
@@ -124,11 +132,11 @@ export const LogInScreen = ({navigation}) => {
       ? (setNoDisplay(true),
         setErrorText('please add Numbers'),
         setLoading(false))
-        : phoneNumber.length <= 10
-        ? valid10Digit()
-        : phoneNumber.length > 10 <= 14
-        ? valid14Digit()
-        : null;
+      : phoneNumber.length <= 10
+      ? valid10Digit()
+      : phoneNumber.length > 10 <= 14
+      ? valid14Digit()
+      : null;
   };
   const recoverHandler = () => {
     navigation.navigate('RecoverPassword');
@@ -150,6 +158,7 @@ export const LogInScreen = ({navigation}) => {
 
   return (
     <View style={styles.loginContainer}>
+      <ArrowHeader />
       <View style={styles.heading}>
         <Text style={styles.headingText}>Login✨</Text>
         <Text style={styles.welcomeText}>Welcome Back!</Text>

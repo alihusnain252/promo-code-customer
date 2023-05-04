@@ -24,10 +24,11 @@ import {
   notificationListener,
   requestUserPermission,
 } from '@utils';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
-import {GetRequest} from '../../api/apiCall';
+import {GetRequest, GetRequestWithToken} from '../../api/apiCall';
 import {useFocusEffect} from '@react-navigation/native';
+import { userData, userDetails } from '@redux/favouriteDataSlice';
 
 export const Dashboard = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -40,35 +41,57 @@ export const Dashboard = ({navigation}) => {
   const [sliderImage, setSliderImage] = useState([]);
 
   const userToken = useSelector(token);
+  const dispatch = useDispatch()
+  const favoriteData = useSelector(userData);
 
   const getAds = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.allPromotions).then(res => {
-      if (res.data.success === true) {
-        setAllPromotions(res.data.data.promotions.data);
-        setLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setLoading(false);
-      }
-    });
+   userToken.token !== ""
+   ? GetRequest(customerUris.allPromotions).then(res => {
+    if (res.data.success === true) {
+      setAllPromotions(res.data.data.promotions.data);
+      setLoading(false);
+    } else {
+      Alert.alert(res.data.message);
+      setLoading(false);
+    }
+  })
+  :GetRequestWithToken(userToken.token,customerUris.allPromotions).then(res => {
+    if (res.data.success === true) {
+      setAllPromotions(res.data.data.promotions.data);
+      setLoading(false);
+    } else {
+      Alert.alert(res.data.message);
+      setLoading(false);
+    }
+  })
   };
 
   const getFeaturedVendors = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.featuredVendors).then(res => {
-      if (res.data.success === true) {
-        setLoading(false);
-        setFeatured_vendors(res.data.data.featured_vendors);
-      } else {
-        setLoading(false);
-      }
-    });
+   userToken.token !== ""
+   ? GetRequest(customerUris.featuredVendors).then(res => {
+    if (res.data.success === true) {
+      setLoading(false);
+      setFeatured_vendors(res.data.data.featured_vendors);
+    } else {
+      setLoading(false);
+    }
+  })
+  :GetRequestWithToken(userToken.token,customerUris.featuredVendors).then(res => {
+    if (res.data.success === true) {
+      setLoading(false);
+      setFeatured_vendors(res.data.data.featured_vendors);
+    } else {
+      setLoading(false);
+    }
+  })
   };
 
   const getFeaturedAds = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.featuredPromotions).then(res => {
+    userToken.token !== ""
+    ?GetRequest(customerUris.featuredPromotions).then(res => {
       if (res.data.success === true) {
         setPromotions(res.data.data.featured_promotions);
         setLoading(false);
@@ -76,12 +99,21 @@ export const Dashboard = ({navigation}) => {
         Alert.alert(res.data.message);
         setLoading(false);
       }
-    });
+    })
+    :GetRequestWithToken(userToken.token,customerUris.featuredPromotions).then(res => {
+      if (res.data.success === true) {
+        setPromotions(res.data.data.featured_promotions);
+        setLoading(false);
+      } else {
+        Alert.alert(res.data.message);
+        setLoading(false);
+      }
+    })
   };
 
   const getSlider = () => {
     setLoading(true);
-    GetRequest(userToken.token, customerUris.sliderImages).then(res => {
+    GetRequest(customerUris.sliderImages).then(res => {
       if (res.data?.status === true) {
         setSliderImage(res.data?.data);
         setLoading(false);
@@ -90,38 +122,55 @@ export const Dashboard = ({navigation}) => {
       }
     });
   };
+  const getFavorites = () => {
+    setLoading(true);
+    GetRequestWithToken(userToken.token, customerUris.favoriteList).then(
+      res => {
+        if (res.status) {
+          console.log('is favorite vendors :', res.data.data);
+          dispatch(
+            userDetails(
+              res.data.data ? res.data.data : '',
+            ),
+            // navigation.navigate('Dashboard'),
+          );
+          setLoading(false);
+        } else {
+          setLoading(false);
+          console.log('is favorite :', res);
+        }
+      },
+    );
+  };
 
   useFocusEffect(
     React.useCallback(() => {
       getFeaturedAds();
       getFeaturedVendors();
       getAds();
-      // getSliderData()
-
+      userToken.token !== ""? getFavorites():null;
       getSlider();
 
       requestUserPermission(userToken);
       notificationListener();
-      // setSliderImage(sliderData.map(data => (data.imageUri)))
     }, []),
   );
 
   const sliderPress = index => {
     const selectedImage = sliderImage[index];
     setIsLoading(true);
-    GetRequest(
-      userToken.token,
-      customerUris.promotionById + selectedImage.promotion_id,
-    ).then(res => {
-      if (res.data.success === true) {
-        const promotion = res.data?.data?.promotion;
-        navigation.navigate('PromoDetails', {promoDetails: promotion});
-        setIsLoading(false);
-      } else {
-        Alert.alert(res.data.message);
-        setIsLoading(false);
-      }
-    });
+    GetRequest(customerUris.promotionById + selectedImage.promotion_id).then(
+      res => {
+        if (res.data.success === true) {
+          const promotion = res.data?.data?.promotion;
+          navigation.navigate('PromoDetails', {promoDetails: promotion});
+          setIsLoading(false);
+        } else {
+          Alert.alert(res.data.message);
+          setIsLoading(false);
+        }
+      },
+    );
   };
 
   return (

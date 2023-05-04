@@ -10,10 +10,8 @@ export const styles = StyleSheet.create({
     backgroundColor: MyTheme.background,
   },
   heading: {
-    position: 'absolute',
-    width: 126,
-    left: 22,
-    top: 30,
+    width: width - 40,
+    paddingVertical: '4%',
   },
   headingText: {
     fontFamily: MyTheme.fontFamily,
@@ -34,9 +32,7 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
   },
   loginInputs: {
-    position: 'absolute',
     width: width - 40,
-    top: 129,
   },
   input: {
     width: '100%',
@@ -46,9 +42,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   loginBtns: {
-    position: 'absolute',
     width: width - 40,
-    top: 270,
   },
   recoverText: {
     fontFamily: MyTheme.fontFamily,

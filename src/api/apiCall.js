@@ -90,7 +90,7 @@ export const UpdateRequest = async (token, data, url) => {
     return {status: false, data: null, error: error};
   }
 };
-export const GetRequest = async (token, url) => {
+export const GetRequestWithToken = async (token, url) => {
   try {
     const AuthStr = 'Bearer '.concat(token);
     const res = await axios({
@@ -98,6 +98,24 @@ export const GetRequest = async (token, url) => {
       url: url,
       baseURL: baseUrl,
       headers: {Authorization: AuthStr},
+    });
+
+    if (res.status === 200) {
+      return {status: true, data: res.data};
+    } else {
+      return {status: false, data: res.data};
+    }
+  } catch (error) {
+    return {status: false, data: null, error: error};
+  }
+};
+export const GetRequest = async url => {
+  try {
+    const res = await axios({
+      method: 'get',
+      url: url,
+      baseURL: baseUrl,
+      headers: {},
     });
 
     if (res.status === 200) {

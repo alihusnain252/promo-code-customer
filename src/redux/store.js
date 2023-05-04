@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import tokenReducer from "./tokenSlice";
-import userDataReducer from "./userDataSlice";
+import userDataReducer from "./favouriteDataSlice";
 import AsyncStorage from "@react-native-community/async-storage";
 import {
   persistStore,

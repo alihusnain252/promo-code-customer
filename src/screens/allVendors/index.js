@@ -11,7 +11,7 @@ import {styles} from './styles';
 import image from '../../assets/images/image8.png';
 import {useSelector} from 'react-redux';
 import {token} from '@redux/tokenSlice';
-import {GetRequest} from '../../api/apiCall';
+import {GetRequest, PostRequestWithToken} from '../../api/apiCall';
 import {MyTheme, customerUris} from '@utils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ArrowHeader} from '@components';
@@ -23,8 +23,8 @@ export const AllVendors = ({navigation}) => {
   const [allVendors, setAllVendors] = useState([]);
 
   const getAllVendors = () => {
-    setLoading(true)
-    GetRequest(userToken.token, customerUris.allVendors).then(res => {
+    setLoading(true);
+    GetRequest(customerUris.allVendors).then(res => {
       console.log('is favorite ada :', res.data.data.vendors);
       if (res.status) {
         setAllVendors(res.data.data.vendors);
@@ -44,15 +44,11 @@ export const AllVendors = ({navigation}) => {
     <View style={styles.vendorsContainer}>
       <ArrowHeader heading="All Vendors" />
       <View
-        style={
-          loading === false
-            ? {display: 'none'}
-            : {marginVertical:10}
-        }>
+        style={loading === false ? {display: 'none'} : {marginVertical: 10}}>
         <ActivityIndicator size={36} color={MyTheme.yellow} />
       </View>
       <ScrollView style={styles.scroll}>
-        {allVendors?.map((vendor,index) => {
+        {allVendors?.map((vendor, index) => {
           return <VendorCard key={index} vendor={vendor} />;
         })}
       </ScrollView>
@@ -62,6 +58,42 @@ export const AllVendors = ({navigation}) => {
 
 export const VendorCard = ({vendor}) => {
   const navigation = useNavigation();
+  const userToken = useSelector(token);
+  const [isFavorite, setIsFavorite] = useState(vendor.is_favourite);
+  const addTOFavorite = vendor => {
+    const data = {
+      vendor_id: vendor.id,
+    };
+
+    PostRequestWithToken(
+      userToken.token,
+      data,
+      customerUris.addVendorToFavorite,
+    ).then(res => {
+      if (res.data.success) {
+        console.log('is favorite ada :', res);
+        setIsFavorite(true);
+      }
+      console.log('is favorite ada :', res);
+    });
+  };
+  const removeFromFavorite = vendor => {
+    const data = {
+      vendor_id: vendor.id,
+    };
+
+    PostRequestWithToken(
+      userToken.token,
+      data,
+      customerUris.removeVendorFromFavorite,
+    ).then(res => {
+      if (res.data.success) {
+        console.log('is favorite ada :', res);
+        setIsFavorite(false);
+      }
+      console.log('is favorite ada :', res);
+    });
+  };
   return (
     <View style={styles.cardContainer}>
       <Pressable
@@ -99,9 +131,18 @@ export const VendorCard = ({vendor}) => {
         </View>
         <Pressable
           style={styles.heartContainer}
-          // onPress={() => addTOFavorite(promotion)}
-        >
-          <AntDesign name="heart" size={15} color={MyTheme.grey100} />
+          onPress={() =>
+            userToken.token === ''
+              ? navigation.navigate('Login')
+              : isFavorite
+              ? removeFromFavorite(vendor)
+              : addTOFavorite(vendor)
+          }>
+          <AntDesign
+            name="heart"
+            size={15}
+            color={isFavorite ? '#E65C89' : MyTheme.grey100}
+          />
         </Pressable>
       </Pressable>
     </View>

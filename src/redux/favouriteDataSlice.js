@@ -7,6 +7,12 @@ export const userDataSlice = createSlice({
     userDetails: (state, action) => {
       state.data = action.payload;
     },
+    addToFavorite: (state, action) => {
+      state.data.push(action.payload)
+    },
+    removeFromFavorite: (state, action) => {
+      state.data = action.payload;
+    },
   },
 });
 

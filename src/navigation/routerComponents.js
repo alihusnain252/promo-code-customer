@@ -54,77 +54,60 @@ export const RouterComponents = () => {
 
   return (
     <NavigationContainer>
-      {userToken.token === '' ? (
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          statusBarColor: MyTheme.primary,
+          statusBarStyle: 'dark',
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
+          transitionSpec: {
+            open: config,
+            close: closeConfig,
+          },
+          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
+        }}>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{
             statusBarColor: MyTheme.primary,
             statusBarStyle: 'dark',
-            gestureEnabled: true,
-            gestureDirection: 'horizontal',
-            transitionSpec: {
-              open: config,
-              close: closeConfig,
-            },
-            cardStyleInterpolator:
-              CardStyleInterpolators.forModalPresentationIOS,
-          }}>
-          <Stack.Screen name="Login" component={LogInScreen} />
-          <Stack.Screen name="LoginOtp" component={LoginOtp} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
-          <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
-          <Stack.Screen name="ResetPassword" component={ResetPassword} />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            statusBarColor: MyTheme.primary,
-            statusBarStyle: 'dark',
-            gestureEnabled: true,
-            gestureDirection: 'horizontal',
-            transitionSpec: {
-              open: config,
-              close: closeConfig,
-            },
-            cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-          }}>
-          <Stack.Screen
-            name="Dashboard"
-            component={Dashboard}
-            options={{
-              statusBarColor: MyTheme.primary,
-              statusBarStyle: 'dark',
-            }}
-          />
-          <Stack.Screen name="PromoDetails" component={PromoDetails} />
-          <Stack.Screen
-            name="AccountScreen"
-            component={AccountScreen}
-            options={{
-              statusBarHidden: true,
-            }}
-          />
-          <Stack.Screen
-            name="Notifications"
-            component={Notifications}
-            options={{
-              statusBarHidden: true,
-            }}
-          />
-          <Stack.Screen name="Favorite" component={Favorite} />
-          <Stack.Screen name="TopHeader" component={TopHeader} />
-          <Stack.Screen name="SearchVendor" component={SearchVendor} />
-          <Stack.Screen name="AccountDetails" component={AccountDetails} />
-          <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
-          <Stack.Screen name="AllVendors" component={AllVendors} />
-          <Stack.Screen name="VendorDetails" component={VendorDetails} />
-          <Stack.Screen
-            name="NotificationSettings"
-            component={NotificationSettings}
-          />
-        </Stack.Navigator>
-      )}
+          }}
+        />
+        <Stack.Screen name="Login" component={LogInScreen} />
+        <Stack.Screen name="LoginOtp" component={LoginOtp} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+
+        <Stack.Screen name="PromoDetails" component={PromoDetails} />
+        <Stack.Screen
+          name="AccountScreen"
+          component={AccountScreen}
+          options={{
+            statusBarHidden: true,
+          }}
+        />
+        <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{
+            statusBarHidden: true,
+          }}
+        />
+        <Stack.Screen name="Favorite" component={Favorite} />
+        <Stack.Screen name="TopHeader" component={TopHeader} />
+        <Stack.Screen name="SearchVendor" component={SearchVendor} />
+        <Stack.Screen name="AccountDetails" component={AccountDetails} />
+        <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
+        <Stack.Screen name="AllVendors" component={AllVendors} />
+        <Stack.Screen name="VendorDetails" component={VendorDetails} />
+        <Stack.Screen
+          name="NotificationSettings"
+          component={NotificationSettings}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

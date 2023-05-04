@@ -18,7 +18,7 @@ import {MyTheme, customerUris} from '@utils';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {GetRequest} from '../../api/apiCall';
 import {SliderBox} from 'react-native-image-slider-box';
-import pImage from "../../assets/icons/profile.png"
+import pImage from '../../assets/icons/profile.png';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -30,17 +30,16 @@ export const VendorDetails = ({route, navigation}) => {
   const [loading, setLoading] = useState(false);
   const [vendorPromotions, setVendorPromotions] = useState([]);
   const images = [
-    vendorDetails.image ?vendorDetails.image: pImage,
-    vendorDetails.image_one ?vendorDetails.image_one: pImage,
-    vendorDetails.image_two ?vendorDetails.image_two:pImage,
-    vendorDetails.image_three ?vendorDetails.image_three:pImage,
-    vendorDetails.image_four ?vendorDetails.image_four:pImage,
+    vendorDetails.image ? vendorDetails.image : pImage,
+    vendorDetails.image_one ? vendorDetails.image_one : pImage,
+    vendorDetails.image_two ? vendorDetails.image_two : pImage,
+    vendorDetails.image_three ? vendorDetails.image_three : pImage,
+    vendorDetails.image_four ? vendorDetails.image_four : pImage,
   ];
 
   const getVendorPromotions = () => {
     setLoading(true);
     GetRequest(
-      userToken.token,
       customerUris.PromotionByVendorId +
         `${vendorDetails.id ? vendorDetails.id : ''}`,
     ).then(res => {
@@ -71,9 +70,7 @@ export const VendorDetails = ({route, navigation}) => {
           autoplay
           circleLoop
           images={images}
-          onCurrentImagePressed={index =>
-            Alert.alert('pressed index  : ', `${index}`)
-          }
+          onCurrentImagePressed={index => {}}
           dotStyle={{
             width: 10,
             height: 10,
