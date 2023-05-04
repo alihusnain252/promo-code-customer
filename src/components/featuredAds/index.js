@@ -37,7 +37,7 @@ export const FeaturedAds = ({loading, promotions}) => {
         showsHorizontalScrollIndicator={false}>
         {promotions?.map((promo, index) => {
            const ids = favoriteData.data.favourite_promotions.data.filter(item => item.id === promo.id?promo.id:null)
-           console.log("id :", ids);
+          //  console.log("id :", ids);
           return <FeaturedAd key={index} promotion={promo} />;
         })}
       </ScrollView>
@@ -45,7 +45,7 @@ export const FeaturedAds = ({loading, promotions}) => {
   );
 };
 const FeaturedAd = ({promotion}) => {
-  console.log("promo id : " , promotion.id);
+  // console.log("promo id : " , promotion.id);
   const navigation = useNavigation();
   const favoriteData = useSelector(userData);
   // const ids = favoriteData.data.favourite_promotions.data.map(item => item.id === promotion.id?promotion.id:"")

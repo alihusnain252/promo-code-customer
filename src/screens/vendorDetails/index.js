@@ -24,7 +24,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export const VendorDetails = ({route, navigation}) => {
   const {vendorDetails} = route.params;
-  console.log('vendor Id : ', vendorDetails);
+  // console.log('vendor Id : ', vendorDetails);
 
   const userToken = useSelector(token);
   const [loading, setLoading] = useState(false);
